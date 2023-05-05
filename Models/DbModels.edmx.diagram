@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="27fef83cd9a945c3887cf4269895d140" Name="Diagram1">
+        <EntityTypeShape EntityType="ServiceAutoDBModel.Angajat" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.catalog_servicii" Width="1.5" PointX="7.5" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.catalog_tip_reparatie" Width="1.5" PointX="9.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.Client" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.Contact" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.oferte_servicii" Width="1.5" PointX="9.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.pozitie_angajat" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.produ" Width="1.5" PointX="12" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.programare" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.Punct_Lucru_Service" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.Tip_Contact" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.vehicul" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ServiceAutoDBModel.oferta_tip_reparatie" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_Angajat_Pozitie_Angajat" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_Angajat_Punct_Lucru_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_programare_angajat" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_catalog_tip_reparatie_catalog_servicii" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_oferte_servicii_catalog_servicii" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK__oferta_ti__id_ca__05D8E0BE" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_Contact_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_oferte_servicii_client" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_vehicul_client" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_Contact_Programare" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_Contact_Tip_Contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_oferte_servicii_contact" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK__oferta_ti__id_of__04E4BC85" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_programare_pozitie_angajat" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.FK_programare_pct_lucru_service" ManuallyRouted="false" />
+        <AssociationConnector Association="ServiceAutoDBModel.produs_tip_reparatie" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

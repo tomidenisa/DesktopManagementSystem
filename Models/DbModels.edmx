@@ -1,0 +1,1145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ServiceAutoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Angajat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nume" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prenume" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataNasterii" Type="date" Nullable="false" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CNP" Type="nvarchar" MaxLength="13" Nullable="false" />
+          <Property Name="DataAngajarii" Type="date" Nullable="false" />
+          <Property Name="DataIncheiereContract" Type="date" />
+          <Property Name="IdPunctDeLucru" Type="int" Nullable="false" />
+          <Property Name="Id_Pozitie_Angajat" Type="int" Nullable="false" />
+          <Property Name="Parola" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalog_servicii">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" />
+          <Property Name="descriere" Type="nvarchar" MaxLength="200" />
+          <Property Name="discount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="activ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="catalog_tip_reparatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="descriere" Type="nvarchar" MaxLength="200" />
+          <Property Name="timp_necesar_max" Type="int" Nullable="false" />
+          <Property Name="timp_necesar_min" Type="int" Nullable="false" />
+          <Property Name="pret" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="activ" Type="bit" Nullable="false" />
+          <Property Name="id_catalog_servicii" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nume" Type="nvarchar" MaxLength="50" />
+          <Property Name="prenume" Type="nvarchar" MaxLength="50" />
+          <Property Name="denumire_companie" Type="nvarchar" MaxLength="100" />
+          <Property Name="adresa" Type="nvarchar" MaxLength="200" />
+          <Property Name="contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="cont_bancar" Type="nvarchar" MaxLength="50" />
+          <Property Name="CIF" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nr_reg_com" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="detalii" Type="nvarchar" MaxLength="200" />
+          <Property Name="data_inregistrare" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="Contact_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Data_Inreg" Type="datetime" />
+          <Property Name="Detalii" Type="nvarchar(max)" />
+          <Property Name="Tip_Contact_Id" Type="int" />
+          <Property Name="Client_Id" Type="int" />
+          <Property Name="Programare_Id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ServiceAutoDB.dbo.oferta_tip_reparatie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="oferta_tip_reparatie">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_oferte_servicii" />
+            <PropertyRef Name="id_catalog_tip_reparatie" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pret_tip_reparatie" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="id_oferte_servicii" Type="int" Nullable="false" />
+          <Property Name="id_catalog_tip_reparatie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="oferte_servicii">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descriere" Type="nvarchar" MaxLength="200" />
+          <Property Name="pret" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="data_inregistrare" Type="datetime" Nullable="false" />
+          <Property Name="id_client" Type="int" Nullable="false" />
+          <Property Name="id_contact" Type="int" />
+          <Property Name="id_catalog_servicii" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pozitie_angajat">
+          <Key>
+            <PropertyRef Name="pozitie_angajat_id" />
+          </Key>
+          <Property Name="pozitie_angajat_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pozitie" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="produs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="denumire" Type="nvarchar" MaxLength="50" />
+          <Property Name="serie" Type="nvarchar" MaxLength="50" />
+          <Property Name="compatibilitate" Type="nvarchar" MaxLength="50" />
+          <Property Name="original_sau_aftermarket" Type="nvarchar" MaxLength="50" />
+          <Property Name="descriere" Type="nvarchar" MaxLength="200" />
+          <Property Name="cost_achizitie" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="cost_vanzare" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="discount_maxim" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="produs_tip_reparatie">
+          <Key>
+            <PropertyRef Name="id_produs" />
+            <PropertyRef Name="id_catalog_tip_reparatie" />
+          </Key>
+          <Property Name="id_produs" Type="int" Nullable="false" />
+          <Property Name="id_catalog_tip_reparatie" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="programare">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="data_inregistrare" Type="date" />
+          <Property Name="online_onsite" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="ora_intrare" Type="time" Precision="7" />
+          <Property Name="ora_iesire" Type="time" Precision="7" />
+          <Property Name="data_programare" Type="date" />
+          <Property Name="angajat_id" Type="int" Nullable="false" />
+          <Property Name="pozitie_angajat_id" Type="int" Nullable="false" />
+          <Property Name="id_pct_lucru_service" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Punct_Lucru_Service">
+          <Key>
+            <PropertyRef Name="Punct_Lucru_Id" />
+          </Key>
+          <Property Name="Punct_Lucru_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Denumire" Type="nvarchar" MaxLength="50" />
+          <Property Name="Adresa" Type="nvarchar" MaxLength="200" />
+          <Property Name="Cont_Bancar" Type="nvarchar" MaxLength="35" />
+          <Property Name="CIF" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nr_Reg_Com" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tip_Contact">
+          <Key>
+            <PropertyRef Name="Tip_Contact_Id" />
+          </Key>
+          <Property Name="Tip_Contact_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Denumire" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="vehicul">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serie_sasiu" Type="nvarchar" MaxLength="50" />
+          <Property Name="nr_inmatriculare" Type="nvarchar" MaxLength="50" />
+          <Property Name="an_fabricatie" Type="int" />
+          <Property Name="detalii" Type="nvarchar" MaxLength="200" />
+          <Property Name="data_inregistrare" Type="datetime" Nullable="false" />
+          <Property Name="id_client" Type="int" />
+          <Property Name="tip_vehicul" Type="nvarchar" MaxLength="50" />
+          <Property Name="producator" Type="nvarchar" MaxLength="50" />
+          <Property Name="model" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__oferta_ti__id_ca__05D8E0BE">
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_tip_reparatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_catalog_tip_reparatie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__oferta_ti__id_of__04E4BC85">
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oferte_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_oferte_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Angajat_Pozitie_Angajat">
+          <End Role="pozitie_angajat" Type="Self.pozitie_angajat" Multiplicity="1" />
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pozitie_angajat">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Principal>
+            <Dependent Role="Angajat">
+              <PropertyRef Name="Id_Pozitie_Angajat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Angajat_Punct_Lucru_Service">
+          <End Role="Punct_Lucru_Service" Type="Self.Punct_Lucru_Service" Multiplicity="1" />
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Punct_Lucru_Service">
+              <PropertyRef Name="Punct_Lucru_Id" />
+            </Principal>
+            <Dependent Role="Angajat">
+              <PropertyRef Name="IdPunctDeLucru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_catalog_tip_reparatie_catalog_servicii">
+          <End Role="catalog_servicii" Type="Self.catalog_servicii" Multiplicity="1" />
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="catalog_tip_reparatie">
+              <PropertyRef Name="id_catalog_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Client_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Programare">
+          <End Role="programare" Type="Self.programare" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programare">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Programare_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Tip_Contact">
+          <End Role="Tip_Contact" Type="Self.Tip_Contact" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_Contact">
+              <PropertyRef Name="Tip_Contact_Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Tip_Contact_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_catalog_servicii">
+          <End Role="catalog_servicii" Type="Self.catalog_servicii" Multiplicity="1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_catalog_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_contact">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Contact_Id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_contact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produs_tip_reparatie_catalog_tip_reparatie">
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="1" />
+          <End Role="produs_tip_reparatie" Type="Self.produs_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_tip_reparatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="produs_tip_reparatie">
+              <PropertyRef Name="id_catalog_tip_reparatie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_produs_tip_reparatie_produs">
+          <End Role="produs" Type="Self.produs" Multiplicity="1" />
+          <End Role="produs_tip_reparatie" Type="Self.produs_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="produs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="produs_tip_reparatie">
+              <PropertyRef Name="id_produs" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_angajat">
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Angajat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="angajat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_pct_lucru_service">
+          <End Role="Punct_Lucru_Service" Type="Self.Punct_Lucru_Service" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Punct_Lucru_Service">
+              <PropertyRef Name="Punct_Lucru_Id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="id_pct_lucru_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_pozitie_angajat">
+          <End Role="pozitie_angajat" Type="Self.pozitie_angajat" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pozitie_angajat">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vehicul_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="vehicul" Type="Self.vehicul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicul">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ServiceAutoDBModelStoreContainer">
+          <EntitySet Name="Angajat" EntityType="Self.Angajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catalog_servicii" EntityType="Self.catalog_servicii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="catalog_tip_reparatie" EntityType="Self.catalog_tip_reparatie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oferte_servicii" EntityType="Self.oferte_servicii" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pozitie_angajat" EntityType="Self.pozitie_angajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="produs" EntityType="Self.produs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="programare" EntityType="Self.programare" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Punct_Lucru_Service" EntityType="Self.Punct_Lucru_Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tip_Contact" EntityType="Self.Tip_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vehicul" EntityType="Self.vehicul" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oferta_tip_reparatie" EntityType="Self.oferta_tip_reparatie" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [oferta_tip_reparatie].[id] AS [id], 
+    [oferta_tip_reparatie].[pret_tip_reparatie] AS [pret_tip_reparatie], 
+    [oferta_tip_reparatie].[id_oferte_servicii] AS [id_oferte_servicii], 
+    [oferta_tip_reparatie].[id_catalog_tip_reparatie] AS [id_catalog_tip_reparatie]
+    FROM [dbo].[oferta_tip_reparatie] AS [oferta_tip_reparatie]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="produs_tip_reparatie" EntityType="Self.produs_tip_reparatie" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [produs_tip_reparatie].[id_produs] AS [id_produs], 
+    [produs_tip_reparatie].[id_catalog_tip_reparatie] AS [id_catalog_tip_reparatie]
+    FROM [dbo].[produs_tip_reparatie] AS [produs_tip_reparatie]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__oferta_ti__id_ca__05D8E0BE" Association="Self.FK__oferta_ti__id_ca__05D8E0BE">
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK__oferta_ti__id_of__04E4BC85" Association="Self.FK__oferta_ti__id_of__04E4BC85">
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Angajat_Pozitie_Angajat" Association="Self.FK_Angajat_Pozitie_Angajat">
+            <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
+            <End Role="Angajat" EntitySet="Angajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Angajat_Punct_Lucru_Service" Association="Self.FK_Angajat_Punct_Lucru_Service">
+            <End Role="Punct_Lucru_Service" EntitySet="Punct_Lucru_Service" />
+            <End Role="Angajat" EntitySet="Angajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_catalog_tip_reparatie_catalog_servicii" Association="Self.FK_catalog_tip_reparatie_catalog_servicii">
+            <End Role="catalog_servicii" EntitySet="catalog_servicii" />
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Programare" Association="Self.FK_Contact_Programare">
+            <End Role="programare" EntitySet="programare" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Tip_Contact" Association="Self.FK_Contact_Tip_Contact">
+            <End Role="Tip_Contact" EntitySet="Tip_Contact" />
+            <End Role="Contact" EntitySet="Contact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_catalog_servicii" Association="Self.FK_oferte_servicii_catalog_servicii">
+            <End Role="catalog_servicii" EntitySet="catalog_servicii" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_client" Association="Self.FK_oferte_servicii_client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_contact" Association="Self.FK_oferte_servicii_contact">
+            <End Role="Contact" EntitySet="Contact" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produs_tip_reparatie_catalog_tip_reparatie" Association="Self.FK_produs_tip_reparatie_catalog_tip_reparatie">
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+            <End Role="produs_tip_reparatie" EntitySet="produs_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_produs_tip_reparatie_produs" Association="Self.FK_produs_tip_reparatie_produs">
+            <End Role="produs" EntitySet="produs" />
+            <End Role="produs_tip_reparatie" EntitySet="produs_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_angajat" Association="Self.FK_programare_angajat">
+            <End Role="Angajat" EntitySet="Angajat" />
+            <End Role="programare" EntitySet="programare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_pct_lucru_service" Association="Self.FK_programare_pct_lucru_service">
+            <End Role="Punct_Lucru_Service" EntitySet="Punct_Lucru_Service" />
+            <End Role="programare" EntitySet="programare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_pozitie_angajat" Association="Self.FK_programare_pozitie_angajat">
+            <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
+            <End Role="programare" EntitySet="programare" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vehicul_client" Association="Self.FK_vehicul_client">
+            <End Role="Client" EntitySet="Client" />
+            <End Role="vehicul" EntitySet="vehicul" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ServiceAutoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Angajat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataNasterii" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Adresa" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CNP" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DataAngajarii" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataIncheiereContract" Type="DateTime" Precision="0" />
+          <Property Name="IdPunctDeLucru" Type="Int32" Nullable="false" />
+          <Property Name="Id_Pozitie_Angajat" Type="Int32" Nullable="false" />
+          <Property Name="Parola" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="pozitie_angajat" Relationship="Self.FK_Angajat_Pozitie_Angajat" FromRole="Angajat" ToRole="pozitie_angajat" />
+          <NavigationProperty Name="Punct_Lucru_Service" Relationship="Self.FK_Angajat_Punct_Lucru_Service" FromRole="Angajat" ToRole="Punct_Lucru_Service" />
+          <NavigationProperty Name="programares" Relationship="Self.FK_programare_angajat" FromRole="Angajat" ToRole="programare" />
+        </EntityType>
+        <EntityType Name="catalog_servicii">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descriere" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="activ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="catalog_tip_reparatie" Relationship="Self.FK_catalog_tip_reparatie_catalog_servicii" FromRole="catalog_servicii" ToRole="catalog_tip_reparatie" />
+          <NavigationProperty Name="oferte_servicii" Relationship="Self.FK_oferte_servicii_catalog_servicii" FromRole="catalog_servicii" ToRole="oferte_servicii" />
+        </EntityType>
+        <EntityType Name="catalog_tip_reparatie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="descriere" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="timp_necesar_max" Type="Int32" Nullable="false" />
+          <Property Name="timp_necesar_min" Type="Int32" Nullable="false" />
+          <Property Name="pret" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="activ" Type="Boolean" Nullable="false" />
+          <Property Name="id_catalog_servicii" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalog_servicii" Relationship="Self.FK_catalog_tip_reparatie_catalog_servicii" FromRole="catalog_tip_reparatie" ToRole="catalog_servicii" />
+          <NavigationProperty Name="oferta_tip_reparatie" Relationship="Self.FK__oferta_ti__id_ca__05D8E0BE" FromRole="catalog_tip_reparatie" ToRole="oferta_tip_reparatie" />
+          <NavigationProperty Name="produs" Relationship="Self.produs_tip_reparatie" FromRole="catalog_tip_reparatie" ToRole="produs" />
+        </EntityType>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="prenume" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="denumire_companie" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="adresa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cont_bancar" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CIF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nr_reg_com" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="detalii" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="data_inregistrare" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Client" FromRole="Client" ToRole="Contact" />
+          <NavigationProperty Name="oferte_servicii" Relationship="Self.FK_oferte_servicii_client" FromRole="Client" ToRole="oferte_servicii" />
+          <NavigationProperty Name="vehiculs" Relationship="Self.FK_vehicul_client" FromRole="Client" ToRole="vehicul" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="Contact_Id" />
+          </Key>
+          <Property Name="Contact_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Data_Inreg" Type="DateTime" Precision="3" />
+          <Property Name="Detalii" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tip_Contact_Id" Type="Int32" />
+          <Property Name="Client_Id" Type="Int32" />
+          <Property Name="Programare_Id" Type="Int32" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_Contact_Client" FromRole="Contact" ToRole="Client" />
+          <NavigationProperty Name="programare" Relationship="Self.FK_Contact_Programare" FromRole="Contact" ToRole="programare" />
+          <NavigationProperty Name="Tip_Contact" Relationship="Self.FK_Contact_Tip_Contact" FromRole="Contact" ToRole="Tip_Contact" />
+          <NavigationProperty Name="oferte_servicii" Relationship="Self.FK_oferte_servicii_contact" FromRole="Contact" ToRole="oferte_servicii" />
+        </EntityType>
+        <EntityType Name="oferte_servicii">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descriere" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="pret" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="data_inregistrare" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_client" Type="Int32" Nullable="false" />
+          <Property Name="id_contact" Type="Int32" />
+          <Property Name="id_catalog_servicii" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalog_servicii" Relationship="Self.FK_oferte_servicii_catalog_servicii" FromRole="oferte_servicii" ToRole="catalog_servicii" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_oferte_servicii_client" FromRole="oferte_servicii" ToRole="Client" />
+          <NavigationProperty Name="Contact" Relationship="Self.FK_oferte_servicii_contact" FromRole="oferte_servicii" ToRole="Contact" />
+          <NavigationProperty Name="oferta_tip_reparatie" Relationship="Self.FK__oferta_ti__id_of__04E4BC85" FromRole="oferte_servicii" ToRole="oferta_tip_reparatie" />
+        </EntityType>
+        <EntityType Name="pozitie_angajat">
+          <Key>
+            <PropertyRef Name="pozitie_angajat_id" />
+          </Key>
+          <Property Name="pozitie_angajat_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pozitie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Angajats" Relationship="Self.FK_Angajat_Pozitie_Angajat" FromRole="pozitie_angajat" ToRole="Angajat" />
+          <NavigationProperty Name="programares" Relationship="Self.FK_programare_pozitie_angajat" FromRole="pozitie_angajat" ToRole="programare" />
+        </EntityType>
+        <EntityType Name="produ">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="compatibilitate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="original_sau_aftermarket" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="descriere" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="cost_achizitie" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="cost_vanzare" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="discount_maxim" Type="Int32" />
+          <NavigationProperty Name="catalog_tip_reparatie" Relationship="Self.produs_tip_reparatie" FromRole="produs" ToRole="catalog_tip_reparatie" />
+        </EntityType>
+        <EntityType Name="programare">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="data_inregistrare" Type="DateTime" Precision="0" />
+          <Property Name="online_onsite" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ora_intrare" Type="Time" Precision="7" />
+          <Property Name="ora_iesire" Type="Time" Precision="7" />
+          <Property Name="data_programare" Type="DateTime" Precision="0" />
+          <Property Name="angajat_id" Type="Int32" Nullable="false" />
+          <Property Name="pozitie_angajat_id" Type="Int32" Nullable="false" />
+          <Property Name="id_pct_lucru_service" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Angajat" Relationship="Self.FK_programare_angajat" FromRole="programare" ToRole="Angajat" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Programare" FromRole="programare" ToRole="Contact" />
+          <NavigationProperty Name="pozitie_angajat" Relationship="Self.FK_programare_pozitie_angajat" FromRole="programare" ToRole="pozitie_angajat" />
+          <NavigationProperty Name="Punct_Lucru_Service" Relationship="Self.FK_programare_pct_lucru_service" FromRole="programare" ToRole="Punct_Lucru_Service" />
+        </EntityType>
+        <EntityType Name="Punct_Lucru_Service">
+          <Key>
+            <PropertyRef Name="Punct_Lucru_Id" />
+          </Key>
+          <Property Name="Punct_Lucru_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Adresa" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Cont_Bancar" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="CIF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nr_Reg_Com" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Angajats" Relationship="Self.FK_Angajat_Punct_Lucru_Service" FromRole="Punct_Lucru_Service" ToRole="Angajat" />
+          <NavigationProperty Name="programares" Relationship="Self.FK_programare_pct_lucru_service" FromRole="Punct_Lucru_Service" ToRole="programare" />
+        </EntityType>
+        <EntityType Name="Tip_Contact">
+          <Key>
+            <PropertyRef Name="Tip_Contact_Id" />
+          </Key>
+          <Property Name="Tip_Contact_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Denumire" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Tip_Contact" FromRole="Tip_Contact" ToRole="Contact" />
+        </EntityType>
+        <EntityType Name="vehicul">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serie_sasiu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nr_inmatriculare" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="an_fabricatie" Type="Int32" />
+          <Property Name="detalii" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="data_inregistrare" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="id_client" Type="Int32" />
+          <Property Name="tip_vehicul" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="producator" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Client" Relationship="Self.FK_vehicul_client" FromRole="vehicul" ToRole="Client" />
+        </EntityType>
+        <EntityType Name="oferta_tip_reparatie">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="id_oferte_servicii" />
+            <PropertyRef Name="id_catalog_tip_reparatie" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pret_tip_reparatie" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id_oferte_servicii" Type="Int32" Nullable="false" />
+          <Property Name="id_catalog_tip_reparatie" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="catalog_tip_reparatie" Relationship="Self.FK__oferta_ti__id_ca__05D8E0BE" FromRole="oferta_tip_reparatie" ToRole="catalog_tip_reparatie" />
+          <NavigationProperty Name="oferte_servicii" Relationship="Self.FK__oferta_ti__id_of__04E4BC85" FromRole="oferta_tip_reparatie" ToRole="oferte_servicii" />
+        </EntityType>
+        <Association Name="FK_Angajat_Pozitie_Angajat">
+          <End Role="pozitie_angajat" Type="Self.pozitie_angajat" Multiplicity="1" />
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pozitie_angajat">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Principal>
+            <Dependent Role="Angajat">
+              <PropertyRef Name="Id_Pozitie_Angajat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Angajat_Punct_Lucru_Service">
+          <End Role="Punct_Lucru_Service" Type="Self.Punct_Lucru_Service" Multiplicity="1" />
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Punct_Lucru_Service">
+              <PropertyRef Name="Punct_Lucru_Id" />
+            </Principal>
+            <Dependent Role="Angajat">
+              <PropertyRef Name="IdPunctDeLucru" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_angajat">
+          <End Role="Angajat" Type="Self.Angajat" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Angajat">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="angajat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_catalog_tip_reparatie_catalog_servicii">
+          <End Role="catalog_servicii" Type="Self.catalog_servicii" Multiplicity="1" />
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="catalog_tip_reparatie">
+              <PropertyRef Name="id_catalog_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_catalog_servicii">
+          <End Role="catalog_servicii" Type="Self.catalog_servicii" Multiplicity="1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_catalog_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__oferta_ti__id_ca__05D8E0BE">
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_tip_reparatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_catalog_tip_reparatie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Client_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_vehicul_client">
+          <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
+          <End Role="vehicul" Type="Self.vehicul" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="vehicul">
+              <PropertyRef Name="id_client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Programare">
+          <End Role="programare" Type="Self.programare" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="programare">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Programare_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contact_Tip_Contact">
+          <End Role="Tip_Contact" Type="Self.Tip_Contact" Multiplicity="0..1" />
+          <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tip_Contact">
+              <PropertyRef Name="Tip_Contact_Id" />
+            </Principal>
+            <Dependent Role="Contact">
+              <PropertyRef Name="Tip_Contact_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_oferte_servicii_contact">
+          <End Role="Contact" Type="Self.Contact" Multiplicity="0..1" />
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="Contact_Id" />
+            </Principal>
+            <Dependent Role="oferte_servicii">
+              <PropertyRef Name="id_contact" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__oferta_ti__id_of__04E4BC85">
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oferte_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_oferte_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_pozitie_angajat">
+          <End Role="pozitie_angajat" Type="Self.pozitie_angajat" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pozitie_angajat">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="pozitie_angajat_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_programare_pct_lucru_service">
+          <End Role="Punct_Lucru_Service" Type="Self.Punct_Lucru_Service" Multiplicity="1" />
+          <End Role="programare" Type="Self.programare" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Punct_Lucru_Service">
+              <PropertyRef Name="Punct_Lucru_Id" />
+            </Principal>
+            <Dependent Role="programare">
+              <PropertyRef Name="id_pct_lucru_service" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="produs_tip_reparatie">
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="*" />
+          <End Role="produs" Type="Self.produ" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ServiceAutoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Angajats" EntityType="Self.Angajat" />
+          <EntitySet Name="catalog_servicii" EntityType="Self.catalog_servicii" />
+          <EntitySet Name="catalog_tip_reparatie" EntityType="Self.catalog_tip_reparatie" />
+          <EntitySet Name="Clients" EntityType="Self.Client" />
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="oferte_servicii" EntityType="Self.oferte_servicii" />
+          <EntitySet Name="pozitie_angajat" EntityType="Self.pozitie_angajat" />
+          <EntitySet Name="produs" EntityType="Self.produ" />
+          <EntitySet Name="programares" EntityType="Self.programare" />
+          <EntitySet Name="Punct_Lucru_Service" EntityType="Self.Punct_Lucru_Service" />
+          <EntitySet Name="Tip_Contact" EntityType="Self.Tip_Contact" />
+          <EntitySet Name="vehiculs" EntityType="Self.vehicul" />
+          <EntitySet Name="oferta_tip_reparatie" EntityType="Self.oferta_tip_reparatie" />
+          <AssociationSet Name="FK_Angajat_Pozitie_Angajat" Association="Self.FK_Angajat_Pozitie_Angajat">
+            <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
+            <End Role="Angajat" EntitySet="Angajats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Angajat_Punct_Lucru_Service" Association="Self.FK_Angajat_Punct_Lucru_Service">
+            <End Role="Punct_Lucru_Service" EntitySet="Punct_Lucru_Service" />
+            <End Role="Angajat" EntitySet="Angajats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_angajat" Association="Self.FK_programare_angajat">
+            <End Role="Angajat" EntitySet="Angajats" />
+            <End Role="programare" EntitySet="programares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_catalog_tip_reparatie_catalog_servicii" Association="Self.FK_catalog_tip_reparatie_catalog_servicii">
+            <End Role="catalog_servicii" EntitySet="catalog_servicii" />
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_catalog_servicii" Association="Self.FK_oferte_servicii_catalog_servicii">
+            <End Role="catalog_servicii" EntitySet="catalog_servicii" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK__oferta_ti__id_ca__05D8E0BE" Association="Self.FK__oferta_ti__id_ca__05D8E0BE">
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Client" Association="Self.FK_Contact_Client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_client" Association="Self.FK_oferte_servicii_client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK_vehicul_client" Association="Self.FK_vehicul_client">
+            <End Role="Client" EntitySet="Clients" />
+            <End Role="vehicul" EntitySet="vehiculs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Programare" Association="Self.FK_Contact_Programare">
+            <End Role="programare" EntitySet="programares" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contact_Tip_Contact" Association="Self.FK_Contact_Tip_Contact">
+            <End Role="Tip_Contact" EntitySet="Tip_Contact" />
+            <End Role="Contact" EntitySet="Contacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_oferte_servicii_contact" Association="Self.FK_oferte_servicii_contact">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+          </AssociationSet>
+          <AssociationSet Name="FK__oferta_ti__id_of__04E4BC85" Association="Self.FK__oferta_ti__id_of__04E4BC85">
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_pozitie_angajat" Association="Self.FK_programare_pozitie_angajat">
+            <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
+            <End Role="programare" EntitySet="programares" />
+          </AssociationSet>
+          <AssociationSet Name="FK_programare_pct_lucru_service" Association="Self.FK_programare_pct_lucru_service">
+            <End Role="Punct_Lucru_Service" EntitySet="Punct_Lucru_Service" />
+            <End Role="programare" EntitySet="programares" />
+          </AssociationSet>
+          <AssociationSet Name="produs_tip_reparatie" Association="Self.produs_tip_reparatie">
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+            <End Role="produs" EntitySet="produs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ServiceAutoDBModelStoreContainer" CdmEntityContainer="ServiceAutoDBEntities">
+          <EntitySetMapping Name="Angajats">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.Angajat">
+              <MappingFragment StoreEntitySet="Angajat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+                <ScalarProperty Name="DataNasterii" ColumnName="DataNasterii" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="CNP" ColumnName="CNP" />
+                <ScalarProperty Name="DataAngajarii" ColumnName="DataAngajarii" />
+                <ScalarProperty Name="DataIncheiereContract" ColumnName="DataIncheiereContract" />
+                <ScalarProperty Name="IdPunctDeLucru" ColumnName="IdPunctDeLucru" />
+                <ScalarProperty Name="Id_Pozitie_Angajat" ColumnName="Id_Pozitie_Angajat" />
+                <ScalarProperty Name="Parola" ColumnName="Parola" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalog_servicii">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.catalog_servicii">
+              <MappingFragment StoreEntitySet="catalog_servicii">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+                <ScalarProperty Name="descriere" ColumnName="descriere" />
+                <ScalarProperty Name="discount" ColumnName="discount" />
+                <ScalarProperty Name="activ" ColumnName="activ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="catalog_tip_reparatie">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.catalog_tip_reparatie">
+              <MappingFragment StoreEntitySet="catalog_tip_reparatie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+                <ScalarProperty Name="descriere" ColumnName="descriere" />
+                <ScalarProperty Name="timp_necesar_max" ColumnName="timp_necesar_max" />
+                <ScalarProperty Name="timp_necesar_min" ColumnName="timp_necesar_min" />
+                <ScalarProperty Name="pret" ColumnName="pret" />
+                <ScalarProperty Name="activ" ColumnName="activ" />
+                <ScalarProperty Name="id_catalog_servicii" ColumnName="id_catalog_servicii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.Client">
+              <MappingFragment StoreEntitySet="Client">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nume" ColumnName="nume" />
+                <ScalarProperty Name="prenume" ColumnName="prenume" />
+                <ScalarProperty Name="denumire_companie" ColumnName="denumire_companie" />
+                <ScalarProperty Name="adresa" ColumnName="adresa" />
+                <ScalarProperty Name="contact" ColumnName="contact" />
+                <ScalarProperty Name="cont_bancar" ColumnName="cont_bancar" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="nr_reg_com" ColumnName="nr_reg_com" />
+                <ScalarProperty Name="detalii" ColumnName="detalii" />
+                <ScalarProperty Name="data_inregistrare" ColumnName="data_inregistrare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="Contact_Id" ColumnName="Contact_Id" />
+                <ScalarProperty Name="Data_Inreg" ColumnName="Data_Inreg" />
+                <ScalarProperty Name="Detalii" ColumnName="Detalii" />
+                <ScalarProperty Name="Tip_Contact_Id" ColumnName="Tip_Contact_Id" />
+                <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
+                <ScalarProperty Name="Programare_Id" ColumnName="Programare_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oferte_servicii">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.oferte_servicii">
+              <MappingFragment StoreEntitySet="oferte_servicii">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descriere" ColumnName="descriere" />
+                <ScalarProperty Name="pret" ColumnName="pret" />
+                <ScalarProperty Name="data_inregistrare" ColumnName="data_inregistrare" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="id_contact" ColumnName="id_contact" />
+                <ScalarProperty Name="id_catalog_servicii" ColumnName="id_catalog_servicii" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pozitie_angajat">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.pozitie_angajat">
+              <MappingFragment StoreEntitySet="pozitie_angajat">
+                <ScalarProperty Name="pozitie_angajat_id" ColumnName="pozitie_angajat_id" />
+                <ScalarProperty Name="pozitie" ColumnName="pozitie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="produs">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.produ">
+              <MappingFragment StoreEntitySet="produs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="denumire" ColumnName="denumire" />
+                <ScalarProperty Name="serie" ColumnName="serie" />
+                <ScalarProperty Name="compatibilitate" ColumnName="compatibilitate" />
+                <ScalarProperty Name="original_sau_aftermarket" ColumnName="original_sau_aftermarket" />
+                <ScalarProperty Name="descriere" ColumnName="descriere" />
+                <ScalarProperty Name="cost_achizitie" ColumnName="cost_achizitie" />
+                <ScalarProperty Name="cost_vanzare" ColumnName="cost_vanzare" />
+                <ScalarProperty Name="discount_maxim" ColumnName="discount_maxim" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="programares">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.programare">
+              <MappingFragment StoreEntitySet="programare">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="data_inregistrare" ColumnName="data_inregistrare" />
+                <ScalarProperty Name="online_onsite" ColumnName="online_onsite" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="ora_intrare" ColumnName="ora_intrare" />
+                <ScalarProperty Name="ora_iesire" ColumnName="ora_iesire" />
+                <ScalarProperty Name="data_programare" ColumnName="data_programare" />
+                <ScalarProperty Name="angajat_id" ColumnName="angajat_id" />
+                <ScalarProperty Name="pozitie_angajat_id" ColumnName="pozitie_angajat_id" />
+                <ScalarProperty Name="id_pct_lucru_service" ColumnName="id_pct_lucru_service" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Punct_Lucru_Service">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.Punct_Lucru_Service">
+              <MappingFragment StoreEntitySet="Punct_Lucru_Service">
+                <ScalarProperty Name="Punct_Lucru_Id" ColumnName="Punct_Lucru_Id" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Cont_Bancar" ColumnName="Cont_Bancar" />
+                <ScalarProperty Name="CIF" ColumnName="CIF" />
+                <ScalarProperty Name="Nr_Reg_Com" ColumnName="Nr_Reg_Com" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tip_Contact">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.Tip_Contact">
+              <MappingFragment StoreEntitySet="Tip_Contact">
+                <ScalarProperty Name="Tip_Contact_Id" ColumnName="Tip_Contact_Id" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vehiculs">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.vehicul">
+              <MappingFragment StoreEntitySet="vehicul">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="serie_sasiu" ColumnName="serie_sasiu" />
+                <ScalarProperty Name="nr_inmatriculare" ColumnName="nr_inmatriculare" />
+                <ScalarProperty Name="an_fabricatie" ColumnName="an_fabricatie" />
+                <ScalarProperty Name="detalii" ColumnName="detalii" />
+                <ScalarProperty Name="data_inregistrare" ColumnName="data_inregistrare" />
+                <ScalarProperty Name="id_client" ColumnName="id_client" />
+                <ScalarProperty Name="tip_vehicul" ColumnName="tip_vehicul" />
+                <ScalarProperty Name="producator" ColumnName="producator" />
+                <ScalarProperty Name="model" ColumnName="model" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="oferta_tip_reparatie">
+            <EntityTypeMapping TypeName="ServiceAutoDBModel.oferta_tip_reparatie">
+              <MappingFragment StoreEntitySet="oferta_tip_reparatie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pret_tip_reparatie" ColumnName="pret_tip_reparatie" />
+                <ScalarProperty Name="id_oferte_servicii" ColumnName="id_oferte_servicii" />
+                <ScalarProperty Name="id_catalog_tip_reparatie" ColumnName="id_catalog_tip_reparatie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="produs_tip_reparatie" TypeName="ServiceAutoDBModel.produs_tip_reparatie" StoreEntitySet="produs_tip_reparatie">
+            <EndProperty Name="catalog_tip_reparatie">
+              <ScalarProperty Name="id" ColumnName="id_catalog_tip_reparatie" />
+            </EndProperty>
+            <EndProperty Name="produs">
+              <ScalarProperty Name="id" ColumnName="id_produs" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
