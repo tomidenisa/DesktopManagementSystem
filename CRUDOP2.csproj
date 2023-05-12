@@ -55,6 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngajatiPctLucru.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AngajatiPctLucru.Designer.cs">
+      <DependentUpon>AngajatiPctLucru.cs</DependentUpon>
+    </Compile>
     <Compile Include="Appointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +164,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceAutoDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ServiceAutoDBDataSet1.cs">
+      <DependentUpon>ServiceAutoDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAutoDBDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAutoDBDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAutoDBDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAutoDBDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAutoDBDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAutoDBDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceAutoDBDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ServiceAutoDBDataSet4.xsd</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AngajatiPctLucru.resx">
+      <DependentUpon>AngajatiPctLucru.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Appointment.resx">
       <DependentUpon>Appointment.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +248,50 @@
     </None>
     <None Include="ServiceAutoDBDataSet.xss">
       <DependentUpon>ServiceAutoDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet1.xsc">
+      <DependentUpon>ServiceAutoDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServiceAutoDBDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ServiceAutoDBDataSet1.xss">
+      <DependentUpon>ServiceAutoDBDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet2.xsc">
+      <DependentUpon>ServiceAutoDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServiceAutoDBDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ServiceAutoDBDataSet2.xss">
+      <DependentUpon>ServiceAutoDBDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet3.xsc">
+      <DependentUpon>ServiceAutoDBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServiceAutoDBDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ServiceAutoDBDataSet3.xss">
+      <DependentUpon>ServiceAutoDBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet4.xsc">
+      <DependentUpon>ServiceAutoDBDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="ServiceAutoDBDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ServiceAutoDBDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ServiceAutoDBDataSet4.xss">
+      <DependentUpon>ServiceAutoDBDataSet4.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

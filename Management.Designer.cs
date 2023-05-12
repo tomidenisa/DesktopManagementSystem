@@ -38,7 +38,12 @@
             this.DevizButton = new System.Windows.Forms.Button();
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.CatalogServiciiReparatii = new System.Windows.Forms.Button();
+            this.Vehicul = new System.Windows.Forms.Button();
+            this.ClientContact = new System.Windows.Forms.Button();
+            this.OferteServiciiReparatii = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.SuspendLayout();
@@ -200,20 +205,124 @@
             this.LogoutButton.UseVisualStyleBackColor = true;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // flowLayoutPanel2
+            // button2
             // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(234)))), ((int)(((byte)(240)))));
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(385, 0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1452, 129);
-            this.flowLayoutPanel2.TabIndex = 2;
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::CRUDOP2.Properties.Resources.administrare_removebg_preview;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(385, 0);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(1588, 143);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "        Administrare";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.button1.FlatAppearance.BorderSize = 10;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(591, 202);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(270, 134);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Angajati si Punct de Lucru";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // CatalogServiciiReparatii
+            // 
+            this.CatalogServiciiReparatii.BackColor = System.Drawing.Color.Transparent;
+            this.CatalogServiciiReparatii.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.CatalogServiciiReparatii.FlatAppearance.BorderSize = 10;
+            this.CatalogServiciiReparatii.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.CatalogServiciiReparatii.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.CatalogServiciiReparatii.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CatalogServiciiReparatii.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CatalogServiciiReparatii.ForeColor = System.Drawing.Color.Black;
+            this.CatalogServiciiReparatii.Location = new System.Drawing.Point(777, 437);
+            this.CatalogServiciiReparatii.Name = "CatalogServiciiReparatii";
+            this.CatalogServiciiReparatii.Size = new System.Drawing.Size(270, 134);
+            this.CatalogServiciiReparatii.TabIndex = 7;
+            this.CatalogServiciiReparatii.Text = "Catalog Servicii si Reparatii";
+            this.CatalogServiciiReparatii.UseVisualStyleBackColor = false;
+            // 
+            // Vehicul
+            // 
+            this.Vehicul.BackColor = System.Drawing.Color.Transparent;
+            this.Vehicul.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Vehicul.FlatAppearance.BorderSize = 10;
+            this.Vehicul.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.Vehicul.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.Vehicul.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Vehicul.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Vehicul.ForeColor = System.Drawing.Color.Black;
+            this.Vehicul.Location = new System.Drawing.Point(1287, 202);
+            this.Vehicul.Name = "Vehicul";
+            this.Vehicul.Size = new System.Drawing.Size(270, 134);
+            this.Vehicul.TabIndex = 8;
+            this.Vehicul.Text = "Vehicule";
+            this.Vehicul.UseVisualStyleBackColor = false;
+            // 
+            // ClientContact
+            // 
+            this.ClientContact.BackColor = System.Drawing.Color.Transparent;
+            this.ClientContact.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.ClientContact.FlatAppearance.BorderSize = 10;
+            this.ClientContact.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.ClientContact.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.ClientContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ClientContact.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClientContact.ForeColor = System.Drawing.Color.Black;
+            this.ClientContact.Location = new System.Drawing.Point(932, 202);
+            this.ClientContact.Name = "ClientContact";
+            this.ClientContact.Size = new System.Drawing.Size(270, 134);
+            this.ClientContact.TabIndex = 9;
+            this.ClientContact.Text = "Client si Contact ";
+            this.ClientContact.UseVisualStyleBackColor = false;
+            // 
+            // OferteServiciiReparatii
+            // 
+            this.OferteServiciiReparatii.BackColor = System.Drawing.Color.Transparent;
+            this.OferteServiciiReparatii.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.OferteServiciiReparatii.FlatAppearance.BorderSize = 10;
+            this.OferteServiciiReparatii.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
+            this.OferteServiciiReparatii.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.OferteServiciiReparatii.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.OferteServiciiReparatii.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OferteServiciiReparatii.ForeColor = System.Drawing.Color.Black;
+            this.OferteServiciiReparatii.Location = new System.Drawing.Point(1097, 437);
+            this.OferteServiciiReparatii.Name = "OferteServiciiReparatii";
+            this.OferteServiciiReparatii.Size = new System.Drawing.Size(270, 134);
+            this.OferteServiciiReparatii.TabIndex = 10;
+            this.OferteServiciiReparatii.Text = "Oferta Servicii si Reparatii";
+            this.OferteServiciiReparatii.UseVisualStyleBackColor = false;
             // 
             // Management
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1839, 1055);
-            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.OferteServiciiReparatii);
+            this.Controls.Add(this.ClientContact);
+            this.Controls.Add(this.Vehicul);
+            this.Controls.Add(this.CatalogServiciiReparatii);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Management";
             this.Text = "Management";
@@ -235,6 +344,11 @@
         private System.Windows.Forms.Button DevizButton;
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button CatalogServiciiReparatii;
+        private System.Windows.Forms.Button Vehicul;
+        private System.Windows.Forms.Button ClientContact;
+        private System.Windows.Forms.Button OferteServiciiReparatii;
     }
 }

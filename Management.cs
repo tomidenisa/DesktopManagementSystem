@@ -72,5 +72,12 @@ namespace CRUDOP2
             this.Hide();
             formRegi.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            AngajatiPctLucru formAng = new AngajatiPctLucru();
+            formAng.Show();
+        }
     }
 }

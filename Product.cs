@@ -25,7 +25,7 @@ namespace CRUDOP2
         private void Product_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'serviceAutoDBDataSet.produs' table. You can move, or remove it, as needed.
-           //this.produsTableAdapter.Fill(this.serviceAutoDBDataSet.produs);
+            //this.produsTableAdapter.Fill(this.serviceAutoDBDataSet.produs);
             ClearData();
             SetDataInGridView();
             this.WindowState = FormWindowState.Maximized;
@@ -154,7 +154,7 @@ namespace CRUDOP2
         new FieldInfo { TextBox = CompatTxt, FieldName = "Compatibilitate", MaxLength = 35 },
         new FieldInfo { TextBox = BuyTxt, FieldName = "Cost Achizitie", MaxLength = 10 },
         new FieldInfo { TextBox = Sellltxt, FieldName = "Cost Vanare", MaxLength = 10 },
-        new FieldInfo { TextBox = DescTxt, FieldName = "Descriere", MaxLength = 10 },
+        new FieldInfo { TextBox = DescTxt, FieldName = "Descriere", MaxLength = 100 },
         new FieldInfo { TextBox = Discountxt, FieldName = "Discount", MaxLength = 10 }
     };
 
@@ -162,6 +162,7 @@ namespace CRUDOP2
             {
                 if (field.TextBox.Text.Trim().Length > field.MaxLength)
                 {
+                    MessageBox.Show(field.TextBox, $"{field.FieldName} invalid, numar prea mare de caractere", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     errorProvider1.SetError(field.TextBox, $"{field.FieldName} invalid, numar prea mare de caractere");
                     field.TextBox.Focus();
                     return;
@@ -182,7 +183,8 @@ namespace CRUDOP2
         {
             if (MessageBox.Show("Esti sigur ca vrei sa stergi inregistrarea ?", "Sterge ?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                
+
+                db.produs.Remove(produse); 
                 db.SaveChanges();
                 ClearData();
                 SetDataInGridView();
@@ -206,7 +208,6 @@ namespace CRUDOP2
                     bool valueResult = true;
                     foreach (DataGridViewRow row in dataGridView.Rows)
                     {
-                        //if (row.Cells[1].Value.ToString().Contains(searchValue))
                         if (row.Cells[1].Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             row.Selected = true;
@@ -234,7 +235,7 @@ namespace CRUDOP2
 
             if (dataGridView.CurrentCell.RowIndex != -1)
             {
-                Prod_id = Convert.ToInt32(dataGridView.CurrentRow.Cells["ID"].Value);
+                Prod_id = Convert.ToInt32(dataGridView.CurrentRow.Cells["idDataGridViewTextBoxColumn"].Value);
                 produse = db.produs.Where(x => x.id == Prod_id).FirstOrDefault();
                 NameTxt.Text = produse.denumire;
                 SerialTxt.Text = produse.serie;
@@ -263,6 +264,25 @@ namespace CRUDOP2
             process.Start();
 
             process.WaitForExit();
+        }
+
+        private void dataGridView_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView.CurrentCell.RowIndex != -1)
+            {
+                Prod_id = Convert.ToInt32(dataGridView.CurrentRow.Cells["idDataGridViewTextBoxColumn"].Value);
+                produse = db.produs.Where(x => x.id == Prod_id).FirstOrDefault();
+                NameTxt.Text = produse.denumire;
+                SerialTxt.Text = produse.serie;
+                CompatTxt.Text = produse.compatibilitate;
+                OriginalAftermarkt.Text = produse.original_sau_aftermarket;
+                DescTxt.Text = produse.descriere;
+                BuyTxt.Text = produse.cost_achizitie.ToString();
+                Sellltxt.Text = produse.cost_vanzare.ToString();
+                Discountxt.Text = produse.discount_maxim.ToString();
+            }
+            Add.Text = "Update";
+            Delete.Enabled = true;
         }
     }
 }
