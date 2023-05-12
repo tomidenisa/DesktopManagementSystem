@@ -66,6 +66,7 @@
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
             this.flowLayoutPanel1.TabIndex = 1;
+            //this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // Logo
             // 
@@ -258,6 +259,7 @@
             this.CatalogServiciiReparatii.TabIndex = 7;
             this.CatalogServiciiReparatii.Text = "Catalog Servicii si Reparatii";
             this.CatalogServiciiReparatii.UseVisualStyleBackColor = false;
+            this.CatalogServiciiReparatii.Click += new System.EventHandler(this.CatalogServiciiReparatii_Click);
             // 
             // Vehicul
             // 
@@ -275,6 +277,7 @@
             this.Vehicul.TabIndex = 8;
             this.Vehicul.Text = "Vehicule";
             this.Vehicul.UseVisualStyleBackColor = false;
+            this.Vehicul.Click += new System.EventHandler(this.Vehicul_Click);
             // 
             // ClientContact
             // 
@@ -292,6 +295,7 @@
             this.ClientContact.TabIndex = 9;
             this.ClientContact.Text = "Client si Contact ";
             this.ClientContact.UseVisualStyleBackColor = false;
+            this.ClientContact.Click += new System.EventHandler(this.ClientContact_Click);
             // 
             // OferteServiciiReparatii
             // 
@@ -309,6 +313,7 @@
             this.OferteServiciiReparatii.TabIndex = 10;
             this.OferteServiciiReparatii.Text = "Oferta Servicii si Reparatii";
             this.OferteServiciiReparatii.UseVisualStyleBackColor = false;
+            this.OferteServiciiReparatii.Click += new System.EventHandler(this.OferteServiciiReparatii_Click);
             // 
             // Management
             // 

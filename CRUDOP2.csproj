@@ -67,6 +67,18 @@
     <Compile Include="Appointment.Designer.cs">
       <DependentUpon>Appointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="CatalogServRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CatalogServRep.Designer.cs">
+      <DependentUpon>CatalogServRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ClientContact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ClientContact.Designer.cs">
+      <DependentUpon>ClientContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Deviz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +151,12 @@
     <Compile Include="Models\vehicul.cs">
       <DependentUpon>DbModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="OfertaServRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OfertaServRep.Designer.cs">
+      <DependentUpon>OfertaServRep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Offer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,11 +205,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceAutoDBDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Vehicul.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicul.Designer.cs">
+      <DependentUpon>Vehicul.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AngajatiPctLucru.resx">
       <DependentUpon>AngajatiPctLucru.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Appointment.resx">
       <DependentUpon>Appointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CatalogServRep.resx">
+      <DependentUpon>CatalogServRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ClientContact.resx">
+      <DependentUpon>ClientContact.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Deviz.resx">
       <DependentUpon>Deviz.cs</DependentUpon>
@@ -201,6 +231,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Management.resx">
       <DependentUpon>Management.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OfertaServRep.resx">
+      <DependentUpon>OfertaServRep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Offer.resx">
       <DependentUpon>Offer.cs</DependentUpon>
@@ -220,6 +253,9 @@
     </Compile>
     <EmbeddedResource Include="Registration.resx">
       <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicul.resx">
+      <DependentUpon>Vehicul.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="Models\DbModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

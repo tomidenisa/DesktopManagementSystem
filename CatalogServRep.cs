@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace CRUDOP2
 {
-    public partial class Management : Form
+    public partial class CatalogServRep : Form
     {
-        public Management()
+        public CatalogServRep()
         {
             InitializeComponent();
-        }
-
-        private void Management_Load(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Maximized;
         }
 
         private void homebutton_Click(object sender, EventArgs e)
@@ -71,41 +66,6 @@ namespace CRUDOP2
             Registration formRegi = new Registration();
             this.Hide();
             formRegi.Show();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            AngajatiPctLucru formAng = new AngajatiPctLucru();
-            formAng.Show();
-        }
-
-        private void ClientContact_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            ClientContact formClt = new ClientContact();
-            formClt.Show();
-        }
-
-        private void Vehicul_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Vehicul formVeh = new Vehicul();
-            formVeh.Show();
-        }
-
-        private void CatalogServiciiReparatii_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            CatalogServRep formSrv= new CatalogServRep();
-            formSrv.Show();
-        }
-
-        private void OferteServiciiReparatii_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            OfertaServRep formOf = new OfertaServRep();
-             formOf.Show();
         }
     }
 }
