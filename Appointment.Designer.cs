@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Appointment));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Logo = new System.Windows.Forms.PictureBox();
             this.homebutton = new System.Windows.Forms.Button();
@@ -46,7 +46,20 @@
             this.LogoutButton = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.IdAngajat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datainregistrareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.onlineonsiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oraintrareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oraiesireDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataprogramareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.angajatidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pozitieangajatidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idpctlucruserviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.programareBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
             this.programareTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.programareTableAdapter();
@@ -77,19 +90,6 @@
             this.INTimePicker = new System.Windows.Forms.DateTimePicker();
             this.PozitieTextBox = new System.Windows.Forms.TextBox();
             this.PctLucruTextBox = new System.Windows.Forms.TextBox();
-            this.IdAngajat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datainregistrareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.onlineonsiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oraintrareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oraiesireDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataprogramareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.angajatidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pozitieangajatidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idpctlucruserviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
@@ -270,7 +270,7 @@
             this.flowLayoutPanel2.Controls.Add(this.label9);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(385, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1756, 133);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1758, 133);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // button1
@@ -289,27 +289,66 @@
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = true;
             // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(3)))), ((int)(((byte)(61)))));
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(497, 49);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 37);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "În așteptare";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(3)))), ((int)(((byte)(255)))));
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(670, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(147, 37);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "În progres";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Lime;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(823, 49);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(140, 37);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Finalizată";
+            // 
             // dataGridView
             // 
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView.AutoGenerateColumns = false;
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.BackgroundColor = System.Drawing.Color.LightBlue;
             this.dataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdAngajat,
@@ -323,32 +362,32 @@
             this.idpctlucruserviceDataGridViewTextBoxColumn,
             this.Status});
             this.dataGridView.DataSource = this.programareBindingSource;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView.GridColor = System.Drawing.Color.AntiqueWhite;
             this.dataGridView.Location = new System.Drawing.Point(434, 167);
             this.dataGridView.Name = "dataGridView";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.MenuHighlight;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView.RowHeadersWidth = 51;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.LightBlue;
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridView.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.LightBlue;
             this.dataGridView.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.SystemColors.InactiveCaptionText;
             this.dataGridView.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.LightSkyBlue;
@@ -357,6 +396,77 @@
             this.dataGridView.Size = new System.Drawing.Size(1027, 584);
             this.dataGridView.TabIndex = 3;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            // 
+            // IdAngajat
+            // 
+            this.IdAngajat.DataPropertyName = "id";
+            this.IdAngajat.HeaderText = "ID";
+            this.IdAngajat.MinimumWidth = 6;
+            this.IdAngajat.Name = "IdAngajat";
+            this.IdAngajat.ReadOnly = true;
+            // 
+            // datainregistrareDataGridViewTextBoxColumn
+            // 
+            this.datainregistrareDataGridViewTextBoxColumn.DataPropertyName = "data_inregistrare";
+            this.datainregistrareDataGridViewTextBoxColumn.HeaderText = "Data Inregistrare";
+            this.datainregistrareDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.datainregistrareDataGridViewTextBoxColumn.Name = "datainregistrareDataGridViewTextBoxColumn";
+            // 
+            // onlineonsiteDataGridViewTextBoxColumn
+            // 
+            this.onlineonsiteDataGridViewTextBoxColumn.DataPropertyName = "online_onsite";
+            this.onlineonsiteDataGridViewTextBoxColumn.HeaderText = "Online/Onsite";
+            this.onlineonsiteDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.onlineonsiteDataGridViewTextBoxColumn.Name = "onlineonsiteDataGridViewTextBoxColumn";
+            // 
+            // oraintrareDataGridViewTextBoxColumn
+            // 
+            this.oraintrareDataGridViewTextBoxColumn.DataPropertyName = "ora_intrare";
+            this.oraintrareDataGridViewTextBoxColumn.HeaderText = "Ora Intrare";
+            this.oraintrareDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.oraintrareDataGridViewTextBoxColumn.Name = "oraintrareDataGridViewTextBoxColumn";
+            // 
+            // oraiesireDataGridViewTextBoxColumn
+            // 
+            this.oraiesireDataGridViewTextBoxColumn.DataPropertyName = "ora_iesire";
+            this.oraiesireDataGridViewTextBoxColumn.HeaderText = "Ora Iesire";
+            this.oraiesireDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.oraiesireDataGridViewTextBoxColumn.Name = "oraiesireDataGridViewTextBoxColumn";
+            // 
+            // dataprogramareDataGridViewTextBoxColumn
+            // 
+            this.dataprogramareDataGridViewTextBoxColumn.DataPropertyName = "data_programare";
+            this.dataprogramareDataGridViewTextBoxColumn.HeaderText = "Data Programarii";
+            this.dataprogramareDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dataprogramareDataGridViewTextBoxColumn.Name = "dataprogramareDataGridViewTextBoxColumn";
+            // 
+            // angajatidDataGridViewTextBoxColumn
+            // 
+            this.angajatidDataGridViewTextBoxColumn.DataPropertyName = "angajat_id";
+            this.angajatidDataGridViewTextBoxColumn.HeaderText = "Angajat";
+            this.angajatidDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.angajatidDataGridViewTextBoxColumn.Name = "angajatidDataGridViewTextBoxColumn";
+            // 
+            // pozitieangajatidDataGridViewTextBoxColumn
+            // 
+            this.pozitieangajatidDataGridViewTextBoxColumn.DataPropertyName = "pozitie_angajat_id";
+            this.pozitieangajatidDataGridViewTextBoxColumn.HeaderText = "Pozitie Angajat";
+            this.pozitieangajatidDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.pozitieangajatidDataGridViewTextBoxColumn.Name = "pozitieangajatidDataGridViewTextBoxColumn";
+            // 
+            // idpctlucruserviceDataGridViewTextBoxColumn
+            // 
+            this.idpctlucruserviceDataGridViewTextBoxColumn.DataPropertyName = "id_pct_lucru_service";
+            this.idpctlucruserviceDataGridViewTextBoxColumn.HeaderText = "Punct de Lucru";
+            this.idpctlucruserviceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idpctlucruserviceDataGridViewTextBoxColumn.Name = "idpctlucruserviceDataGridViewTextBoxColumn";
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
             // 
             // programareBindingSource
             // 
@@ -613,116 +723,6 @@
             this.PctLucruTextBox.ReadOnly = true;
             this.PctLucruTextBox.Size = new System.Drawing.Size(200, 22);
             this.PctLucruTextBox.TabIndex = 40;
-            // 
-            // IdAngajat
-            // 
-            this.IdAngajat.DataPropertyName = "id";
-            this.IdAngajat.HeaderText = "ID";
-            this.IdAngajat.MinimumWidth = 6;
-            this.IdAngajat.Name = "IdAngajat";
-            this.IdAngajat.ReadOnly = true;
-            // 
-            // datainregistrareDataGridViewTextBoxColumn
-            // 
-            this.datainregistrareDataGridViewTextBoxColumn.DataPropertyName = "data_inregistrare";
-            this.datainregistrareDataGridViewTextBoxColumn.HeaderText = "Data Inregistrare";
-            this.datainregistrareDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.datainregistrareDataGridViewTextBoxColumn.Name = "datainregistrareDataGridViewTextBoxColumn";
-            // 
-            // onlineonsiteDataGridViewTextBoxColumn
-            // 
-            this.onlineonsiteDataGridViewTextBoxColumn.DataPropertyName = "online_onsite";
-            this.onlineonsiteDataGridViewTextBoxColumn.HeaderText = "Online/Onsite";
-            this.onlineonsiteDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.onlineonsiteDataGridViewTextBoxColumn.Name = "onlineonsiteDataGridViewTextBoxColumn";
-            // 
-            // oraintrareDataGridViewTextBoxColumn
-            // 
-            this.oraintrareDataGridViewTextBoxColumn.DataPropertyName = "ora_intrare";
-            this.oraintrareDataGridViewTextBoxColumn.HeaderText = "Ora Intrare";
-            this.oraintrareDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.oraintrareDataGridViewTextBoxColumn.Name = "oraintrareDataGridViewTextBoxColumn";
-            // 
-            // oraiesireDataGridViewTextBoxColumn
-            // 
-            this.oraiesireDataGridViewTextBoxColumn.DataPropertyName = "ora_iesire";
-            this.oraiesireDataGridViewTextBoxColumn.HeaderText = "Ora Iesire";
-            this.oraiesireDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.oraiesireDataGridViewTextBoxColumn.Name = "oraiesireDataGridViewTextBoxColumn";
-            // 
-            // dataprogramareDataGridViewTextBoxColumn
-            // 
-            this.dataprogramareDataGridViewTextBoxColumn.DataPropertyName = "data_programare";
-            this.dataprogramareDataGridViewTextBoxColumn.HeaderText = "Data Programarii";
-            this.dataprogramareDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dataprogramareDataGridViewTextBoxColumn.Name = "dataprogramareDataGridViewTextBoxColumn";
-            // 
-            // angajatidDataGridViewTextBoxColumn
-            // 
-            this.angajatidDataGridViewTextBoxColumn.DataPropertyName = "angajat_id";
-            this.angajatidDataGridViewTextBoxColumn.HeaderText = "Angajat";
-            this.angajatidDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.angajatidDataGridViewTextBoxColumn.Name = "angajatidDataGridViewTextBoxColumn";
-            // 
-            // pozitieangajatidDataGridViewTextBoxColumn
-            // 
-            this.pozitieangajatidDataGridViewTextBoxColumn.DataPropertyName = "pozitie_angajat_id";
-            this.pozitieangajatidDataGridViewTextBoxColumn.HeaderText = "Pozitie Angajat";
-            this.pozitieangajatidDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.pozitieangajatidDataGridViewTextBoxColumn.Name = "pozitieangajatidDataGridViewTextBoxColumn";
-            // 
-            // idpctlucruserviceDataGridViewTextBoxColumn
-            // 
-            this.idpctlucruserviceDataGridViewTextBoxColumn.DataPropertyName = "id_pct_lucru_service";
-            this.idpctlucruserviceDataGridViewTextBoxColumn.HeaderText = "Punct de Lucru";
-            this.idpctlucruserviceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idpctlucruserviceDataGridViewTextBoxColumn.Name = "idpctlucruserviceDataGridViewTextBoxColumn";
-            // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(3)))), ((int)(((byte)(255)))));
-            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(670, 49);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(147, 37);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "În progres";
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(3)))), ((int)(((byte)(61)))));
-            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(497, 49);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(167, 37);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "În așteptare";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Lime;
-            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label9.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(823, 49);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(140, 37);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Finalizată";
             // 
             // flowLayoutPanel3
             // 

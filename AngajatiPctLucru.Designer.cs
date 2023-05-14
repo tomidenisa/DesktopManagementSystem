@@ -330,11 +330,11 @@
             this.pozitieangajatidDataGridViewTextBoxColumn,
             this.pozitieDataGridViewTextBoxColumn});
             this.dataGridViewPozitie.DataSource = this.pozitieangajatBindingSource;
-            this.dataGridViewPozitie.Location = new System.Drawing.Point(497, 177);
+            this.dataGridViewPozitie.Location = new System.Drawing.Point(434, 177);
             this.dataGridViewPozitie.Name = "dataGridViewPozitie";
             this.dataGridViewPozitie.RowHeadersWidth = 51;
             this.dataGridViewPozitie.RowTemplate.Height = 24;
-            this.dataGridViewPozitie.Size = new System.Drawing.Size(373, 351);
+            this.dataGridViewPozitie.Size = new System.Drawing.Size(472, 351);
             this.dataGridViewPozitie.TabIndex = 2;
             this.dataGridViewPozitie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPozitie_CellContentClick);
             // 
@@ -507,11 +507,11 @@
             this.cIFDataGridViewTextBoxColumn,
             this.nrRegComDataGridViewTextBoxColumn});
             this.dataGridViewPctLucru.DataSource = this.punctLucruServiceBindingSource;
-            this.dataGridViewPctLucru.Location = new System.Drawing.Point(963, 177);
+            this.dataGridViewPctLucru.Location = new System.Drawing.Point(945, 177);
             this.dataGridViewPctLucru.Name = "dataGridViewPctLucru";
             this.dataGridViewPctLucru.RowHeadersWidth = 51;
             this.dataGridViewPctLucru.RowTemplate.Height = 24;
-            this.dataGridViewPctLucru.Size = new System.Drawing.Size(969, 351);
+            this.dataGridViewPctLucru.Size = new System.Drawing.Size(987, 351);
             this.dataGridViewPctLucru.TabIndex = 4;
             this.dataGridViewPctLucru.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewPctLucru_CellContentClick);
             // 
