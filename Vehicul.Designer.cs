@@ -46,7 +46,7 @@
             this.anfabricatieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detaliiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.datainregistrareDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idclientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idclient = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipvehiculDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.producatorDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.modelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,22 +69,25 @@
             this.SearchBtn = new System.Windows.Forms.Button();
             this.DetaliiTxt = new System.Windows.Forms.TextBox();
             this.ProducatorTextBox = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.ModelTxt = new System.Windows.Forms.TextBox();
             this.SasiuTxt = new System.Windows.Forms.TextBox();
             this.InmatriculareTxt = new System.Windows.Forms.TextBox();
             this.FabricatieTxt = new System.Windows.Forms.TextBox();
             this.ClientCombo = new System.Windows.Forms.ComboBox();
-            this.vehiculBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.vehiculBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.clientTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.ClientTableAdapter();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tipvehiculcombo = new System.Windows.Forms.ComboBox();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.VehiculdataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -255,7 +258,7 @@
             this.anfabricatieDataGridViewTextBoxColumn,
             this.detaliiDataGridViewTextBoxColumn,
             this.datainregistrareDataGridViewTextBoxColumn,
-            this.idclientDataGridViewTextBoxColumn,
+            this.idclient,
             this.tipvehiculDataGridViewTextBoxColumn,
             this.producatorDataGridViewTextBoxColumn,
             this.modelDataGridViewTextBoxColumn});
@@ -317,13 +320,13 @@
             this.datainregistrareDataGridViewTextBoxColumn.Name = "datainregistrareDataGridViewTextBoxColumn";
             this.datainregistrareDataGridViewTextBoxColumn.Width = 125;
             // 
-            // idclientDataGridViewTextBoxColumn
+            // idclient
             // 
-            this.idclientDataGridViewTextBoxColumn.DataPropertyName = "id_client";
-            this.idclientDataGridViewTextBoxColumn.HeaderText = "Id Client";
-            this.idclientDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idclientDataGridViewTextBoxColumn.Name = "idclientDataGridViewTextBoxColumn";
-            this.idclientDataGridViewTextBoxColumn.Width = 125;
+            this.idclient.DataPropertyName = "id_client";
+            this.idclient.HeaderText = "Id Client";
+            this.idclient.MinimumWidth = 6;
+            this.idclient.Name = "idclient";
+            this.idclient.Width = 125;
             // 
             // tipvehiculDataGridViewTextBoxColumn
             // 
@@ -437,7 +440,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(532, 433);
+            this.label8.Location = new System.Drawing.Point(533, 365);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 20);
             this.label8.TabIndex = 74;
@@ -453,6 +456,7 @@
             this.AddVehicul.TabIndex = 75;
             this.AddVehicul.Text = "Salveaza";
             this.AddVehicul.UseVisualStyleBackColor = false;
+            this.AddVehicul.Click += new System.EventHandler(this.AddVehicul_Click);
             // 
             // DeleteVehicul
             // 
@@ -482,7 +486,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.button1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1406, 431);
+            this.button1.Location = new System.Drawing.Point(1396, 365);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(431, 57);
             this.button1.TabIndex = 113;
@@ -494,20 +498,18 @@
             // 
             this.Search.Location = new System.Drawing.Point(536, 995);
             this.Search.Name = "Search";
-            this.Search.Size = new System.Drawing.Size(849, 22);
+            this.Search.Size = new System.Drawing.Size(799, 22);
             this.Search.TabIndex = 114;
-            this.Search.Text = "Serie Șasiu sau Model";
-            this.Search.TextChanged += new System.EventHandler(this.Search_TextChanged);
             // 
             // SearchBtn
             // 
             this.SearchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.SearchBtn.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchBtn.Location = new System.Drawing.Point(1433, 983);
+            this.SearchBtn.Location = new System.Drawing.Point(1373, 983);
             this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(284, 41);
+            this.SearchBtn.Size = new System.Drawing.Size(464, 41);
             this.SearchBtn.TabIndex = 115;
-            this.SearchBtn.Text = "Cauta Vehicul";
+            this.SearchBtn.Text = "Cauta Vehicul dupa Serie Sasiu sau Model";
             this.SearchBtn.UseVisualStyleBackColor = false;
             this.SearchBtn.Click += new System.EventHandler(this.SearchBtn_Click);
             // 
@@ -525,12 +527,12 @@
             this.ProducatorTextBox.Size = new System.Drawing.Size(194, 22);
             this.ProducatorTextBox.TabIndex = 119;
             // 
-            // textBox4
+            // ModelTxt
             // 
-            this.textBox4.Location = new System.Drawing.Point(685, 431);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(194, 22);
-            this.textBox4.TabIndex = 120;
+            this.ModelTxt.Location = new System.Drawing.Point(685, 365);
+            this.ModelTxt.Name = "ModelTxt";
+            this.ModelTxt.Size = new System.Drawing.Size(194, 22);
+            this.ModelTxt.TabIndex = 120;
             // 
             // SasiuTxt
             // 
@@ -564,43 +566,56 @@
             this.ClientCombo.TabIndex = 125;
             this.ClientCombo.ValueMember = "id";
             // 
-            // vehiculBindingSource1
-            // 
-            this.vehiculBindingSource1.DataMember = "vehicul";
-            this.vehiculBindingSource1.DataSource = this.serviceAutoDBDataSet;
-            // 
             // clientBindingSource
             // 
             this.clientBindingSource.DataMember = "Client";
             this.clientBindingSource.DataSource = this.serviceAutoDBDataSet;
             // 
+            // vehiculBindingSource1
+            // 
+            this.vehiculBindingSource1.DataMember = "vehicul";
+            this.vehiculBindingSource1.DataSource = this.serviceAutoDBDataSet;
+            // 
             // clientTableAdapter
             // 
             this.clientTableAdapter.ClearBeforeFill = true;
             // 
-            // comboBox1
+            // errorProvider1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Autoutilitară",
-            "Autovehicul "});
-            this.comboBox1.Location = new System.Drawing.Point(685, 263);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(194, 24);
-            this.comboBox1.TabIndex = 126;
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // tipvehiculcombo
+            // 
+            this.tipvehiculcombo.FormattingEnabled = true;
+            this.tipvehiculcombo.Items.AddRange(new object[] {
+            "Autovehicul",
+            "Atoutilitara"});
+            this.tipvehiculcombo.Location = new System.Drawing.Point(685, 268);
+            this.tipvehiculcombo.Name = "tipvehiculcombo";
+            this.tipvehiculcombo.Size = new System.Drawing.Size(194, 24);
+            this.tipvehiculcombo.TabIndex = 126;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(506, 3);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(742, 410);
+            this.flowLayoutPanel3.TabIndex = 127;
             // 
             // Vehicul
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.tipvehiculcombo);
             this.Controls.Add(this.ClientCombo);
             this.Controls.Add(this.FabricatieTxt);
             this.Controls.Add(this.InmatriculareTxt);
             this.Controls.Add(this.SasiuTxt);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.ModelTxt);
             this.Controls.Add(this.ProducatorTextBox);
             this.Controls.Add(this.DetaliiTxt);
             this.Controls.Add(this.SearchBtn);
@@ -619,6 +634,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.VehiculdataGridView);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flowLayoutPanel3);
             this.Name = "Vehicul";
             this.Text = "Vehicul";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -628,8 +644,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.VehiculdataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vehiculBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -650,16 +667,6 @@
         private ServiceAutoDBDataSet serviceAutoDBDataSet;
         private System.Windows.Forms.BindingSource vehiculBindingSource;
         private ServiceAutoDBDataSetTableAdapters.vehiculTableAdapter vehiculTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idvehicul;
-        private System.Windows.Forms.DataGridViewTextBoxColumn seriesasiuDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nrinmatriculareDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn anfabricatieDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn detaliiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datainregistrareDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idclientDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipvehiculDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn producatorDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -676,7 +683,7 @@
         private System.Windows.Forms.Button SearchBtn;
         private System.Windows.Forms.TextBox DetaliiTxt;
         private System.Windows.Forms.TextBox ProducatorTextBox;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox ModelTxt;
         private System.Windows.Forms.TextBox SasiuTxt;
         private System.Windows.Forms.TextBox InmatriculareTxt;
         private System.Windows.Forms.TextBox FabricatieTxt;
@@ -684,6 +691,18 @@
         private System.Windows.Forms.BindingSource vehiculBindingSource1;
         private System.Windows.Forms.BindingSource clientBindingSource;
         private ServiceAutoDBDataSetTableAdapters.ClientTableAdapter clientTableAdapter;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idvehicul;
+        private System.Windows.Forms.DataGridViewTextBoxColumn seriesasiuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nrinmatriculareDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn anfabricatieDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn detaliiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datainregistrareDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idclient;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipvehiculDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producatorDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn modelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox tipvehiculcombo;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
     }
 }

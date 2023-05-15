@@ -40,6 +40,12 @@
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.dataGridViewContact = new System.Windows.Forms.DataGridView();
+            this.idcontact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataInregDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.detaliiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tip_Contact_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.programareIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contactBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
             this.dataGridViewTipContact = new System.Windows.Forms.DataGridView();
@@ -111,13 +117,9 @@
             this.ClientDetailTxt = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.idcontact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataInregDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.detaliiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tip_Contact_Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clientIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.programareIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.pozitie_angajatTableAdapter1 = new CRUDOP2.ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter();
+            this.pozitie_angajatTableAdapter2 = new CRUDOP2.ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewContact)).BeginInit();
@@ -151,7 +153,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1058);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // Logo
@@ -313,6 +315,55 @@
             this.dataGridViewContact.TabIndex = 7;
             this.dataGridViewContact.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewContact_CellContentClick);
             // 
+            // idcontact
+            // 
+            this.idcontact.DataPropertyName = "Contact_Id";
+            this.idcontact.HeaderText = "ID Contact";
+            this.idcontact.MinimumWidth = 6;
+            this.idcontact.Name = "idcontact";
+            this.idcontact.ReadOnly = true;
+            this.idcontact.Width = 125;
+            // 
+            // dataInregDataGridViewTextBoxColumn
+            // 
+            this.dataInregDataGridViewTextBoxColumn.DataPropertyName = "Data_Inreg";
+            this.dataInregDataGridViewTextBoxColumn.HeaderText = "Data Înregistrării";
+            this.dataInregDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.dataInregDataGridViewTextBoxColumn.Name = "dataInregDataGridViewTextBoxColumn";
+            this.dataInregDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // detaliiDataGridViewTextBoxColumn
+            // 
+            this.detaliiDataGridViewTextBoxColumn.DataPropertyName = "Detalii";
+            this.detaliiDataGridViewTextBoxColumn.HeaderText = "Detalii";
+            this.detaliiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.detaliiDataGridViewTextBoxColumn.Name = "detaliiDataGridViewTextBoxColumn";
+            this.detaliiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // Tip_Contact_Id
+            // 
+            this.Tip_Contact_Id.DataPropertyName = "Tip_Contact_Id";
+            this.Tip_Contact_Id.HeaderText = "ID Tip Contact";
+            this.Tip_Contact_Id.MinimumWidth = 6;
+            this.Tip_Contact_Id.Name = "Tip_Contact_Id";
+            this.Tip_Contact_Id.Width = 125;
+            // 
+            // clientIdDataGridViewTextBoxColumn
+            // 
+            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "Client_Id";
+            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ID Client";
+            this.clientIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
+            this.clientIdDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // programareIdDataGridViewTextBoxColumn
+            // 
+            this.programareIdDataGridViewTextBoxColumn.DataPropertyName = "Programare_Id";
+            this.programareIdDataGridViewTextBoxColumn.HeaderText = "ID Programare";
+            this.programareIdDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.programareIdDataGridViewTextBoxColumn.Name = "programareIdDataGridViewTextBoxColumn";
+            this.programareIdDataGridViewTextBoxColumn.Width = 125;
+            // 
             // contactBindingSource
             // 
             this.contactBindingSource.DataMember = "Contact";
@@ -380,7 +431,7 @@
             this.detaliiDataGridViewTextBoxColumn1,
             this.datainregistrareDataGridViewTextBoxColumn});
             this.dataGridViewClient.DataSource = this.clientBindingSource;
-            this.dataGridViewClient.Location = new System.Drawing.Point(897, 442);
+            this.dataGridViewClient.Location = new System.Drawing.Point(897, 454);
             this.dataGridViewClient.Name = "dataGridViewClient";
             this.dataGridViewClient.RowHeadersWidth = 51;
             this.dataGridViewClient.RowTemplate.Height = 24;
@@ -727,7 +778,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.button5.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(1356, 385);
+            this.button5.Location = new System.Drawing.Point(1551, 385);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(337, 57);
             this.button5.TabIndex = 89;
@@ -936,66 +987,25 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // idcontact
-            // 
-            this.idcontact.DataPropertyName = "Contact_Id";
-            this.idcontact.HeaderText = "ID Contact";
-            this.idcontact.MinimumWidth = 6;
-            this.idcontact.Name = "idcontact";
-            this.idcontact.ReadOnly = true;
-            this.idcontact.Width = 125;
-            // 
-            // dataInregDataGridViewTextBoxColumn
-            // 
-            this.dataInregDataGridViewTextBoxColumn.DataPropertyName = "Data_Inreg";
-            this.dataInregDataGridViewTextBoxColumn.HeaderText = "Data Înregistrării";
-            this.dataInregDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dataInregDataGridViewTextBoxColumn.Name = "dataInregDataGridViewTextBoxColumn";
-            this.dataInregDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // detaliiDataGridViewTextBoxColumn
-            // 
-            this.detaliiDataGridViewTextBoxColumn.DataPropertyName = "Detalii";
-            this.detaliiDataGridViewTextBoxColumn.HeaderText = "Detalii";
-            this.detaliiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.detaliiDataGridViewTextBoxColumn.Name = "detaliiDataGridViewTextBoxColumn";
-            this.detaliiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // Tip_Contact_Id
-            // 
-            this.Tip_Contact_Id.DataPropertyName = "Tip_Contact_Id";
-            this.Tip_Contact_Id.HeaderText = "ID Tip Contact";
-            this.Tip_Contact_Id.MinimumWidth = 6;
-            this.Tip_Contact_Id.Name = "Tip_Contact_Id";
-            this.Tip_Contact_Id.Width = 125;
-            // 
-            // clientIdDataGridViewTextBoxColumn
-            // 
-            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "Client_Id";
-            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ID Client";
-            this.clientIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
-            this.clientIdDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // programareIdDataGridViewTextBoxColumn
-            // 
-            this.programareIdDataGridViewTextBoxColumn.DataPropertyName = "Programare_Id";
-            this.programareIdDataGridViewTextBoxColumn.HeaderText = "ID Programare";
-            this.programareIdDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.programareIdDataGridViewTextBoxColumn.Name = "programareIdDataGridViewTextBoxColumn";
-            this.programareIdDataGridViewTextBoxColumn.Width = 125;
-            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.button1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(394, 1001);
+            this.button1.Location = new System.Drawing.Point(1076, 385);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(447, 57);
             this.button1.TabIndex = 112;
             this.button1.Text = "Navigheaza la Înregistrare Vehicul Client";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pozitie_angajatTableAdapter1
+            // 
+            this.pozitie_angajatTableAdapter1.ClearBeforeFill = true;
+            // 
+            // pozitie_angajatTableAdapter2
+            // 
+            this.pozitie_angajatTableAdapter2.ClearBeforeFill = true;
             // 
             // ClientContact
             // 
@@ -1165,5 +1175,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clientIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn programareIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button button1;
+        private ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter pozitie_angajatTableAdapter1;
+        private ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter pozitie_angajatTableAdapter2;
     }
 }

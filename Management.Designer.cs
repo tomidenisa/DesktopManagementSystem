@@ -66,7 +66,6 @@
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
             this.flowLayoutPanel1.TabIndex = 1;
-            //this.flowLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
             // Logo
             // 
@@ -85,6 +84,7 @@
             this.homebutton.FlatAppearance.BorderSize = 0;
             this.homebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homebutton.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.homebutton.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.homebutton.Image = global::CRUDOP2.Properties.Resources.cr1;
             this.homebutton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.homebutton.Location = new System.Drawing.Point(3, 409);
@@ -228,16 +228,16 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Transparent;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.button1.FlatAppearance.BorderSize = 10;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Cyan;
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button1.FlatAppearance.BorderSize = 5;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(591, 202);
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(786, 171);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 134);
+            this.button1.Size = new System.Drawing.Size(560, 134);
             this.button1.TabIndex = 0;
             this.button1.Text = "Angajati si Punct de Lucru";
             this.button1.UseVisualStyleBackColor = false;
@@ -253,9 +253,9 @@
             this.CatalogServiciiReparatii.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CatalogServiciiReparatii.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CatalogServiciiReparatii.ForeColor = System.Drawing.Color.Black;
-            this.CatalogServiciiReparatii.Location = new System.Drawing.Point(777, 437);
+            this.CatalogServiciiReparatii.Location = new System.Drawing.Point(786, 638);
             this.CatalogServiciiReparatii.Name = "CatalogServiciiReparatii";
-            this.CatalogServiciiReparatii.Size = new System.Drawing.Size(270, 134);
+            this.CatalogServiciiReparatii.Size = new System.Drawing.Size(560, 134);
             this.CatalogServiciiReparatii.TabIndex = 7;
             this.CatalogServiciiReparatii.Text = "Catalog Servicii si Reparatii";
             this.CatalogServiciiReparatii.UseVisualStyleBackColor = false;
@@ -271,9 +271,9 @@
             this.Vehicul.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Vehicul.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Vehicul.ForeColor = System.Drawing.Color.Black;
-            this.Vehicul.Location = new System.Drawing.Point(1287, 202);
+            this.Vehicul.Location = new System.Drawing.Point(786, 484);
             this.Vehicul.Name = "Vehicul";
-            this.Vehicul.Size = new System.Drawing.Size(270, 134);
+            this.Vehicul.Size = new System.Drawing.Size(560, 134);
             this.Vehicul.TabIndex = 8;
             this.Vehicul.Text = "Vehicule";
             this.Vehicul.UseVisualStyleBackColor = false;
@@ -289,9 +289,9 @@
             this.ClientContact.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClientContact.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ClientContact.ForeColor = System.Drawing.Color.Black;
-            this.ClientContact.Location = new System.Drawing.Point(932, 202);
+            this.ClientContact.Location = new System.Drawing.Point(786, 332);
             this.ClientContact.Name = "ClientContact";
-            this.ClientContact.Size = new System.Drawing.Size(270, 134);
+            this.ClientContact.Size = new System.Drawing.Size(560, 134);
             this.ClientContact.TabIndex = 9;
             this.ClientContact.Text = "Client si Contact ";
             this.ClientContact.UseVisualStyleBackColor = false;
@@ -307,9 +307,9 @@
             this.OferteServiciiReparatii.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.OferteServiciiReparatii.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OferteServiciiReparatii.ForeColor = System.Drawing.Color.Black;
-            this.OferteServiciiReparatii.Location = new System.Drawing.Point(1097, 437);
+            this.OferteServiciiReparatii.Location = new System.Drawing.Point(786, 789);
             this.OferteServiciiReparatii.Name = "OferteServiciiReparatii";
-            this.OferteServiciiReparatii.Size = new System.Drawing.Size(270, 134);
+            this.OferteServiciiReparatii.Size = new System.Drawing.Size(560, 134);
             this.OferteServiciiReparatii.TabIndex = 10;
             this.OferteServiciiReparatii.Text = "Oferta Servicii si Reparatii";
             this.OferteServiciiReparatii.UseVisualStyleBackColor = false;

@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,10 +21,10 @@ namespace CRUDOP2
         {
             InitializeComponent();
         }
-        ServiceAutoDBEntities db = new ServiceAutoDBEntities();
-        Vehicul vehicul1 = new Vehicul();
-        int id_vehicul = 0;
 
+        ServiceAutoDBEntities db = new ServiceAutoDBEntities();
+        vehicul vehicul = new vehicul();
+        int id_vehicul = 0;
         private void homebutton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -88,6 +91,8 @@ namespace CRUDOP2
         {
             VehiculdataGridView.AutoGenerateColumns = false;
             VehiculdataGridView.DataSource = db.vehiculs.ToList<vehicul>();
+            tipvehiculcombo.SelectedIndex = -1;
+            ClientCombo.SelectedIndex = -1;
         }
         public void ClearDataVehicul()
         {
@@ -97,10 +102,6 @@ namespace CRUDOP2
             id_vehicul = 0;
         }
 
-        private void Search_TextChanged(object sender, EventArgs e)
-        {
-            Search.Text = string.Empty;
-        }
 
         private void SearchBtn_Click(object sender, EventArgs e)
         {
@@ -139,7 +140,15 @@ namespace CRUDOP2
             {
                 id_vehicul = Convert.ToInt32(VehiculdataGridView.CurrentRow.Cells["idvehicul"].Value);
                 vehicul = db.vehiculs.Where(x => x.id == id_vehicul).FirstOrDefault();
-                SasiuTxt.Text = vehicu
+                SasiuTxt.Text = vehicul.serie_sasiu;
+                InmatriculareTxt.Text = vehicul.nr_inmatriculare;
+                FabricatieTxt.Text = Convert.ToString(vehicul.an_fabricatie);
+                DetaliiTxt.Text = vehicul.detalii;
+                ProducatorTextBox.Text = vehicul.producator;
+                tipvehiculcombo.SelectedItem = vehicul.tip_vehicul;
+                ClientCombo.SelectedValue = VehiculdataGridView.CurrentRow.Cells["idclient"].Value;
+                ModelTxt.Text = vehicul.model;
+
             }
             AddVehicul.Text = "Update";
             DeleteVehicul.Enabled = true;
@@ -168,6 +177,88 @@ namespace CRUDOP2
                 MessageBox.Show("Inregistrare stearsa cu succes");
             }
         }
+        class FieldInfo
+        {
+            public System.Windows.Forms.TextBox TextBox { get; set; }
+            public string FieldName { get; set; }
+            public int MaxLength { get; set; }
+            public bool Required { get; set; }
+        }
+
+        private void AddVehicul_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(FabricatieTxt.Text.Trim(), out int anFabricatie))
+            {
+                MessageBox.Show("An fabricatie invalid. Introduceti un numar intreg.");
+                errorProvider1.SetError(FabricatieTxt, "Introduceti un numar intreg");
+                FabricatieTxt.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(SasiuTxt.Text.Trim()))
+            {
+                MessageBox.Show("Serie Sasiu inexistenta. Introduceti seria de sasiu.");
+                errorProvider1.SetError(SasiuTxt, "Introduceti seria de sasiu");
+                SasiuTxt.Focus();
+                return;
+            }
+            if (tipvehiculcombo.SelectedItem == null)
+            {
+                MessageBox.Show("Selectati un tip de vehicul.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (ClientCombo.SelectedItem == null)
+            {
+                MessageBox.Show("Selectati un client.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            vehicul.data_inregistrare = DateTime.Now;
+            vehicul.serie_sasiu = SasiuTxt.Text.Trim();
+            vehicul.detalii = DetaliiTxt.Text.Trim();
+            vehicul.producator = ProducatorTextBox.Text.Trim();
+            vehicul.an_fabricatie = anFabricatie;
+            vehicul.tip_vehicul = tipvehiculcombo.SelectedItem.ToString();
+            vehicul.id_client = (int)ClientCombo.SelectedValue;
+            vehicul.model = ModelTxt.Text.Trim();
+            vehicul.nr_inmatriculare = InmatriculareTxt.Text.Trim();
+            if (id_vehicul>0)
+                db.Entry(vehicul).State = EntityState.Modified;
+            else
+            {
+                db.vehiculs.Add(vehicul);
+            }
+            List<FieldInfo> fields = new List<FieldInfo>
+    {
+        new FieldInfo { TextBox = SasiuTxt, FieldName = "Serie Sasiu", MaxLength = 50},
+        new FieldInfo { TextBox = DetaliiTxt, FieldName = "Detalii", MaxLength = 200 },
+        new FieldInfo { TextBox = ProducatorTextBox, FieldName = "Producator", MaxLength = 50 },
+        new FieldInfo { TextBox = ModelTxt, FieldName = "Serie Sasiu", MaxLength = 50 },
+        new FieldInfo { TextBox = FabricatieTxt, FieldName = "An fabricatie", MaxLength = 4 },
+        new FieldInfo { TextBox = SasiuTxt, FieldName = "Serie Sasiu", MaxLength = 50 },
+         new FieldInfo { TextBox = InmatriculareTxt, FieldName = "Nr Inmatriculare ", MaxLength = 10 },
+    };
+            foreach (var field in fields)
+            {
+                if (field.TextBox.Text.Trim().Length > field.MaxLength)
+                {
+                    MessageBox.Show(field.TextBox, $"{field.FieldName} invalid, numar prea mare de caractere", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    errorProvider1.SetError(field.TextBox, $"{field.FieldName} invalid, numar prea mare de caractere");
+                    field.TextBox.Focus();
+                    return;
+                }
+                else
+                {
+                    errorProvider1.SetError(field.TextBox, String.Empty);
+                }
+            }
+
+
+            db.SaveChanges();
+            ClearDataVehicul();
+            SetDataInGridViewVehicul();
+            MessageBox.Show("Inregistrare salvata cu succes");
+        }
     }
-    }
+    
+}
 

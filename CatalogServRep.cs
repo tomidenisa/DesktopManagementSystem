@@ -67,5 +67,15 @@ namespace CRUDOP2
             this.Hide();
             formRegi.Show();
         }
+
+        private void CatalogServRep_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_tip_reparatie' table. You can move, or remove it, as needed.
+            this.catalog_tip_reparatieTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_tip_reparatie);
+            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_servicii' table. You can move, or remove it, as needed.
+            this.catalog_serviciiTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_servicii);
+            this.WindowState = FormWindowState.Maximized;
+
+        }
     }
 }
