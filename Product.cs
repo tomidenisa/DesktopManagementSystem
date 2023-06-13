@@ -29,6 +29,7 @@ namespace CRUDOP2
             ClearData();
             SetDataInGridView();
             this.WindowState = FormWindowState.Maximized;
+            Delete.Enabled = false;
 
         }
         public void ClearData()

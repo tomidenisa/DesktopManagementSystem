@@ -21,5 +21,10 @@ namespace CRUDOP2
         {
             this.WindowState = FormWindowState.Normal;
         }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

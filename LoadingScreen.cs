@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.HtmlControls;
 using System.Windows.Forms;
-using static Guna.UI2.Native.WinApi;
 
 namespace CRUDOP2
 {
@@ -52,10 +51,15 @@ namespace CRUDOP2
                     timer1.Stop();
 
                     // Open home form
-                    Appointment homeForm = new Appointment();
-                    homeForm.Show();
+                    Registration reg = new Registration();
+                    reg.Show();
                     this.Hide();
             }
+
+        }
+
+        private void LoadingScreen_Load(object sender, EventArgs e)
+        {
 
         }
     }

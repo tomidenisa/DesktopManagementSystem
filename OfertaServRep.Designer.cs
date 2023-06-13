@@ -39,17 +39,7 @@
             this.DevizButton = new System.Windows.Forms.Button();
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
-            this.oferteserviciiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.oferte_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.oferte_serviciiTableAdapter();
-            this.ofertatipreparatieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.oferta_tip_reparatieTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.oferta_tip_reparatieTableAdapter();
-            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prettipreparatieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idoferteserviciiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datagridofertaserviciu = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriereDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pretDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,6 +47,16 @@
             this.idclientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcontactDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idcatalogserviciiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.oferteserviciiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
+            this.datagridofertatipreparatie = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prettipreparatieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idoferteserviciiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ofertatipreparatieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.oferte_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.oferte_serviciiTableAdapter();
+            this.oferta_tip_reparatieTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.oferta_tip_reparatieTableAdapter();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -73,18 +73,18 @@
             this.ReparPretTxt = new System.Windows.Forms.TextBox();
             this.OfferServPret = new System.Windows.Forms.TextBox();
             this.OfferClientCombo = new System.Windows.Forms.ComboBox();
-            this.OfferContactCombo = new System.Windows.Forms.ComboBox();
-            this.ReparOfferServCombo = new System.Windows.Forms.ComboBox();
-            this.OfferCatalogServCombo = new System.Windows.Forms.ComboBox();
-            this.ReparCatalogReparCombo = new System.Windows.Forms.ComboBox();
-            this.catalogserviciiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.catalog_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_serviciiTableAdapter();
-            this.contactBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.contactTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.ContactTableAdapter();
             this.clientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.ClientTableAdapter();
+            this.OfferContactCombo = new System.Windows.Forms.ComboBox();
+            this.contactBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ReparOfferServCombo = new System.Windows.Forms.ComboBox();
             this.oferteserviciiBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.OfferCatalogServCombo = new System.Windows.Forms.ComboBox();
+            this.catalogserviciiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ReparCatalogReparCombo = new System.Windows.Forms.ComboBox();
             this.catalogtipreparatieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.catalog_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_serviciiTableAdapter();
+            this.contactTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.ContactTableAdapter();
+            this.clientTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.ClientTableAdapter();
             this.catalog_tip_reparatieTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_tip_reparatieTableAdapter();
             this.AddOfferServ = new System.Windows.Forms.Button();
             this.DeleteOfferServ = new System.Windows.Forms.Button();
@@ -98,18 +98,20 @@
             this.SearchOfferRepar = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridofertaserviciu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oferteserviciiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridofertatipreparatie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ofertatipreparatieBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.oferteserviciiBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogtipreparatieBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -269,12 +271,12 @@
             this.LogoutButton.UseVisualStyleBackColor = true;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // dataGridView1
+            // datagridofertaserviciu
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.datagridofertaserviciu.AutoGenerateColumns = false;
+            this.datagridofertaserviciu.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.datagridofertaserviciu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridofertaserviciu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.descriereDataGridViewTextBoxColumn,
             this.pretDataGridViewTextBoxColumn,
@@ -282,87 +284,14 @@
             this.idclientDataGridViewTextBoxColumn,
             this.idcontactDataGridViewTextBoxColumn,
             this.idcatalogserviciiDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.oferteserviciiBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(991, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(926, 444);
-            this.dataGridView1.TabIndex = 11;
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AutoGenerateColumns = false;
-            this.dataGridView2.BackgroundColor = System.Drawing.Color.LightBlue;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn1,
-            this.prettipreparatieDataGridViewTextBoxColumn,
-            this.idoferteserviciiDataGridViewTextBoxColumn,
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn});
-            this.dataGridView2.DataSource = this.ofertatipreparatieBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(991, 594);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(554, 461);
-            this.dataGridView2.TabIndex = 12;
-            // 
-            // serviceAutoDBDataSet
-            // 
-            this.serviceAutoDBDataSet.DataSetName = "ServiceAutoDBDataSet";
-            this.serviceAutoDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // oferteserviciiBindingSource
-            // 
-            this.oferteserviciiBindingSource.DataMember = "oferte_servicii";
-            this.oferteserviciiBindingSource.DataSource = this.serviceAutoDBDataSet;
-            // 
-            // oferte_serviciiTableAdapter
-            // 
-            this.oferte_serviciiTableAdapter.ClearBeforeFill = true;
-            // 
-            // ofertatipreparatieBindingSource
-            // 
-            this.ofertatipreparatieBindingSource.DataMember = "oferta_tip_reparatie";
-            this.ofertatipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
-            // 
-            // oferta_tip_reparatieTableAdapter
-            // 
-            this.oferta_tip_reparatieTableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "ID";
-            this.idDataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // prettipreparatieDataGridViewTextBoxColumn
-            // 
-            this.prettipreparatieDataGridViewTextBoxColumn.DataPropertyName = "pret_tip_reparatie";
-            this.prettipreparatieDataGridViewTextBoxColumn.HeaderText = "Pret";
-            this.prettipreparatieDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.prettipreparatieDataGridViewTextBoxColumn.Name = "prettipreparatieDataGridViewTextBoxColumn";
-            this.prettipreparatieDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // idoferteserviciiDataGridViewTextBoxColumn
-            // 
-            this.idoferteserviciiDataGridViewTextBoxColumn.DataPropertyName = "id_oferte_servicii";
-            this.idoferteserviciiDataGridViewTextBoxColumn.HeaderText = "ID Oferta Servicii";
-            this.idoferteserviciiDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idoferteserviciiDataGridViewTextBoxColumn.Name = "idoferteserviciiDataGridViewTextBoxColumn";
-            this.idoferteserviciiDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // idcatalogtipreparatieDataGridViewTextBoxColumn
-            // 
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn.DataPropertyName = "id_catalog_tip_reparatie";
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn.HeaderText = "ID Catalog Tip Reparatie";
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn.Name = "idcatalogtipreparatieDataGridViewTextBoxColumn";
-            this.idcatalogtipreparatieDataGridViewTextBoxColumn.Width = 125;
+            this.datagridofertaserviciu.DataSource = this.oferteserviciiBindingSource;
+            this.datagridofertaserviciu.Location = new System.Drawing.Point(991, 53);
+            this.datagridofertaserviciu.Name = "datagridofertaserviciu";
+            this.datagridofertaserviciu.RowHeadersWidth = 51;
+            this.datagridofertaserviciu.RowTemplate.Height = 24;
+            this.datagridofertaserviciu.Size = new System.Drawing.Size(926, 444);
+            this.datagridofertaserviciu.TabIndex = 11;
+            this.datagridofertaserviciu.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridofertaserviciu_CellContentClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -420,6 +349,81 @@
             this.idcatalogserviciiDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.idcatalogserviciiDataGridViewTextBoxColumn.Name = "idcatalogserviciiDataGridViewTextBoxColumn";
             this.idcatalogserviciiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // oferteserviciiBindingSource
+            // 
+            this.oferteserviciiBindingSource.DataMember = "oferte_servicii";
+            this.oferteserviciiBindingSource.DataSource = this.serviceAutoDBDataSet;
+            // 
+            // serviceAutoDBDataSet
+            // 
+            this.serviceAutoDBDataSet.DataSetName = "ServiceAutoDBDataSet";
+            this.serviceAutoDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // datagridofertatipreparatie
+            // 
+            this.datagridofertatipreparatie.AutoGenerateColumns = false;
+            this.datagridofertatipreparatie.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.datagridofertatipreparatie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagridofertatipreparatie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn1,
+            this.prettipreparatieDataGridViewTextBoxColumn,
+            this.idoferteserviciiDataGridViewTextBoxColumn,
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn});
+            this.datagridofertatipreparatie.DataSource = this.ofertatipreparatieBindingSource;
+            this.datagridofertatipreparatie.Location = new System.Drawing.Point(991, 594);
+            this.datagridofertatipreparatie.Name = "datagridofertatipreparatie";
+            this.datagridofertatipreparatie.RowHeadersWidth = 51;
+            this.datagridofertatipreparatie.RowTemplate.Height = 24;
+            this.datagridofertatipreparatie.Size = new System.Drawing.Size(554, 461);
+            this.datagridofertatipreparatie.TabIndex = 12;
+            this.datagridofertatipreparatie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridofertatipreparatie_CellContentClick);
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.idDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // prettipreparatieDataGridViewTextBoxColumn
+            // 
+            this.prettipreparatieDataGridViewTextBoxColumn.DataPropertyName = "pret_tip_reparatie";
+            this.prettipreparatieDataGridViewTextBoxColumn.HeaderText = "Pret";
+            this.prettipreparatieDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.prettipreparatieDataGridViewTextBoxColumn.Name = "prettipreparatieDataGridViewTextBoxColumn";
+            this.prettipreparatieDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // idoferteserviciiDataGridViewTextBoxColumn
+            // 
+            this.idoferteserviciiDataGridViewTextBoxColumn.DataPropertyName = "id_oferte_servicii";
+            this.idoferteserviciiDataGridViewTextBoxColumn.HeaderText = "ID Oferta Servicii";
+            this.idoferteserviciiDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idoferteserviciiDataGridViewTextBoxColumn.Name = "idoferteserviciiDataGridViewTextBoxColumn";
+            this.idoferteserviciiDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // idcatalogtipreparatieDataGridViewTextBoxColumn
+            // 
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn.DataPropertyName = "id_catalog_tip_reparatie";
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn.HeaderText = "ID Catalog Tip Reparatie";
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn.Name = "idcatalogtipreparatieDataGridViewTextBoxColumn";
+            this.idcatalogtipreparatieDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // ofertatipreparatieBindingSource
+            // 
+            this.ofertatipreparatieBindingSource.DataMember = "oferta_tip_reparatie";
+            this.ofertatipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
+            // 
+            // oferte_serviciiTableAdapter
+            // 
+            this.oferte_serviciiTableAdapter.ClearBeforeFill = true;
+            // 
+            // oferta_tip_reparatieTableAdapter
+            // 
+            this.oferta_tip_reparatieTableAdapter.ClearBeforeFill = true;
             // 
             // button2
             // 
@@ -591,6 +595,11 @@
             this.OfferClientCombo.TabIndex = 64;
             this.OfferClientCombo.ValueMember = "id";
             // 
+            // clientBindingSource
+            // 
+            this.clientBindingSource.DataMember = "Client";
+            this.clientBindingSource.DataSource = this.serviceAutoDBDataSet;
+            // 
             // OfferContactCombo
             // 
             this.OfferContactCombo.DataSource = this.contactBindingSource;
@@ -601,6 +610,11 @@
             this.OfferContactCombo.Size = new System.Drawing.Size(183, 24);
             this.OfferContactCombo.TabIndex = 65;
             this.OfferContactCombo.ValueMember = "Contact_Id";
+            // 
+            // contactBindingSource
+            // 
+            this.contactBindingSource.DataMember = "Contact";
+            this.contactBindingSource.DataSource = this.serviceAutoDBDataSet;
             // 
             // ReparOfferServCombo
             // 
@@ -613,6 +627,11 @@
             this.ReparOfferServCombo.TabIndex = 66;
             this.ReparOfferServCombo.ValueMember = "id";
             // 
+            // oferteserviciiBindingSource1
+            // 
+            this.oferteserviciiBindingSource1.DataMember = "oferte_servicii";
+            this.oferteserviciiBindingSource1.DataSource = this.serviceAutoDBDataSet;
+            // 
             // OfferCatalogServCombo
             // 
             this.OfferCatalogServCombo.DataSource = this.catalogserviciiBindingSource;
@@ -623,6 +642,11 @@
             this.OfferCatalogServCombo.Size = new System.Drawing.Size(183, 24);
             this.OfferCatalogServCombo.TabIndex = 67;
             this.OfferCatalogServCombo.ValueMember = "id";
+            // 
+            // catalogserviciiBindingSource
+            // 
+            this.catalogserviciiBindingSource.DataMember = "catalog_servicii";
+            this.catalogserviciiBindingSource.DataSource = this.serviceAutoDBDataSet;
             // 
             // ReparCatalogReparCombo
             // 
@@ -635,42 +659,22 @@
             this.ReparCatalogReparCombo.TabIndex = 68;
             this.ReparCatalogReparCombo.ValueMember = "id";
             // 
-            // catalogserviciiBindingSource
+            // catalogtipreparatieBindingSource
             // 
-            this.catalogserviciiBindingSource.DataMember = "catalog_servicii";
-            this.catalogserviciiBindingSource.DataSource = this.serviceAutoDBDataSet;
+            this.catalogtipreparatieBindingSource.DataMember = "catalog_tip_reparatie";
+            this.catalogtipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
             // 
             // catalog_serviciiTableAdapter
             // 
             this.catalog_serviciiTableAdapter.ClearBeforeFill = true;
             // 
-            // contactBindingSource
-            // 
-            this.contactBindingSource.DataMember = "Contact";
-            this.contactBindingSource.DataSource = this.serviceAutoDBDataSet;
-            // 
             // contactTableAdapter
             // 
             this.contactTableAdapter.ClearBeforeFill = true;
             // 
-            // clientBindingSource
-            // 
-            this.clientBindingSource.DataMember = "Client";
-            this.clientBindingSource.DataSource = this.serviceAutoDBDataSet;
-            // 
             // clientTableAdapter
             // 
             this.clientTableAdapter.ClearBeforeFill = true;
-            // 
-            // oferteserviciiBindingSource1
-            // 
-            this.oferteserviciiBindingSource1.DataMember = "oferte_servicii";
-            this.oferteserviciiBindingSource1.DataSource = this.serviceAutoDBDataSet;
-            // 
-            // catalogtipreparatieBindingSource
-            // 
-            this.catalogtipreparatieBindingSource.DataMember = "catalog_tip_reparatie";
-            this.catalogtipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
             // 
             // catalog_tip_reparatieTableAdapter
             // 
@@ -686,6 +690,7 @@
             this.AddOfferServ.TabIndex = 69;
             this.AddOfferServ.Text = "Salveaza";
             this.AddOfferServ.UseVisualStyleBackColor = false;
+            this.AddOfferServ.Click += new System.EventHandler(this.AddOfferServ_Click);
             // 
             // DeleteOfferServ
             // 
@@ -697,6 +702,7 @@
             this.DeleteOfferServ.TabIndex = 70;
             this.DeleteOfferServ.Text = "Sterge";
             this.DeleteOfferServ.UseVisualStyleBackColor = false;
+            this.DeleteOfferServ.Click += new System.EventHandler(this.DeleteOfferServ_Click);
             // 
             // CancelOfferServ
             // 
@@ -708,6 +714,7 @@
             this.CancelOfferServ.TabIndex = 71;
             this.CancelOfferServ.Text = "Renunta";
             this.CancelOfferServ.UseVisualStyleBackColor = false;
+            this.CancelOfferServ.Click += new System.EventHandler(this.CancelOfferServ_Click);
             // 
             // SearchOfferServ
             // 
@@ -726,6 +733,7 @@
             this.SearchBtnOfferServ.TabIndex = 73;
             this.SearchBtnOfferServ.Text = "Cauta serviciul dupa denumire";
             this.SearchBtnOfferServ.UseVisualStyleBackColor = false;
+            this.SearchBtnOfferServ.Click += new System.EventHandler(this.SearchBtnOfferServ_Click);
             // 
             // SaveOfferRepar
             // 
@@ -737,6 +745,7 @@
             this.SaveOfferRepar.TabIndex = 74;
             this.SaveOfferRepar.Text = "Salveaza";
             this.SaveOfferRepar.UseVisualStyleBackColor = false;
+            this.SaveOfferRepar.Click += new System.EventHandler(this.SaveOfferRepar_Click);
             // 
             // DeleteOfferRepar
             // 
@@ -748,6 +757,7 @@
             this.DeleteOfferRepar.TabIndex = 75;
             this.DeleteOfferRepar.Text = "Sterge";
             this.DeleteOfferRepar.UseVisualStyleBackColor = false;
+            this.DeleteOfferRepar.Click += new System.EventHandler(this.DeleteOfferRepar_Click);
             // 
             // CancelOfferRepar
             // 
@@ -759,17 +769,19 @@
             this.CancelOfferRepar.TabIndex = 77;
             this.CancelOfferRepar.Text = "Renunta";
             this.CancelOfferRepar.UseVisualStyleBackColor = false;
+            this.CancelOfferRepar.Click += new System.EventHandler(this.CancelOfferRepar_Click);
             // 
             // SearchBtnOfferRepar
             // 
             this.SearchBtnOfferRepar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.SearchBtnOfferRepar.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchBtnOfferRepar.Location = new System.Drawing.Point(528, 903);
+            this.SearchBtnOfferRepar.Location = new System.Drawing.Point(483, 903);
             this.SearchBtnOfferRepar.Name = "SearchBtnOfferRepar";
-            this.SearchBtnOfferRepar.Size = new System.Drawing.Size(333, 41);
+            this.SearchBtnOfferRepar.Size = new System.Drawing.Size(431, 68);
             this.SearchBtnOfferRepar.TabIndex = 78;
-            this.SearchBtnOfferRepar.Text = "Cauta serviciul dupa denumire";
+            this.SearchBtnOfferRepar.Text = "Cauta tipul de reparatie dupa ID";
             this.SearchBtnOfferRepar.UseVisualStyleBackColor = false;
+            this.SearchBtnOfferRepar.Click += new System.EventHandler(this.SearchBtnOfferRepar_Click);
             // 
             // SearchOfferRepar
             // 
@@ -783,7 +795,7 @@
             this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(460, 53);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(484, 459);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(484, 485);
             this.flowLayoutPanel2.TabIndex = 80;
             // 
             // flowLayoutPanel3
@@ -791,13 +803,18 @@
             this.flowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(439, 584);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(517, 387);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(517, 414);
             this.flowLayoutPanel3.TabIndex = 81;
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // OfertaServRep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
             this.Controls.Add(this.SearchOfferRepar);
@@ -830,8 +847,8 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.datagridofertatipreparatie);
+            this.Controls.Add(this.datagridofertaserviciu);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel3);
@@ -840,16 +857,17 @@
             this.Load += new System.EventHandler(this.OfertaServRep_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridofertaserviciu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oferteserviciiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.datagridofertatipreparatie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ofertatipreparatieBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.contactBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.oferteserviciiBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogtipreparatieBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -866,8 +884,8 @@
         private System.Windows.Forms.Button DevizButton;
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView datagridofertaserviciu;
+        private System.Windows.Forms.DataGridView datagridofertatipreparatie;
         private ServiceAutoDBDataSet serviceAutoDBDataSet;
         private System.Windows.Forms.BindingSource oferteserviciiBindingSource;
         private ServiceAutoDBDataSetTableAdapters.oferte_serviciiTableAdapter oferte_serviciiTableAdapter;
@@ -925,5 +943,6 @@
         private System.Windows.Forms.TextBox SearchOfferRepar;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
