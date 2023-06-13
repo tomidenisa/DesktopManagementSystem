@@ -7,16 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static CRUDOP2.Registration;
 
 namespace CRUDOP2
 {
     public partial class Home : Form
     {
+        private UserRole userRole;
         public Home()
         {
             InitializeComponent();
         }
-
+        public void SetUserRole(UserRole role)
+        {
+            userRole = role;
+            // Customize the behavior of the form based on the user role
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;

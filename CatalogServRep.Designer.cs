@@ -40,7 +40,7 @@
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
-            this.dataGridViewTipContact = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCatalogServ = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.denumireDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriereDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,12 +48,7 @@
             this.activDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.catalogserviciiBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.catalogtipreparatieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.catalog_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_serviciiTableAdapter();
-            this.catalog_tip_reparatieTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_tip_reparatieTableAdapter();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridViewTipReparatie = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.denumireDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descriereDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +57,11 @@
             this.pretDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.activDataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.idcatalogserviciiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.catalogtipreparatieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.catalog_serviciiTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_serviciiTableAdapter();
+            this.catalog_tip_reparatieTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.catalog_tip_reparatieTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.PosName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -75,12 +75,10 @@
             this.ServDescriereTxt = new System.Windows.Forms.TextBox();
             this.ServDiscountTxt = new System.Windows.Forms.TextBox();
             this.ServActiv = new System.Windows.Forms.CheckBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ReparDenumire = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.ReparActiv = new System.Windows.Forms.CheckBox();
             this.ReparPret = new System.Windows.Forms.TextBox();
-            this.ReparMinTimp = new System.Windows.Forms.TextBox();
-            this.ReparMaxTimp = new System.Windows.Forms.TextBox();
             this.ReparDescriere = new System.Windows.Forms.TextBox();
             this.AddServ = new System.Windows.Forms.Button();
             this.DeleteServ = new System.Windows.Forms.Button();
@@ -92,15 +90,24 @@
             this.CancelRepar = new System.Windows.Forms.Button();
             this.SearchBtnRepar = new System.Windows.Forms.Button();
             this.SearchRepar = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.timpmaxcombo = new System.Windows.Forms.ComboBox();
+            this.timpmincombo = new System.Windows.Forms.ComboBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.idcatalogserviciicombo = new System.Windows.Forms.ComboBox();
+            this.catalogserviciiBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipContact)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatalogServ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipReparatie)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogtipreparatieBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -119,7 +126,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1051);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // Logo
@@ -268,24 +275,25 @@
             this.entityCommand1.EnablePlanCaching = true;
             this.entityCommand1.Transaction = null;
             // 
-            // dataGridViewTipContact
+            // dataGridViewCatalogServ
             // 
-            this.dataGridViewTipContact.AutoGenerateColumns = false;
-            this.dataGridViewTipContact.BackgroundColor = System.Drawing.Color.LightBlue;
-            this.dataGridViewTipContact.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewTipContact.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewCatalogServ.AutoGenerateColumns = false;
+            this.dataGridViewCatalogServ.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dataGridViewCatalogServ.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewCatalogServ.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
             this.denumireDataGridViewTextBoxColumn,
             this.descriereDataGridViewTextBoxColumn,
             this.discountDataGridViewTextBoxColumn,
             this.activDataGridViewCheckBoxColumn});
-            this.dataGridViewTipContact.DataSource = this.catalogserviciiBindingSource;
-            this.dataGridViewTipContact.Location = new System.Drawing.Point(1022, 104);
-            this.dataGridViewTipContact.Name = "dataGridViewTipContact";
-            this.dataGridViewTipContact.RowHeadersWidth = 51;
-            this.dataGridViewTipContact.RowTemplate.Height = 24;
-            this.dataGridViewTipContact.Size = new System.Drawing.Size(668, 362);
-            this.dataGridViewTipContact.TabIndex = 9;
+            this.dataGridViewCatalogServ.DataSource = this.catalogserviciiBindingSource;
+            this.dataGridViewCatalogServ.Location = new System.Drawing.Point(1022, 104);
+            this.dataGridViewCatalogServ.Name = "dataGridViewCatalogServ";
+            this.dataGridViewCatalogServ.RowHeadersWidth = 51;
+            this.dataGridViewCatalogServ.RowTemplate.Height = 24;
+            this.dataGridViewCatalogServ.Size = new System.Drawing.Size(890, 362);
+            this.dataGridViewCatalogServ.TabIndex = 9;
+            this.dataGridViewCatalogServ.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewCatalogServ_CellContentClick);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -338,12 +346,12 @@
             this.serviceAutoDBDataSet.DataSetName = "ServiceAutoDBDataSet";
             this.serviceAutoDBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridView1
+            // dataGridViewTipReparatie
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.LightBlue;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTipReparatie.AutoGenerateColumns = false;
+            this.dataGridViewTipReparatie.BackgroundColor = System.Drawing.Color.LightBlue;
+            this.dataGridViewTipReparatie.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTipReparatie.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn1,
             this.denumireDataGridViewTextBoxColumn1,
             this.descriereDataGridViewTextBoxColumn1,
@@ -352,60 +360,14 @@
             this.pretDataGridViewTextBoxColumn,
             this.activDataGridViewCheckBoxColumn1,
             this.idcatalogserviciiDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.catalogtipreparatieBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(1022, 570);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(900, 461);
-            this.dataGridView1.TabIndex = 10;
-            // 
-            // catalogtipreparatieBindingSource
-            // 
-            this.catalogtipreparatieBindingSource.DataMember = "catalog_tip_reparatie";
-            this.catalogtipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
-            // 
-            // catalog_serviciiTableAdapter
-            // 
-            this.catalog_serviciiTableAdapter.ClearBeforeFill = true;
-            // 
-            // catalog_tip_reparatieTableAdapter
-            // 
-            this.catalog_tip_reparatieTableAdapter.ClearBeforeFill = true;
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::CRUDOP2.Properties.Resources.deviz_removebg_preview;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(1022, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 70, 3, 3);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(425, 57);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "        Catalog Servicii";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::CRUDOP2.Properties.Resources.deviz_removebg_preview;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1022, 493);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 70, 3, 3);
-            this.button2.Name = "button2";
-            this.button2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.button2.Size = new System.Drawing.Size(425, 57);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "        Catalog Tip Reparatii";
-            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.UseVisualStyleBackColor = true;
+            this.dataGridViewTipReparatie.DataSource = this.catalogtipreparatieBindingSource;
+            this.dataGridViewTipReparatie.Location = new System.Drawing.Point(1022, 570);
+            this.dataGridViewTipReparatie.Name = "dataGridViewTipReparatie";
+            this.dataGridViewTipReparatie.RowHeadersWidth = 51;
+            this.dataGridViewTipReparatie.RowTemplate.Height = 24;
+            this.dataGridViewTipReparatie.Size = new System.Drawing.Size(1107, 461);
+            this.dataGridViewTipReparatie.TabIndex = 10;
+            this.dataGridViewTipReparatie.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewTipReparatie_CellContentClick);
             // 
             // idDataGridViewTextBoxColumn1
             // 
@@ -472,6 +434,53 @@
             this.idcatalogserviciiDataGridViewTextBoxColumn.Name = "idcatalogserviciiDataGridViewTextBoxColumn";
             this.idcatalogserviciiDataGridViewTextBoxColumn.Width = 125;
             // 
+            // catalogtipreparatieBindingSource
+            // 
+            this.catalogtipreparatieBindingSource.DataMember = "catalog_tip_reparatie";
+            this.catalogtipreparatieBindingSource.DataSource = this.serviceAutoDBDataSet;
+            // 
+            // catalog_serviciiTableAdapter
+            // 
+            this.catalog_serviciiTableAdapter.ClearBeforeFill = true;
+            // 
+            // catalog_tip_reparatieTableAdapter
+            // 
+            this.catalog_tip_reparatieTableAdapter.ClearBeforeFill = true;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::CRUDOP2.Properties.Resources.deviz_removebg_preview;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(1022, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 70, 3, 3);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(425, 57);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "        Catalog Servicii";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::CRUDOP2.Properties.Resources.deviz_removebg_preview;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(1022, 493);
+            this.button2.Margin = new System.Windows.Forms.Padding(3, 70, 3, 3);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(425, 57);
+            this.button2.TabIndex = 12;
+            this.button2.Text = "        Catalog Tip Reparatii";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // PosName
             // 
             this.PosName.AutoSize = true;
@@ -498,9 +507,10 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(456, 729);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(172, 20);
+            this.label2.Size = new System.Drawing.Size(228, 20);
             this.label2.TabIndex = 26;
-            this.label2.Text = "Timp Minim Necesar";
+            this.label2.Text = "Timp Minim Necesar În Ore";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
@@ -508,9 +518,9 @@
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(456, 680);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(175, 20);
+            this.label3.Size = new System.Drawing.Size(236, 20);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Timp Maxim Necesar";
+            this.label3.Text = "Timp Maxim Necesar În Ore ";
             // 
             // label4
             // 
@@ -592,12 +602,12 @@
             this.ServActiv.TabIndex = 37;
             this.ServActiv.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // ReparDenumire
             // 
-            this.textBox1.Location = new System.Drawing.Point(646, 570);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(169, 22);
-            this.textBox1.TabIndex = 38;
+            this.ReparDenumire.Location = new System.Drawing.Point(698, 570);
+            this.ReparDenumire.Name = "ReparDenumire";
+            this.ReparDenumire.Size = new System.Drawing.Size(169, 22);
+            this.ReparDenumire.TabIndex = 38;
             // 
             // label6
             // 
@@ -612,7 +622,7 @@
             // ReparActiv
             // 
             this.ReparActiv.AutoSize = true;
-            this.ReparActiv.Location = new System.Drawing.Point(646, 826);
+            this.ReparActiv.Location = new System.Drawing.Point(698, 826);
             this.ReparActiv.Name = "ReparActiv";
             this.ReparActiv.Size = new System.Drawing.Size(18, 17);
             this.ReparActiv.TabIndex = 40;
@@ -620,28 +630,14 @@
             // 
             // ReparPret
             // 
-            this.ReparPret.Location = new System.Drawing.Point(646, 780);
+            this.ReparPret.Location = new System.Drawing.Point(698, 780);
             this.ReparPret.Name = "ReparPret";
             this.ReparPret.Size = new System.Drawing.Size(169, 22);
             this.ReparPret.TabIndex = 41;
             // 
-            // ReparMinTimp
-            // 
-            this.ReparMinTimp.Location = new System.Drawing.Point(646, 729);
-            this.ReparMinTimp.Name = "ReparMinTimp";
-            this.ReparMinTimp.Size = new System.Drawing.Size(169, 22);
-            this.ReparMinTimp.TabIndex = 42;
-            // 
-            // ReparMaxTimp
-            // 
-            this.ReparMaxTimp.Location = new System.Drawing.Point(646, 680);
-            this.ReparMaxTimp.Name = "ReparMaxTimp";
-            this.ReparMaxTimp.Size = new System.Drawing.Size(169, 22);
-            this.ReparMaxTimp.TabIndex = 43;
-            // 
             // ReparDescriere
             // 
-            this.ReparDescriere.Location = new System.Drawing.Point(646, 625);
+            this.ReparDescriere.Location = new System.Drawing.Point(698, 625);
             this.ReparDescriere.Name = "ReparDescriere";
             this.ReparDescriere.Size = new System.Drawing.Size(169, 22);
             this.ReparDescriere.TabIndex = 44;
@@ -656,6 +652,7 @@
             this.AddServ.TabIndex = 45;
             this.AddServ.Text = "Salveaza";
             this.AddServ.UseVisualStyleBackColor = false;
+            this.AddServ.Click += new System.EventHandler(this.AddServ_Click);
             // 
             // DeleteServ
             // 
@@ -667,6 +664,7 @@
             this.DeleteServ.TabIndex = 46;
             this.DeleteServ.Text = "Sterge";
             this.DeleteServ.UseVisualStyleBackColor = false;
+            this.DeleteServ.Click += new System.EventHandler(this.DeleteServ_Click);
             // 
             // CancelServ
             // 
@@ -678,6 +676,7 @@
             this.CancelServ.TabIndex = 47;
             this.CancelServ.Text = "Renunta";
             this.CancelServ.UseVisualStyleBackColor = false;
+            this.CancelServ.Click += new System.EventHandler(this.CancelServ_Click);
             // 
             // SearchServ
             // 
@@ -696,65 +695,62 @@
             this.SearchBtnServ.TabIndex = 49;
             this.SearchBtnServ.Text = "Cauta serviciul dupa denumire";
             this.SearchBtnServ.UseVisualStyleBackColor = false;
+            this.SearchBtnServ.Click += new System.EventHandler(this.SearchBtnServ_Click);
             // 
             // AddRepar
             // 
             this.AddRepar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.AddRepar.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddRepar.Location = new System.Drawing.Point(460, 869);
+            this.AddRepar.Location = new System.Drawing.Point(462, 903);
             this.AddRepar.Name = "AddRepar";
             this.AddRepar.Size = new System.Drawing.Size(134, 36);
             this.AddRepar.TabIndex = 50;
             this.AddRepar.Text = "Salveaza";
             this.AddRepar.UseVisualStyleBackColor = false;
+            this.AddRepar.Click += new System.EventHandler(this.AddRepar_Click);
             // 
             // DeleteRepar
             // 
             this.DeleteRepar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.DeleteRepar.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DeleteRepar.Location = new System.Drawing.Point(635, 869);
+            this.DeleteRepar.Location = new System.Drawing.Point(655, 903);
             this.DeleteRepar.Name = "DeleteRepar";
             this.DeleteRepar.Size = new System.Drawing.Size(111, 36);
             this.DeleteRepar.TabIndex = 51;
             this.DeleteRepar.Text = "Sterge";
             this.DeleteRepar.UseVisualStyleBackColor = false;
+            this.DeleteRepar.Click += new System.EventHandler(this.DeleteRepar_Click);
             // 
             // CancelRepar
             // 
             this.CancelRepar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.CancelRepar.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CancelRepar.Location = new System.Drawing.Point(785, 869);
+            this.CancelRepar.Location = new System.Drawing.Point(843, 903);
             this.CancelRepar.Name = "CancelRepar";
             this.CancelRepar.Size = new System.Drawing.Size(125, 36);
             this.CancelRepar.TabIndex = 52;
             this.CancelRepar.Text = "Renunta";
             this.CancelRepar.UseVisualStyleBackColor = false;
+            this.CancelRepar.Click += new System.EventHandler(this.CancelRepar_Click);
             // 
             // SearchBtnRepar
             // 
             this.SearchBtnRepar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.SearchBtnRepar.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchBtnRepar.Location = new System.Drawing.Point(521, 961);
+            this.SearchBtnRepar.Location = new System.Drawing.Point(494, 990);
             this.SearchBtnRepar.Name = "SearchBtnRepar";
             this.SearchBtnRepar.Size = new System.Drawing.Size(434, 41);
             this.SearchBtnRepar.TabIndex = 53;
             this.SearchBtnRepar.Text = "Cauta tipul de reparatie dupa denumire";
             this.SearchBtnRepar.UseVisualStyleBackColor = false;
+            this.SearchBtnRepar.Click += new System.EventHandler(this.SearchBtnRepar_Click);
             // 
             // SearchRepar
             // 
-            this.SearchRepar.Location = new System.Drawing.Point(460, 933);
+            this.SearchRepar.Location = new System.Drawing.Point(462, 949);
             this.SearchRepar.Name = "SearchRepar";
             this.SearchRepar.Size = new System.Drawing.Size(515, 22);
             this.SearchRepar.TabIndex = 54;
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(418, 562);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(575, 469);
-            this.flowLayoutPanel2.TabIndex = 55;
             // 
             // flowLayoutPanel3
             // 
@@ -764,12 +760,113 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(575, 367);
             this.flowLayoutPanel3.TabIndex = 56;
             // 
+            // timpmaxcombo
+            // 
+            this.timpmaxcombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.timpmaxcombo.FormattingEnabled = true;
+            this.timpmaxcombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "24",
+            "48",
+            "72"});
+            this.timpmaxcombo.Location = new System.Drawing.Point(791, 676);
+            this.timpmaxcombo.Name = "timpmaxcombo";
+            this.timpmaxcombo.Size = new System.Drawing.Size(76, 24);
+            this.timpmaxcombo.TabIndex = 57;
+            // 
+            // timpmincombo
+            // 
+            this.timpmincombo.FormattingEnabled = true;
+            this.timpmincombo.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "24",
+            "48",
+            "72"});
+            this.timpmincombo.Location = new System.Drawing.Point(791, 729);
+            this.timpmincombo.Name = "timpmincombo";
+            this.timpmincombo.Size = new System.Drawing.Size(76, 24);
+            this.timpmincombo.TabIndex = 58;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(1744, 482);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(332, 82);
+            this.button4.TabIndex = 61;
+            this.button4.Text = "Navigheaza la Oferte";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(418, 557);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(575, 494);
+            this.flowLayoutPanel2.TabIndex = 62;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(458, 867);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(132, 20);
+            this.label10.TabIndex = 63;
+            this.label10.Text = "Catalog Servicii";
+            // 
+            // idcatalogserviciicombo
+            // 
+            this.idcatalogserviciicombo.DataSource = this.catalogserviciiBindingSource1;
+            this.idcatalogserviciicombo.DisplayMember = "id";
+            this.idcatalogserviciicombo.FormattingEnabled = true;
+            this.idcatalogserviciicombo.Location = new System.Drawing.Point(698, 863);
+            this.idcatalogserviciicombo.Name = "idcatalogserviciicombo";
+            this.idcatalogserviciicombo.Size = new System.Drawing.Size(178, 24);
+            this.idcatalogserviciicombo.TabIndex = 64;
+            this.idcatalogserviciicombo.ValueMember = "id";
+            // 
+            // catalogserviciiBindingSource1
+            // 
+            this.catalogserviciiBindingSource1.DataMember = "catalog_servicii";
+            this.catalogserviciiBindingSource1.DataSource = this.serviceAutoDBDataSet;
+            // 
             // CatalogServRep
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.idcatalogserviciicombo);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.timpmincombo);
+            this.Controls.Add(this.timpmaxcombo);
             this.Controls.Add(this.SearchRepar);
             this.Controls.Add(this.SearchBtnRepar);
             this.Controls.Add(this.CancelRepar);
@@ -781,12 +878,10 @@
             this.Controls.Add(this.DeleteServ);
             this.Controls.Add(this.AddServ);
             this.Controls.Add(this.ReparDescriere);
-            this.Controls.Add(this.ReparMaxTimp);
-            this.Controls.Add(this.ReparMinTimp);
             this.Controls.Add(this.ReparPret);
             this.Controls.Add(this.ReparActiv);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ReparDenumire);
             this.Controls.Add(this.ServActiv);
             this.Controls.Add(this.ServDiscountTxt);
             this.Controls.Add(this.ServDescriereTxt);
@@ -802,21 +897,23 @@
             this.Controls.Add(this.PosName);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.dataGridViewTipContact);
+            this.Controls.Add(this.dataGridViewTipReparatie);
+            this.Controls.Add(this.dataGridViewCatalogServ);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel3);
+            this.Controls.Add(this.flowLayoutPanel2);
             this.Name = "CatalogServRep";
             this.Text = "CatalogServRep";
             this.Load += new System.EventHandler(this.CatalogServRep_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipContact)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewCatalogServ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTipReparatie)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.catalogtipreparatieBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.catalogserviciiBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -834,8 +931,8 @@
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
         private System.Data.Entity.Core.EntityClient.EntityCommand entityCommand1;
-        private System.Windows.Forms.DataGridView dataGridViewTipContact;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewCatalogServ;
+        private System.Windows.Forms.DataGridView dataGridViewTipReparatie;
         private ServiceAutoDBDataSet serviceAutoDBDataSet;
         private System.Windows.Forms.BindingSource catalogserviciiBindingSource;
         private ServiceAutoDBDataSetTableAdapters.catalog_serviciiTableAdapter catalog_serviciiTableAdapter;
@@ -869,12 +966,10 @@
         private System.Windows.Forms.TextBox ServDescriereTxt;
         private System.Windows.Forms.TextBox ServDiscountTxt;
         private System.Windows.Forms.CheckBox ServActiv;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ReparDenumire;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox ReparActiv;
         private System.Windows.Forms.TextBox ReparPret;
-        private System.Windows.Forms.TextBox ReparMinTimp;
-        private System.Windows.Forms.TextBox ReparMaxTimp;
         private System.Windows.Forms.TextBox ReparDescriere;
         private System.Windows.Forms.Button AddServ;
         private System.Windows.Forms.Button DeleteServ;
@@ -886,7 +981,14 @@
         private System.Windows.Forms.Button CancelRepar;
         private System.Windows.Forms.Button SearchBtnRepar;
         private System.Windows.Forms.TextBox SearchRepar;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.ComboBox timpmaxcombo;
+        private System.Windows.Forms.ComboBox timpmincombo;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.ComboBox idcatalogserviciicombo;
+        private System.Windows.Forms.BindingSource catalogserviciiBindingSource1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
     }
 }

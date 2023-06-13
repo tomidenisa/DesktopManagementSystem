@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.PosTxt = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.usertxt = new System.Windows.Forms.TextBox();
+            this.passwordtxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.AddPozitie = new System.Windows.Forms.Button();
+            this.LOGIN = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,20 +47,20 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // PosTxt
+            // usertxt
             // 
-            this.PosTxt.Location = new System.Drawing.Point(213, 398);
-            this.PosTxt.Name = "PosTxt";
-            this.PosTxt.Size = new System.Drawing.Size(254, 22);
-            this.PosTxt.TabIndex = 25;
+            this.usertxt.Location = new System.Drawing.Point(213, 398);
+            this.usertxt.Name = "usertxt";
+            this.usertxt.Size = new System.Drawing.Size(254, 22);
+            this.usertxt.TabIndex = 25;
             // 
-            // textBox1
+            // passwordtxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(213, 483);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PasswordChar = '*';
-            this.textBox1.Size = new System.Drawing.Size(254, 22);
-            this.textBox1.TabIndex = 26;
+            this.passwordtxt.Location = new System.Drawing.Point(213, 483);
+            this.passwordtxt.Name = "passwordtxt";
+            this.passwordtxt.PasswordChar = '*';
+            this.passwordtxt.Size = new System.Drawing.Size(254, 22);
+            this.passwordtxt.TabIndex = 26;
             // 
             // label5
             // 
@@ -71,7 +71,6 @@
             this.label5.Size = new System.Drawing.Size(96, 35);
             this.label5.TabIndex = 30;
             this.label5.Text = "USER";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label1
             // 
@@ -83,16 +82,17 @@
             this.label1.TabIndex = 31;
             this.label1.Text = "PAROLA";
             // 
-            // AddPozitie
+            // LOGIN
             // 
-            this.AddPozitie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
-            this.AddPozitie.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddPozitie.Location = new System.Drawing.Point(143, 534);
-            this.AddPozitie.Name = "AddPozitie";
-            this.AddPozitie.Size = new System.Drawing.Size(267, 71);
-            this.AddPozitie.TabIndex = 32;
-            this.AddPozitie.Text = "AUTENTIFICARE";
-            this.AddPozitie.UseVisualStyleBackColor = false;
+            this.LOGIN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.LOGIN.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LOGIN.Location = new System.Drawing.Point(143, 534);
+            this.LOGIN.Name = "LOGIN";
+            this.LOGIN.Size = new System.Drawing.Size(267, 71);
+            this.LOGIN.TabIndex = 32;
+            this.LOGIN.Text = "AUTENTIFICARE";
+            this.LOGIN.UseVisualStyleBackColor = false;
+            this.LOGIN.Click += new System.EventHandler(this.LOGIN_Click);
             // 
             // Registration
             // 
@@ -100,11 +100,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(547, 636);
-            this.Controls.Add(this.AddPozitie);
+            this.Controls.Add(this.LOGIN);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.PosTxt);
+            this.Controls.Add(this.passwordtxt);
+            this.Controls.Add(this.usertxt);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Registration";
@@ -120,10 +120,10 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TextBox PosTxt;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox usertxt;
+        private System.Windows.Forms.TextBox passwordtxt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button AddPozitie;
+        private System.Windows.Forms.Button LOGIN;
     }
 }
