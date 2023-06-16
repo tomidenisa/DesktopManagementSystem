@@ -40,33 +40,39 @@ namespace CRUDOP2
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT Id_Pozitie_Angajat FROM Angajat WHERE CNP = @CNP AND Parola = @Parola";
+                string query = "SELECT Id_Pozitie_Angajat, Id FROM Angajat WHERE CNP = @CNP AND Parola = @Parola";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@CNP", username);
                     command.Parameters.AddWithValue("@Parola", password);
 
                     connection.Open();
-                    object result = command.ExecuteScalar();
-                    connection.Close();
+                    SqlDataReader reader = command.ExecuteReader();
+                    
 
-                    if (result != null)
+                    if (reader.Read ())
                     {
-                        int idPozitie = Convert.ToInt32(result);
 
+                        int idPozitie = reader.GetInt32(0);
+                        int userID = reader.GetInt32(1);
+
+                        UserManager.CurrentUserID = userID;
                         UserManager.CurrentUserRole = idPozitie == 8 || idPozitie == 10 ? UserRole.Admin : UserRole.User;
 
                         Home homeForm = new Home();
                         homeForm.SetUserRole(UserManager.CurrentUserRole);
                         homeForm.Show();
 
+
                         this.Hide();
 
                     }
                     else
                     {
-                        MessageBox.Show("Invalid username or password");
+                        MessageBox.Show("Username sau parola invalida");
                     }
+
+                    connection.Close();
                 }
             }
 
