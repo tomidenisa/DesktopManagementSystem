@@ -215,6 +215,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ServiceAutoDBDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="UserManager.cs" />
     <Compile Include="Vehicul.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -365,6 +366,8 @@
       <DependentUpon>DbModels.edmx</DependentUpon>
       <LastGenOutput>DbModels.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\car-removebg-preview.png" />
+    <None Include="Resources\exit.png" />
     <None Include="Resources\Design fără titlu.png" />
     <None Include="Resources\deviz-removebg-preview.png" />
     <None Include="Resources\administrare-removebg-preview.png" />

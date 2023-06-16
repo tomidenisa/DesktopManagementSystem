@@ -73,6 +73,16 @@ namespace CRUDOP2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap car_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("car-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cr {
             get {
                 object obj = ResourceManager.GetObject("cr", resourceCulture);
@@ -106,6 +116,16 @@ namespace CRUDOP2.Properties {
         internal static System.Drawing.Bitmap deviz_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("deviz-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap exit {
+            get {
+                object obj = ResourceManager.GetObject("exit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

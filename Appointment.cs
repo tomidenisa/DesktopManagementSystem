@@ -10,15 +10,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using static CRUDOP2.Registration;
 
 namespace CRUDOP2
 {
     public partial class Appointment : Form
     {
+        
         public Appointment()
         {
             InitializeComponent();
+
         }
+     
         ServiceAutoDBEntities db = new ServiceAutoDBEntities();
         Angajat employee = new Angajat();
         pozitie_angajat pozitie = new pozitie_angajat();
@@ -43,6 +47,12 @@ namespace CRUDOP2
             SetDataInGridView();
             SetAppointmentColors();
             this.WindowState = FormWindowState.Maximized;
+            UserRole currentUserRole = UserManager.CurrentUserRole;
+            if (currentUserRole == UserRole.User)
+            {
+                Delete.Visible = false; 
+                AdminButton.Visible = false;
+            }
         }
         private void SetAppointmentColors()
         {

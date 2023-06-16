@@ -54,9 +54,10 @@ namespace CRUDOP2
                     {
                         int idPozitie = Convert.ToInt32(result);
 
+                        UserManager.CurrentUserRole = idPozitie == 8 || idPozitie == 10 ? UserRole.Admin : UserRole.User;
 
                         Home homeForm = new Home();
-                        homeForm.SetUserRole(idPozitie == 8 || idPozitie == 10 ? UserRole.Admin : UserRole.User);
+                        homeForm.SetUserRole(UserManager.CurrentUserRole);
                         homeForm.Show();
 
                         this.Hide();
@@ -69,6 +70,11 @@ namespace CRUDOP2
                 }
             }
 
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -13,19 +13,21 @@ namespace CRUDOP2
 {
     public partial class LoadingScreen : Form
     {
+        private int carXPosition;
         public LoadingScreen()
         {
             InitializeComponent();
             timer1.Start();
             this.StartPosition = FormStartPosition.CenterScreen;
+            carXPosition = carPictureBox.Location.X;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-                // Update progress bar
+                
                 progressBar1.Increment(1);
 
-                // Update message label based on progress bar value
+                
                 int progress = progressBar1.Value;
             if (progress < 25)
                 {
@@ -44,21 +46,40 @@ namespace CRUDOP2
                     loadinglabel.Text = "Incepem treaba!";
                 }
 
-                // Check if loading is complete
+               
                 if (progressBar1.Value == progressBar1.Maximum)
                 {
-                    // Stop timer
+                    
                     timer1.Stop();
 
-                    // Open home form
+                    
                     Registration reg = new Registration();
                     reg.Show();
                     this.Hide();
+            }
+            carXPosition += 3; 
+            carPictureBox.Location = new Point(carXPosition, carPictureBox.Location.Y);
+
+            
+            if (progressBar1.Value == progressBar1.Maximum)
+            {
+                
+                timer1.Stop();
+
+                
+                Registration reg = new Registration();
+                reg.Show();
+                this.Hide();
             }
 
         }
 
         private void LoadingScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
         {
 
         }

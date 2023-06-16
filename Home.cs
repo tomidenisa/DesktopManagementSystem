@@ -32,7 +32,6 @@ namespace CRUDOP2
         {
             this.Hide();
             Appointment formApp = new Appointment();
-            formApp.SetUserRole(userRole);
             formApp.Show();
         }
 
