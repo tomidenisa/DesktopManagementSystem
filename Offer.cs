@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,33 @@ namespace CRUDOP2
         private void Offer_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            SetDataInMateriale();
         }
+        private void SetDataInMateriale()
+        {
+            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ServiceAutoDB;Integrated Security=True";
+            string query = "SELECT 'Serviciu' AS tip, catalog_servicii.denumire, oferte_servicii.pret " +
+                           "FROM catalog_servicii " +
+                           "INNER JOIN oferte_servicii ON catalog_servicii.id = oferte_servicii.id_catalog_servicii " +
+                           "UNION " +
+                           "SELECT 'Produs' AS tip, produs.denumire, produs.cost_vanzare AS pret " +
+                           "FROM produs";
 
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    connection.Close();
+
+                    dataGridViewMateriale.DataSource = dataTable;
+                }
+            }
+
+        }
         private void homebutton_Click(object sender, EventArgs e)
         {
             this.Hide();

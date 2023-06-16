@@ -47,9 +47,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.dataGridViewMateriale = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -219,7 +222,7 @@
             this.button1.Location = new System.Drawing.Point(394, 3);
             this.button1.Name = "button1";
             this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(1082, 90);
+            this.button1.Size = new System.Drawing.Size(385, 76);
             this.button1.TabIndex = 6;
             this.button1.Text = "        OFERTA";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -239,23 +242,23 @@
             // 
             this.PrdctName.AutoSize = true;
             this.PrdctName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrdctName.Location = new System.Drawing.Point(502, 263);
+            this.PrdctName.Location = new System.Drawing.Point(454, 260);
             this.PrdctName.Name = "PrdctName";
-            this.PrdctName.Size = new System.Drawing.Size(453, 35);
+            this.PrdctName.Size = new System.Drawing.Size(521, 35);
             this.PrdctName.TabIndex = 21;
-            this.PrdctName.Text = "Piese / Servicii / Tipuri de reparații";
+            this.PrdctName.Text = "Piese / Servicii / Tipuri de reparații alese";
             // 
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(834, 104);
+            this.comboBox1.Location = new System.Drawing.Point(954, 107);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
+            this.comboBox1.Size = new System.Drawing.Size(190, 24);
             this.comboBox1.TabIndex = 22;
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(595, 108);
+            this.dateTimePicker1.Location = new System.Drawing.Point(542, 109);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 23;
@@ -263,47 +266,67 @@
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(1067, 104);
+            this.comboBox2.Location = new System.Drawing.Point(1385, 107);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 24);
+            this.comboBox2.Size = new System.Drawing.Size(167, 24);
             this.comboBox2.TabIndex = 24;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(463, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 23);
+            this.label1.Size = new System.Drawing.Size(61, 25);
             this.label1.TabIndex = 25;
             this.label1.Text = "Data";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1011, 263);
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1231, 109);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 20);
+            this.label2.Size = new System.Drawing.Size(135, 25);
             this.label2.TabIndex = 26;
-            this.label2.Text = "Provenienta";
+            this.label2.Text = "Programare";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(862, 243);
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(839, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 20);
+            this.label3.Size = new System.Drawing.Size(84, 25);
             this.label3.TabIndex = 27;
-            this.label3.Text = "Provenienta";
+            this.label3.Text = "Vehicul";
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(460, 85);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(1166, 79);
+            this.flowLayoutPanel3.TabIndex = 43;
+            // 
+            // dataGridViewMateriale
+            // 
+            this.dataGridViewMateriale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMateriale.Location = new System.Drawing.Point(1361, 312);
+            this.dataGridViewMateriale.Name = "dataGridViewMateriale";
+            this.dataGridViewMateriale.RowHeadersWidth = 51;
+            this.dataGridViewMateriale.RowTemplate.Height = 24;
+            this.dataGridViewMateriale.Size = new System.Drawing.Size(551, 505);
+            this.dataGridViewMateriale.TabIndex = 44;
             // 
             // Offer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.dataGridViewMateriale);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -314,12 +337,14 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.flowLayoutPanel3);
             this.Name = "Offer";
             this.Text = "Offer";
             this.Load += new System.EventHandler(this.Offer_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +370,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.DataGridView dataGridViewMateriale;
     }
 }
