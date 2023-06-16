@@ -61,6 +61,11 @@
             this.label6 = new System.Windows.Forms.Label();
             this.totalTxt = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timpTxt = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).BeginInit();
@@ -248,8 +253,9 @@
             this.Tip,
             this.Cantitate,
             this.Denumire,
-            this.Pret});
-            this.dataGridViewOferta.Location = new System.Drawing.Point(1246, 361);
+            this.Pret,
+            this.Timp});
+            this.dataGridViewOferta.Location = new System.Drawing.Point(1246, 268);
             this.dataGridViewOferta.Name = "dataGridViewOferta";
             this.dataGridViewOferta.RowHeadersWidth = 51;
             this.dataGridViewOferta.RowTemplate.Height = 24;
@@ -260,7 +266,7 @@
             // 
             this.PrdctName.AutoSize = true;
             this.PrdctName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrdctName.Location = new System.Drawing.Point(589, 301);
+            this.PrdctName.Location = new System.Drawing.Point(1475, 200);
             this.PrdctName.Name = "PrdctName";
             this.PrdctName.Size = new System.Drawing.Size(217, 35);
             this.PrdctName.TabIndex = 21;
@@ -333,7 +339,7 @@
             // dataGridViewMateriale
             // 
             this.dataGridViewMateriale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMateriale.Location = new System.Drawing.Point(468, 361);
+            this.dataGridViewMateriale.Location = new System.Drawing.Point(460, 254);
             this.dataGridViewMateriale.Name = "dataGridViewMateriale";
             this.dataGridViewMateriale.RowHeadersWidth = 51;
             this.dataGridViewMateriale.RowTemplate.Height = 24;
@@ -344,7 +350,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(1456, 301);
+            this.label4.Location = new System.Drawing.Point(546, 200);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(323, 35);
             this.label4.TabIndex = 45;
@@ -387,7 +393,7 @@
             // 
             // cantitateTxt
             // 
-            this.cantitateTxt.Location = new System.Drawing.Point(1011, 433);
+            this.cantitateTxt.Location = new System.Drawing.Point(1010, 314);
             this.cantitateTxt.Name = "cantitateTxt";
             this.cantitateTxt.Size = new System.Drawing.Size(161, 22);
             this.cantitateTxt.TabIndex = 46;
@@ -396,7 +402,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(1046, 392);
+            this.label5.Location = new System.Drawing.Point(1037, 268);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(106, 25);
             this.label5.TabIndex = 47;
@@ -406,7 +412,7 @@
             // 
             this.AddCantitate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.AddCantitate.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCantitate.Location = new System.Drawing.Point(958, 495);
+            this.AddCantitate.Location = new System.Drawing.Point(969, 361);
             this.AddCantitate.Name = "AddCantitate";
             this.AddCantitate.Size = new System.Drawing.Size(271, 56);
             this.AddCantitate.TabIndex = 48;
@@ -418,15 +424,15 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(1632, 903);
+            this.label6.Location = new System.Drawing.Point(1598, 803);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 25);
+            this.label6.Size = new System.Drawing.Size(112, 25);
             this.label6.TabIndex = 49;
-            this.label6.Text = "Total";
+            this.label6.Text = "Total Pret";
             // 
             // totalTxt
             // 
-            this.totalTxt.Location = new System.Drawing.Point(1722, 906);
+            this.totalTxt.Location = new System.Drawing.Point(1735, 806);
             this.totalTxt.Name = "totalTxt";
             this.totalTxt.Size = new System.Drawing.Size(100, 22);
             this.totalTxt.TabIndex = 50;
@@ -435,13 +441,61 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.button2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1637, 978);
+            this.button2.Location = new System.Drawing.Point(1614, 854);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(271, 56);
             this.button2.TabIndex = 51;
             this.button2.Text = "Finalizeaza";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // Timp
+            // 
+            this.Timp.HeaderText = "Timp";
+            this.Timp.MinimumWidth = 6;
+            this.Timp.Name = "Timp";
+            this.Timp.Width = 125;
+            // 
+            // timpTxt
+            // 
+            this.timpTxt.Location = new System.Drawing.Point(1481, 806);
+            this.timpTxt.Name = "timpTxt";
+            this.timpTxt.Size = new System.Drawing.Size(65, 22);
+            this.timpTxt.TabIndex = 52;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1241, 803);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(214, 25);
+            this.label7.TabIndex = 53;
+            this.label7.Text = "Timp Necesar in ore";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1736, 102);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(185, 71);
+            this.button3.TabIndex = 54;
+            this.button3.Text = "Navighează la programări";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(1317, 854);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(271, 56);
+            this.button4.TabIndex = 55;
+            this.button4.Text = "Anuleaza";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Offer
             // 
@@ -450,6 +504,10 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.timpTxt);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.totalTxt);
             this.Controls.Add(this.label6);
@@ -515,5 +573,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox totalTxt;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Timp;
+        private System.Windows.Forms.TextBox timpTxt;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

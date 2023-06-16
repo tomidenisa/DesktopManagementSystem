@@ -23,6 +23,7 @@ namespace CRUDOP2
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ServiceAutoDB;Integrated Security=True";
         private int currentNr = 1;
         private decimal totalValue = 0;
+        private int Timp1 = 0;
         public Offer()
         {
             InitializeComponent();
@@ -36,14 +37,10 @@ namespace CRUDOP2
             SetDataInProgramariCombo();
             vehiculComboBox.Enabled = false;
             totalTxt.ReadOnly = true;
+            timpTxt.ReadOnly = true;
 
         }
-        private string GetUniqueFilePath()
-        {
-            string fileName = "Offer_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".pdf";
-            string filePath = Path.Combine(@"C:\Users\denit\Desktop", fileName);
-            return filePath;
-        }
+       
 
 
         private void SetDataInProgramariCombo()
@@ -129,12 +126,12 @@ namespace CRUDOP2
 
         private void SetDataInMateriale()
         {
-            string query = "SELECT 'Serviciu' AS Tip, catalog_servicii.denumire, SUM(catalog_tip_reparatie.pret) AS Pret " +
+            string query = "SELECT 'Serviciu' AS Tip, catalog_servicii.denumire, SUM(catalog_tip_reparatie.pret) AS Pret, SUM(catalog_tip_reparatie.timp_necesar_max) AS Timp " +
                            "FROM catalog_servicii " +
                            "INNER JOIN catalog_tip_reparatie ON catalog_servicii.id = catalog_tip_reparatie.id_catalog_servicii " +
                            "GROUP BY catalog_servicii.denumire " +
                            "UNION " +
-                           "SELECT 'Produs' AS Tip, produs.denumire, produs.cost_vanzare AS Pret " +
+                           "SELECT 'Produs' AS Tip, produs.denumire, produs.cost_vanzare AS Pret, 0 AS Timp " +
                            "FROM produs";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -146,11 +143,11 @@ namespace CRUDOP2
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     connection.Close();
-
                     dataGridViewMateriale.DataSource = dataTable;
                 }
             }
         }
+
         private void homebutton_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -238,19 +235,23 @@ namespace CRUDOP2
                             string denumire = selectedRow.Cells["Denumire"].Value.ToString();
                             decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
                             int cantitate = int.Parse(cantitateTxt.Text);
+                            int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
 
 
-                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret);
+                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
 
                             currentNr++;
 
+                            int timptot = cantitate * Timpcol;
+                            Timp1 += timptot;
 
                             decimal lineTotal = pret * cantitate;
                             totalValue += lineTotal;
 
 
                             totalTxt.Text = totalValue.ToString();
+                            timpTxt.Text = Timp1.ToString();
                         }
                         else
                         {
@@ -272,11 +273,95 @@ namespace CRUDOP2
                 MessageBox.Show("Please select a programare.", "No Programare Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private DataTable GetAngajatDataFromDatabase(int userId)
+        {
+            string query = "SELECT Angajat.*, Punct_Lucru_Service.* " +
+                           "FROM Angajat " +
+                           "INNER JOIN Punct_Lucru_Service ON angajat.IdPunctDeLucru = Punct_Lucru_Service.Punct_Lucru_Id " +
+                           "WHERE Angajat.Id = @userId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@userId", userId);
+
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    adapter.Fill(dataTable);
+                    connection.Close();
+
+                    return dataTable;
+                }
+            }
+        }
+        public string GetAngajatNameFromDatabase(int userId)
+        {
+            // Assuming you are using a database connection named "connection"
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Create a SQL command to fetch the angajat name based on the user ID
+                string query = "SELECT CONCAT(Nume, ' ', Prenume) AS NumeComplet FROM Angajat WHERE Id = @UserId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    // Execute the query and retrieve the angajat name
+                    string angajatName = command.ExecuteScalar()?.ToString();
+
+                    return angajatName;
+                }
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            // Check if the comboboxes are filled
+            if (programareComboBox.SelectedIndex == -1 || vehiculComboBox.SelectedIndex == -1)
+            {
+                MessageBox.Show("Selecteaza o programare.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check if the date is picked
+            if (dateTimePicker1.Value == null)
+            {
+                MessageBox.Show("Selecteaza data.", "Missing Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check if the datagridview has at least one row
+            if (dataGridViewOferta.Rows.Count == 0)
+            {
+                MessageBox.Show("Adauga cel putin un produs sau serviciu la oferta.", "Empty Offer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+           
             GeneratePDF();
+
+           
+            programareComboBox.SelectedIndex = -1;
+            vehiculComboBox.SelectedIndex = -1;
+            dateTimePicker1.Value = DateTime.Now;
+            dataGridViewOferta.Rows.Clear();
+            cantitateTxt.Text = string.Empty;
+            totalTxt.Text = string.Empty;
+            timpTxt.Text = string.Empty;
         }
+        private string GetUniqueFilePath()
+        {
+            int userId = UserManager.CurrentUserID; 
+            string angajatName = GetAngajatNameFromDatabase(userId);
+            string currentTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string fileName = "Offer_" + angajatName + "_" + currentTime + ".pdf";
+            string filePath = Path.Combine(@"C:\Users\denit\Desktop", fileName);
+            return filePath;
+        }
+
         private void GeneratePDF()
         {
             // Create a new PDF document
@@ -294,35 +379,82 @@ namespace CRUDOP2
             // Set the initial y-coordinate for drawing content
             float y = 50;
 
-            // Draw the date
+            
+            int userId = UserManager.CurrentUserID; // Replace with your method to get the current user ID
+            DataTable angajatData = GetAngajatDataFromDatabase(userId);
+
+            // Check if the data is available
+            if (angajatData.Rows.Count > 0)
+            {
+                DataRow angajatRow = angajatData.Rows[0];
+
+                
+                string punctDeLucruName = angajatRow["Denumire"].ToString();
+                string punctDeLucruAddress = angajatRow["Adresa"].ToString();
+                string contbancar = angajatRow["Cont_Bancar"].ToString();
+                string cif = angajatRow["CIF"].ToString();
+                string regcom = angajatRow["Nr_Reg_Com"].ToString();
+
+                
+                graphics.DrawString("Punct de Lucru: " + punctDeLucruName, font, PdfBrushes.Black, new PointF(50, y));
+                y += 20;
+
+                graphics.DrawString("Adresa: " + punctDeLucruAddress, font, PdfBrushes.Black, new PointF(50, y));
+                y += 20;
+
+                graphics.DrawString("Cont Bancar: " + contbancar, font, PdfBrushes.Black, new PointF(50, y));
+                y += 20;
+
+                graphics.DrawString("CIF: " + cif, font, PdfBrushes.Black, new PointF(50, y));
+                y += 20;
+
+                graphics.DrawString("Nr. Reg. Com. : " + regcom, font, PdfBrushes.Black, new PointF(50, y));
+                y += 20;
+
+                y += 30; 
+            }
+           
+            float pageWidth = page.GetClientSize().Width;
+
+            
+            string title = "Deviz Ofertare";
+            float titleFontSize = 18;
+            PdfFont titleFont = new PdfStandardFont(PdfFontFamily.Helvetica, titleFontSize, PdfFontStyle.Bold);
+            float titleWidth = titleFont.MeasureString(title).Width;
+            float titleX = (pageWidth - titleWidth) / 2; 
+            graphics.DrawString(title, titleFont, PdfBrushes.Black, new PointF(titleX, y));
+            y += 40;
+
+            
             DateTime selectedDate = dateTimePicker1.Value;
             string dateString = selectedDate.ToString("dd/MM/yyyy");
             graphics.DrawString("Date: " + dateString, font, PdfBrushes.Black, new PointF(50, y));
-            y += 20;
+            y += 30;
 
-            // Draw the programare ID
+           
             int programareID = (int)programareComboBox.SelectedItem;
-            graphics.DrawString("Programare ID: " + programareID.ToString(), font, PdfBrushes.Black, new PointF(50, y));
-            y += 20;
-
-            // Draw the vehicul serie sasiu
-            string serieSasiu = vehiculComboBox.SelectedItem?.ToString();
-            graphics.DrawString("Vehicul Serie Sasiu: " + serieSasiu, font, PdfBrushes.Black, new PointF(50, y));
+            graphics.DrawString("Cod Document: " + programareID.ToString(), font, PdfBrushes.Black, new PointF(50, y));
             y += 40;
 
-            // Draw the "Denumire Materiale" text
-            graphics.DrawString("Denumire Materiale", font, PdfBrushes.Black, new PointF(50, y));
+            
+            string serieSasiu = vehiculComboBox.SelectedItem?.ToString();
+            float vehiculX = page.GetClientSize().Width - font.MeasureString("Vehicul Serie Sasiu: " + serieSasiu).Width - 50;
+            graphics.DrawString("Vehicul Serie Sasiu: " + serieSasiu, font, PdfBrushes.Black, new PointF(vehiculX, y));
+            y += 40;
+
+           
+            graphics.DrawString("Produse si Servicii", font, PdfBrushes.Black, new PointF(50, y));
             y += 20;
 
-            // Create a table for dataGridViewOferta data
+            
             PdfGrid table = new PdfGrid();
             table.Style.Font = font;
             table.Style.CellPadding.All = 5;
 
-            // Set the number of columns
+            
             table.Columns.Add(5);
 
-            // Add the headers to the table
+           
             PdfGridRow headerRow = table.Headers.Add(1)[0];
             headerRow.Cells[0].Value = "Nr";
             headerRow.Cells[1].Value = "Tip";
@@ -330,7 +462,7 @@ namespace CRUDOP2
             headerRow.Cells[3].Value = "Denumire";
             headerRow.Cells[4].Value = "Pret";
 
-            // Set border style for header cells
+           
             PdfGridCellStyle headerStyle = new PdfGridCellStyle();
             headerStyle.Borders.All = new PdfPen(PdfBrushes.Black, 0.5f);
             headerRow.Cells[0].Style = headerStyle;
@@ -339,16 +471,16 @@ namespace CRUDOP2
             headerRow.Cells[3].Style = headerStyle;
             headerRow.Cells[4].Style = headerStyle;
 
-            // Add the data rows to the table
+           
             foreach (DataGridViewRow dataGridViewRow in dataGridViewOferta.Rows)
             {
-                // Skip the new row for entering data
+               
                 if (!dataGridViewRow.IsNewRow)
                 {
-                    // Create a new row in the PDF table
+                    
                     PdfGridRow pdfGridRow = table.Rows.Add();
 
-                    // Set the values of each cell in the PDF table row
+                    
                     pdfGridRow.Cells[0].Value = dataGridViewRow.Cells[0].Value?.ToString();
                     pdfGridRow.Cells[1].Value = dataGridViewRow.Cells[1].Value?.ToString();
                     pdfGridRow.Cells[2].Value = dataGridViewRow.Cells[2].Value?.ToString();
@@ -357,26 +489,42 @@ namespace CRUDOP2
                 }
             }
 
-            // Draw the table on the PDF page
+            
             table.Draw(page, new PointF(50, y));
 
-            // Calculate the total height of the table, including the header row and all data rows
+           
             float tableHeight = table.Rows.Sum(row => row.Height) + table.Headers[0].Height;
 
-            // Calculate the bottom edge of the table
+            
             float tableBottomY = y + tableHeight;
 
-            // Update the y-coordinate for drawing the "Total" text
-            float totalTextY = tableBottomY + 20; // Add some additional spacing below the table
+            
+            float totalTextY = tableBottomY + 20; 
 
-            // Draw the "Total" text and value
-            string totalText = "Total: " + totalTxt.Text;
+           
+            string totalText = "Total General Pret: " + totalTxt.Text;
             float totalTextWidth = font.MeasureString(totalText).Width;
             float totalTextX = page.GetClientSize().Width - totalTextWidth - 50;
             PointF totalTextPosition = new PointF(totalTextX, totalTextY);
             graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
 
+            
+            string totalTimpText = "Total Timp Necesar in ore: " + timpTxt.Text;
+            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, totalTextY));
 
+           
+            string angajatName = GetAngajatNameFromDatabase(userId);
+
+            string responsabilText = "Responsabil: " + angajatName;
+            float responsabilX = 50;
+            float responsabilY = totalTextY + 40; 
+            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(responsabilX, responsabilY));
+
+
+            string semnaturaText = "Semnatura:";
+            float semnaturaTextWidth = font.MeasureString(semnaturaText).Width;
+            float semnaturaX = page.GetClientSize().Width - semnaturaTextWidth - 50;
+            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, responsabilY));
 
             // Save the document
             string filePath = GetUniqueFilePath();
@@ -388,5 +536,22 @@ namespace CRUDOP2
             MessageBox.Show("Oferta generata cu succes.", "Generare oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Appointment appoin = new Appointment();
+            appoin.Show();
+            this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            programareComboBox.SelectedIndex = -1;
+            vehiculComboBox.SelectedIndex = -1;
+            dateTimePicker1.Value = DateTime.Now;
+            dataGridViewOferta.Rows.Clear();
+            cantitateTxt.Text = string.Empty;
+            totalTxt.Text = string.Empty;
+            timpTxt.Text = string.Empty;
+        }
     }
 }
