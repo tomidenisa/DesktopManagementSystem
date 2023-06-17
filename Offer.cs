@@ -14,12 +14,32 @@ using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using Syncfusion.Pdf.Grid;
 using Syncfusion.Licensing;
+using System.Net.Mail;
+using System.Net;
+using Google.Apis.Gmail.v1.Data;
+using MimeKit;
+using System.IO;
+using System.Text;
+using Google.Apis.Auth;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis;
+using Google.Apis.Services;
+using Google.Apis.Gmail;
 using static CRUDOP2.Registration;
+using Google.Apis.Gmail.v1;
+using Google.Apis.Auth.OAuth2.Responses;
+using System.Threading;
+using Google.Apis.Auth.OAuth2.Flows;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Diagnostics;
 
 namespace CRUDOP2
 {
+
     public partial class Offer : Form
     {
+        MailMessage mesaj;
+        SmtpClient smtp;
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ServiceAutoDB;Integrated Security=True";
         private int currentNr = 1;
         private decimal totalValue = 0;
@@ -317,33 +337,93 @@ namespace CRUDOP2
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+
+        private void SendEmailWithAttachment(string fromEmail, string toEmail, string subject, string body, string attachmentFilePath)
         {
-            // Check if the comboboxes are filled
+            // Configure the SMTP client
+            var smtpClient = new SmtpClient
+            {
+                Host = "smtp.gmail.com", 
+                Port = 587, 
+                EnableSsl = true, 
+                Credentials = new NetworkCredential(fromEmail, "gmajvhmnijdtjlnf") 
+            };
+
+           
+            var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = subject,
+                Body = body
+            };
+
+            
+            if (!string.IsNullOrEmpty(attachmentFilePath))
+            {
+                var attachment = new Attachment(attachmentFilePath);
+                message.Attachments.Add(attachment);
+            }
+
+            try
+            {
+                
+                smtpClient.Send(message);
+                MessageBox.Show("Notificare trimisa cu succes !", "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Trimitere esuata: " + ex.Message, "Email Sending Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        int userId = UserManager.CurrentUserID;
+        private async void button2_Click(object sender, EventArgs e)
+        {
             if (programareComboBox.SelectedIndex == -1 || vehiculComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecteaza o programare.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Check if the date is picked
+            
             if (dateTimePicker1.Value == null)
             {
                 MessageBox.Show("Selecteaza data.", "Missing Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Check if the datagridview has at least one row
+           
             if (dataGridViewOferta.Rows.Count == 0)
             {
                 MessageBox.Show("Adauga cel putin un produs sau serviciu la oferta.", "Empty Offer", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-           
+          
+            string filePath = GetUniqueFilePath();
             GeneratePDF();
+            string angajatName = GetAngajatNameFromDatabase(userId);
+            DateTime selectedDate = dateTimePicker1.Value;
+            int programareID = (int)programareComboBox.SelectedItem;
+            try
+            {
+                
+                string fromEmail = "ademartomisender@gmail.com";
+                string toEmail = "ademartomireciever@gmail.com";
+                string subject = "Deviz Ofertare";
+                string body = "Atasat regasiti oferta cu urmatoarele caracteristici .\n\n" +
+              "Angajat : " + angajatName + "\n" +
+              "Date: " + selectedDate.ToString("dd/MM/yyyy") + "\n" +
+              "Programare ID: " + programareID.ToString();
 
-           
+                // Send the email
+                SendEmailWithAttachment(fromEmail, toEmail, subject, body, filePath);
+                MessageBox.Show("Oferta generata si trimisa cu succes.", "Generare si Trimitere Oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to generate and send the offer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            // Reset the form fields
             programareComboBox.SelectedIndex = -1;
             vehiculComboBox.SelectedIndex = -1;
             dateTimePicker1.Value = DateTime.Now;
@@ -352,16 +432,16 @@ namespace CRUDOP2
             totalTxt.Text = string.Empty;
             timpTxt.Text = string.Empty;
         }
+
+
         private string GetUniqueFilePath()
         {
-            int userId = UserManager.CurrentUserID; 
             string angajatName = GetAngajatNameFromDatabase(userId);
             string currentTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string fileName = "Offer_" + angajatName + "_" + currentTime + ".pdf";
             string filePath = Path.Combine(@"C:\Users\denit\Desktop", fileName);
             return filePath;
         }
-
         private void GeneratePDF()
         {
             // Create a new PDF document
@@ -373,17 +453,18 @@ namespace CRUDOP2
             // Create PDF graphics
             PdfGraphics graphics = page.Graphics;
 
-            // Set the font
+            
+
+
             PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
 
-            // Set the initial y-coordinate for drawing content
+            
             float y = 50;
 
             
-            int userId = UserManager.CurrentUserID; // Replace with your method to get the current user ID
+            int userId = UserManager.CurrentUserID; 
             DataTable angajatData = GetAngajatDataFromDatabase(userId);
 
-            // Check if the data is available
             if (angajatData.Rows.Count > 0)
             {
                 DataRow angajatRow = angajatData.Rows[0];
@@ -526,15 +607,27 @@ namespace CRUDOP2
             float semnaturaX = page.GetClientSize().Width - semnaturaTextWidth - 50;
             graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, responsabilY));
 
-            // Save the document
             string filePath = GetUniqueFilePath();
-            document.Save(filePath);
+            try
+            {
+                using (FileStream fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    document.Save(fileStream);
+                }
+                MessageBox.Show("Oferta generata cu succes.", "Generare oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to generate the offer PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             // Close the document
             document.Close();
 
-            MessageBox.Show("Oferta generata cu succes.", "Generare oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Oferta generata cu succes.", "Generare oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+
 
         private void button3_Click(object sender, EventArgs e)
         {
