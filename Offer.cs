@@ -32,6 +32,7 @@ using System.Threading;
 using Google.Apis.Auth.OAuth2.Flows;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
+using RabbitMQ.Client;
 
 namespace CRUDOP2
 {
@@ -377,6 +378,41 @@ namespace CRUDOP2
         int userId = UserManager.CurrentUserID;
         private async void button2_Click(object sender, EventArgs e)
         {
+            string angajatName = GetAngajatNameFromDatabase(userId);
+            DateTime selectedDate = dateTimePicker1.Value;
+            int programareID = (int)programareComboBox.SelectedItem;
+            try
+            {
+                // Create a connection factory and establish a connection
+                var factory = new ConnectionFactory()
+                {
+                    HostName = "localhost", // Change this to the hostname of your RabbitMQ server if it's not running locally
+                    UserName = "guest", // Change this if you have a different username
+                    Password = "guest" // Change this if you have a different password
+                };
+
+                using (var connection = factory.CreateConnection())
+                using (var channel = connection.CreateModel())
+                {
+                    // Declare a queue to send the message to
+                    channel.QueueDeclare(queue: "administrator_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
+
+                    // Construct the message body
+                    string message = $"Angajatul {angajatName} a intocmit oferta pentru Programarea {programareID}";
+
+                    // Convert the message to bytes
+                    byte[] body = Encoding.UTF8.GetBytes(message);
+
+                    // Publish the message to the queue
+                    channel.BasicPublish(exchange: "", routingKey: "administrator_queue", basicProperties: null, body: body);
+                }
+
+                // ... existing code ...
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             if (programareComboBox.SelectedIndex == -1 || vehiculComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecteaza o programare.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -400,9 +436,7 @@ namespace CRUDOP2
           
             string filePath = GetUniqueFilePath();
             GeneratePDF();
-            string angajatName = GetAngajatNameFromDatabase(userId);
-            DateTime selectedDate = dateTimePicker1.Value;
-            int programareID = (int)programareComboBox.SelectedItem;
+            System.Threading.Thread.Sleep(5000);
             try
             {
                 
@@ -420,7 +454,7 @@ namespace CRUDOP2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to generate and send the offer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Trimitere esuata a notificarii email: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Reset the form fields
@@ -442,10 +476,11 @@ namespace CRUDOP2
             string filePath = Path.Combine(@"C:\Users\denit\Desktop", fileName);
             return filePath;
         }
-        private void GeneratePDF()
+        private void  GeneratePDF()
         {
-            // Create a new PDF document
-            PdfDocument document = new PdfDocument();
+           
+                // Create a new PDF document
+                PdfDocument document = new PdfDocument();
 
             // Add a page to the document
             PdfPage page = document.Pages.Add();
@@ -623,8 +658,6 @@ namespace CRUDOP2
 
             // Close the document
             document.Close();
-
-                    MessageBox.Show("Oferta generata cu succes.", "Generare oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
