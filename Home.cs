@@ -78,5 +78,12 @@ namespace CRUDOP2
             Home formhomp = new Home();
             formhomp.Show();
         }
+
+        private void AddCantitate_Click(object sender, EventArgs e)
+        {
+            Notification notif = new Notification();
+            notif.Show();
+            this.Hide();
+        }
     }
 }

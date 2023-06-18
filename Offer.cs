@@ -406,13 +406,12 @@ namespace CRUDOP2
                     // Publish the message to the queue
                     channel.BasicPublish(exchange: "", routingKey: "administrator_queue", basicProperties: null, body: body);
                 }
-
-                // ... existing code ...
             }
             catch (Exception ex)
             {
                 MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             if (programareComboBox.SelectedIndex == -1 || vehiculComboBox.SelectedIndex == -1)
             {
                 MessageBox.Show("Selecteaza o programare.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);

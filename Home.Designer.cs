@@ -42,6 +42,7 @@
             this.DevizButton = new System.Windows.Forms.Button();
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
+            this.AddCantitate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.punctLucruServiceBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
@@ -219,6 +220,18 @@
             this.LogoutButton.UseVisualStyleBackColor = true;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
+            // AddCantitate
+            // 
+            this.AddCantitate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.AddCantitate.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddCantitate.Location = new System.Drawing.Point(772, 73);
+            this.AddCantitate.Name = "AddCantitate";
+            this.AddCantitate.Size = new System.Drawing.Size(583, 93);
+            this.AddCantitate.TabIndex = 49;
+            this.AddCantitate.Text = "Navigheaza la notificari";
+            this.AddCantitate.UseVisualStyleBackColor = false;
+            this.AddCantitate.Click += new System.EventHandler(this.AddCantitate_Click);
+            // 
             // Home
             // 
             this.AllowDrop = true;
@@ -226,6 +239,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1599, 1055);
+            this.Controls.Add(this.AddCantitate);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Home";
             this.Text = "Acasa";
@@ -251,6 +265,7 @@
         private System.Windows.Forms.Button DevizButton;
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
+        private System.Windows.Forms.Button AddCantitate;
     }
 }
 
