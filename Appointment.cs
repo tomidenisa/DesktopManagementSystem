@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using static CRUDOP2.Registration;
+
 
 namespace CRUDOP2
 {
@@ -205,7 +207,32 @@ namespace CRUDOP2
             appointment.data_inregistrare = DateTime.Now;
             appointment.id_pct_lucru_service = punctLucruId;
             //appointment.status = "In Asteptare";
-           
+            DateTime dataProgramare = DateTime.Parse(AppointmentDate.Text.Trim());
+            int selectedEmployeeId = Convert.ToInt32(EmployeeCombo.SelectedValue);
+            bool hasConflictingAppointment = db.programares.Any(p =>
+    p.data_programare != null &&
+    EntityFunctions.TruncateTime(p.data_programare) == EntityFunctions.TruncateTime(dataProgramare) &&
+    p.angajat_id == selectedEmployeeId &&
+    (
+      
+        (p.ora_intrare == intrare || p.ora_iesire == iesire) ||
+
+       
+        (p.ora_intrare < intrare && intrare < p.ora_iesire) ||
+
+        
+        (p.ora_intrare < iesire && iesire < p.ora_iesire) ||
+
+        
+        (intrare < p.ora_intrare && p.ora_iesire < iesire)
+    ));
+
+
+            if (hasConflictingAppointment)
+            {
+                MessageBox.Show("Exista deja o programare in acelasi interval orar pentru angajatul selectat.", "Avertizare", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             if (id_programare > 0)
                 db.Entry(appointment).State = EntityState.Modified;
             else

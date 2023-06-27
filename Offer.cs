@@ -93,6 +93,9 @@ namespace CRUDOP2
                         programareComboBox.Enabled = false;
                         vehiculComboBox.Enabled = false;
                         AddCantitate.Enabled = false;
+                        button2.Enabled = false;
+                        button4.Enabled = false;
+                        cantitateTxt.Enabled = false;
                     }
                 }
             }
