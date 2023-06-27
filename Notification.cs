@@ -10,79 +10,67 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Controls;
+using CRUDOP2.Models;
 
 namespace CRUDOP2
 {
     public partial class Notification : Form
     {
-        private DataTable messageTable;
-        private BindingSource messageBindingSource;
-
+        private Consumer consumer;
         public Notification()
         {
             InitializeComponent();
         }
-
-        private void Notification_Load(object sender, EventArgs e)
+        private RabbitMQSender _client;
+        private void CreateReadClient()
+        {
+            if (_client == null)
+                _client = CreateClient();
+        }
+        private RabbitMQSender CreateClient()
+        {
+            return new RabbitMQSender();
+        }
+        private async void Notification_Load(object sender, EventArgs e)
         {
             Console.WriteLine("Notification form loaded.");
-            messageTable = new DataTable();
-            messageTable.Columns.Add("Date", typeof(string));
-            messageTable.Columns.Add("Message", typeof(string));
-
-            // Add a test message directly to the DataTable
-            messageTable.Rows.Add(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), "Test Message");
-
-            messageBindingSource = new BindingSource();
-            messageBindingSource.DataSource = messageTable;
-
-            notifications.DataSource = messageBindingSource;
-            notifications.AutoResizeColumns();
-
+            //consumer = new Consumer(rtbMessages);
+           // await consumer.StartConsuming();
         }
 
-        public void GetMessages()
+        public async Task GetMessages()
         {
             try
             {
-                // Create a connection factory and establish a connection
                 var factory = new ConnectionFactory()
                 {
-                    HostName = "localhost", // Change this to the hostname of your RabbitMQ server if it's not running locally
-                    UserName = "guest", // Change this if you have a different username
-                    Password = "guest" // Change this if you have a different password
+                    HostName = "localhost",
+                    UserName = "guest",
+                    Password = "guest"
                 };
-
                 using (var connection = factory.CreateConnection())
                 using (var channel = connection.CreateModel())
                 {
-                    // Declare a queue to receive the messages from
                     channel.QueueDeclare(queue: "administrator_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
-                    // Create a consumer and wire up the event handler for received messages
-                    var consumer = new EventingBasicConsumer(channel);
-                    consumer.Received += (eventSender, eventArgs) =>
+                    var consumer = new AsyncEventingBasicConsumer(channel);
+                    channel.BasicConsume(queue: "administrator_queue", autoAck: true, consumer: consumer);
+                    consumer.Received += async (eventSender, eventArgs) =>
                     {
-                        // Convert the received message to a string
                         var message = Encoding.UTF8.GetString(eventArgs.Body.ToArray());
-
-                        // Get the current date and time
                         var currentDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                        // Add the message and date to the DataTable
-                        BeginInvoke((MethodInvoker)delegate
+                        await Task.Run(() =>
                         {
-                            messageTable.Rows.Add(currentDate, message);
-                            notifications.Update();
-                            messageBindingSource.ResetBindings(false);
+                            Invoke((MethodInvoker)delegate
+                            {
+                                rtbMessages.AppendText($"{currentDate}: {message}\n");
+                            });
                         });
 
-                        // Log the received message for debugging
                         Console.WriteLine($"Received message: {currentDate}: {message}");
                     };
-
-                    // Start consuming messages from the queue
-                    channel.BasicConsume(queue: "administrator_queue", autoAck: true, consumer: consumer);
                 }
             }
             catch (Exception ex)
@@ -91,9 +79,28 @@ namespace CRUDOP2
             }
         }
 
-        private async void AddCantitate_Click(object sender, EventArgs e)
+
+        private void LOGIN_Click_1(object sender, EventArgs e)
         {
-            await Task.Run(() => GetMessages());
+            try
+            {
+                CreateReadClient();
+                var messages = _client.ReadAll("administrator", "admin1");
+                string allMessages = string.Join(Environment.NewLine, messages);
+                rtbMessages.Text = allMessages;
+                _client.Rollback();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Home formh = new Home();
+            this.Hide();
+            formh.Show();
         }
     }
 }

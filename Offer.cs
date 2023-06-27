@@ -33,6 +33,7 @@ using Google.Apis.Auth.OAuth2.Flows;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
 using RabbitMQ.Client;
+using CRUDOP2.Models;
 
 namespace CRUDOP2
 {
@@ -69,7 +70,7 @@ namespace CRUDOP2
             bool hasProgramare = false;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "SELECT id FROM programare WHERE angajat_id = @UserID AND status != 'In Asteptare'";
+                string query = "SELECT id FROM programare WHERE angajat_id = @UserID AND status != 'In Asteptare' AND status != 'Finalizat'";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", UserManager.CurrentUserID);
@@ -261,6 +262,20 @@ namespace CRUDOP2
 
                             dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
+                            if (tip.ToLower() == "Serviciu")
+                            {
+                                if (quantity > 1)
+                                {
+                                    MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return; // Exit the method without adding the row
+                                }
+                                cantitate = 1; // If tip is "serviciu", set quantity to 1
+                                cantitateTxt.Enabled = false; // Disable the cantitateTxt TextBox
+                            }
+                            else
+                            {
+                                cantitate = quantity;
+                            }
 
                             currentNr++;
 
@@ -292,6 +307,19 @@ namespace CRUDOP2
             else
             {
                 MessageBox.Show("Please select a programare.", "No Programare Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            string angajatName = GetAngajatNameFromDatabase(userId);
+            DateTime selectedDate = dateTimePicker1.Value;
+            int programareID = (int)programareComboBox.SelectedItem;
+            try
+            {
+                CreateWriteClient();
+                var message = $"Angajatul {angajatName} a actualizat programarea {programareID} la {selectedDate}";
+                _clientWrite.Write("administrator", message, "admin1");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private DataTable GetAngajatDataFromDatabase(int userId)
@@ -338,74 +366,29 @@ namespace CRUDOP2
             }
         }
 
-
-        private void SendEmailWithAttachment(string fromEmail, string toEmail, string subject, string body, string attachmentFilePath)
-        {
-            // Configure the SMTP client
-            var smtpClient = new SmtpClient
-            {
-                Host = "smtp.gmail.com", 
-                Port = 587, 
-                EnableSsl = true, 
-                Credentials = new NetworkCredential(fromEmail, "gmajvhmnijdtjlnf") 
-            };
-
-           
-            var message = new MailMessage(fromEmail, toEmail)
-            {
-                Subject = subject,
-                Body = body
-            };
-
-            
-            if (!string.IsNullOrEmpty(attachmentFilePath))
-            {
-                var attachment = new Attachment(attachmentFilePath);
-                message.Attachments.Add(attachment);
-            }
-
-            try
-            {
-                
-                smtpClient.Send(message);
-                MessageBox.Show("Notificare trimisa cu succes !", "Email Sent", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Trimitere esuata: " + ex.Message, "Email Sending Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         int userId = UserManager.CurrentUserID;
+        private RabbitMQSender _client;
+        private RabbitMQSender _clientWrite;
+        private void CreateWriteClient()
+        {
+            if (_clientWrite == null)
+                _clientWrite = CreateClient();
+        }
+        private RabbitMQSender CreateClient()
+        {
+            return new RabbitMQSender();
+        }
         private async void button2_Click(object sender, EventArgs e)
         {
             string angajatName = GetAngajatNameFromDatabase(userId);
             DateTime selectedDate = dateTimePicker1.Value;
             int programareID = (int)programareComboBox.SelectedItem;
+            CreateWriteClient();
             try
             {
-                // Create a connection factory and establish a connection
-                var factory = new ConnectionFactory()
-                {
-                    HostName = "localhost", // Change this to the hostname of your RabbitMQ server if it's not running locally
-                    UserName = "guest", // Change this if you have a different username
-                    Password = "guest" // Change this if you have a different password
-                };
 
-                using (var connection = factory.CreateConnection())
-                using (var channel = connection.CreateModel())
-                {
-                    // Declare a queue to send the message to
-                    channel.QueueDeclare(queue: "administrator_queue", durable: false, exclusive: false, autoDelete: false, arguments: null);
-
-                    // Construct the message body
-                    string message = $"Angajatul {angajatName} a intocmit oferta pentru Programarea {programareID}";
-
-                    // Convert the message to bytes
-                    byte[] body = Encoding.UTF8.GetBytes(message);
-
-                    // Publish the message to the queue
-                    channel.BasicPublish(exchange: "", routingKey: "administrator_queue", basicProperties: null, body: body);
-                }
+                var message = $"Angajatul {angajatName} a intocmit oferta pentru Programarea {programareID} la {selectedDate}";
+                _clientWrite.Write("administrator", message, "admin1");
             }
             catch (Exception ex)
             {
@@ -438,7 +421,6 @@ namespace CRUDOP2
             System.Threading.Thread.Sleep(5000);
             try
             {
-                
                 string fromEmail = "ademartomisender@gmail.com";
                 string toEmail = "ademartomireciever@gmail.com";
                 string subject = "Deviz Ofertare";
@@ -446,10 +428,9 @@ namespace CRUDOP2
               "Angajat : " + angajatName + "\n" +
               "Date: " + selectedDate.ToString("dd/MM/yyyy") + "\n" +
               "Programare ID: " + programareID.ToString();
-
-                // Send the email
-                SendEmailWithAttachment(fromEmail, toEmail, subject, body, filePath);
+                EmailSender.SendEmailWithAttachment(fromEmail, toEmail, subject, body, filePath);
                 MessageBox.Show("Oferta generata si trimisa cu succes.", "Generare si Trimitere Oferta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
             catch (Exception ex)
             {
@@ -465,21 +446,22 @@ namespace CRUDOP2
             totalTxt.Text = string.Empty;
             timpTxt.Text = string.Empty;
         }
-
-
-        private string GetUniqueFilePath()
+            private string GetUniqueFilePath()
         {
             string angajatName = GetAngajatNameFromDatabase(userId);
             string currentTime = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string fileName = "Offer_" + angajatName + "_" + currentTime + ".pdf";
-            string filePath = Path.Combine(@"C:\Users\denit\Desktop", fileName);
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string folderPath = Path.Combine(desktopPath, "Oferte");
+            Directory.CreateDirectory(folderPath); 
+            string filePath = Path.Combine(folderPath, fileName);
             return filePath;
         }
         private void  GeneratePDF()
         {
            
-                // Create a new PDF document
-                PdfDocument document = new PdfDocument();
+            // Create a new PDF document
+            PdfDocument document = new PdfDocument();
 
             // Add a page to the document
             PdfPage page = document.Pages.Add();
@@ -678,5 +660,38 @@ namespace CRUDOP2
             totalTxt.Text = string.Empty;
             timpTxt.Text = string.Empty;
         }
+
+        private void searchbtn_Click(object sender, EventArgs e)
+        {
+            string searchValue = searchtxt.Text;
+            dataGridViewMateriale.ClearSelection();
+            dataGridViewMateriale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            try
+            {
+                bool valueResult = true;
+                foreach (DataGridViewRow row in dataGridViewMateriale.Rows)
+                {
+                    string cell1Value = row.Cells["Tip"].Value.ToString();
+                    string cell2Value = row.Cells["Denumire"].Value.ToString();
+
+                    if (cell1Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        cell2Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        row.Selected = true;
+                        valueResult = false;
+                    }
+                }
+                if (valueResult != false)
+                {
+                    MessageBox.Show("Produs sau serviciu inexistent pentru cautarea " + searchtxt.Text, "Nu exista");
+                    return;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
     }
 }

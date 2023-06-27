@@ -77,6 +77,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.OnlineOnsiteCombo = new System.Windows.Forms.ComboBox();
             this.EmployeeCombo = new System.Windows.Forms.ComboBox();
+            this.angajatBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.angajatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pozitieangajatBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.punctLucruServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -97,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.programareBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angajatBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.angajatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pozitieangajatBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.punctLucruServiceBindingSource)).BeginInit();
@@ -270,7 +272,7 @@
             this.flowLayoutPanel2.Controls.Add(this.label9);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(385, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1762, 133);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1768, 133);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // button1
@@ -498,7 +500,7 @@
             // 
             this.Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.Cancel.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cancel.Location = new System.Drawing.Point(1251, 868);
+            this.Cancel.Location = new System.Drawing.Point(1587, 868);
             this.Cancel.Name = "Cancel";
             this.Cancel.Size = new System.Drawing.Size(308, 67);
             this.Cancel.TabIndex = 13;
@@ -621,8 +623,8 @@
             // 
             // EmployeeCombo
             // 
-            this.EmployeeCombo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.angajatBindingSource, "Id", true));
-            this.EmployeeCombo.DataSource = this.angajatBindingSource;
+            this.EmployeeCombo.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.angajatBindingSource1, "Id", true));
+            this.EmployeeCombo.DataSource = this.angajatBindingSource1;
             this.EmployeeCombo.DisplayMember = "Nume";
             this.EmployeeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EmployeeCombo.FormattingEnabled = true;
@@ -632,6 +634,11 @@
             this.EmployeeCombo.TabIndex = 29;
             this.EmployeeCombo.ValueMember = "Id";
             this.EmployeeCombo.SelectedIndexChanged += new System.EventHandler(this.EmployeeCombo_SelectedIndexChanged);
+            // 
+            // angajatBindingSource1
+            // 
+            this.angajatBindingSource1.DataMember = "Angajat";
+            this.angajatBindingSource1.DataSource = this.serviceAutoDBDataSet;
             // 
             // angajatBindingSource
             // 
@@ -766,7 +773,6 @@
             this.Controls.Add(this.flowLayoutPanel3);
             this.Name = "Appointment";
             this.Text = "Appointment";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Appointment_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
@@ -775,6 +781,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.programareBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.angajatBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.angajatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pozitieangajatBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.punctLucruServiceBindingSource)).EndInit();
@@ -841,5 +848,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.BindingSource angajatBindingSource1;
     }
 }

@@ -21,8 +21,7 @@ namespace CRUDOP2
         {
            
 
-            GmailAuth gmailAuth = new GmailAuth();
-            string accessToken = gmailAuth.GetAccessTokenAsync().GetAwaiter().GetResult();
+            
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQ0MzEyMEAzMjMxMmUzMDJlMzBQVmIzQWtRUXJWR25kaWRFSU9lREtOdnR6YnVaQk0vbnF1Y2ptS3hJbGJNPQ==");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

@@ -40,6 +40,12 @@
             this.LogoutButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
+            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantitate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Denumire = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pret = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PrdctName = new System.Windows.Forms.Label();
             this.vehiculComboBox = new System.Windows.Forms.ComboBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
@@ -50,22 +56,18 @@
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.dataGridViewMateriale = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
-            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantitate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Denumire = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pret = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantitateTxt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.AddCantitate = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.totalTxt = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.timpTxt = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.searchtxt = new System.Windows.Forms.TextBox();
+            this.searchbtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).BeginInit();
@@ -262,6 +264,48 @@
             this.dataGridViewOferta.Size = new System.Drawing.Size(675, 517);
             this.dataGridViewOferta.TabIndex = 7;
             // 
+            // Nr
+            // 
+            this.Nr.HeaderText = "Nr";
+            this.Nr.MinimumWidth = 6;
+            this.Nr.Name = "Nr";
+            this.Nr.Width = 125;
+            // 
+            // Tip
+            // 
+            this.Tip.HeaderText = "Tip";
+            this.Tip.MinimumWidth = 6;
+            this.Tip.Name = "Tip";
+            this.Tip.Width = 125;
+            // 
+            // Cantitate
+            // 
+            this.Cantitate.HeaderText = "Cantitate";
+            this.Cantitate.MinimumWidth = 6;
+            this.Cantitate.Name = "Cantitate";
+            this.Cantitate.Width = 125;
+            // 
+            // Denumire
+            // 
+            this.Denumire.HeaderText = "Denumire";
+            this.Denumire.MinimumWidth = 6;
+            this.Denumire.Name = "Denumire";
+            this.Denumire.Width = 125;
+            // 
+            // Pret
+            // 
+            this.Pret.HeaderText = "Pret";
+            this.Pret.MinimumWidth = 6;
+            this.Pret.Name = "Pret";
+            this.Pret.Width = 125;
+            // 
+            // Timp
+            // 
+            this.Timp.HeaderText = "Timp";
+            this.Timp.MinimumWidth = 6;
+            this.Timp.Name = "Timp";
+            this.Timp.Width = 125;
+            // 
             // PrdctName
             // 
             this.PrdctName.AutoSize = true;
@@ -356,41 +400,6 @@
             this.label4.TabIndex = 45;
             this.label4.Text = "Catalog Servicii și Piese ";
             // 
-            // Nr
-            // 
-            this.Nr.HeaderText = "Nr";
-            this.Nr.MinimumWidth = 6;
-            this.Nr.Name = "Nr";
-            this.Nr.Width = 125;
-            // 
-            // Tip
-            // 
-            this.Tip.HeaderText = "Tip";
-            this.Tip.MinimumWidth = 6;
-            this.Tip.Name = "Tip";
-            this.Tip.Width = 125;
-            // 
-            // Cantitate
-            // 
-            this.Cantitate.HeaderText = "Cantitate";
-            this.Cantitate.MinimumWidth = 6;
-            this.Cantitate.Name = "Cantitate";
-            this.Cantitate.Width = 125;
-            // 
-            // Denumire
-            // 
-            this.Denumire.HeaderText = "Denumire";
-            this.Denumire.MinimumWidth = 6;
-            this.Denumire.Name = "Denumire";
-            this.Denumire.Width = 125;
-            // 
-            // Pret
-            // 
-            this.Pret.HeaderText = "Pret";
-            this.Pret.MinimumWidth = 6;
-            this.Pret.Name = "Pret";
-            this.Pret.Width = 125;
-            // 
             // cantitateTxt
             // 
             this.cantitateTxt.Location = new System.Drawing.Point(1010, 314);
@@ -449,13 +458,6 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Timp
-            // 
-            this.Timp.HeaderText = "Timp";
-            this.Timp.MinimumWidth = 6;
-            this.Timp.Name = "Timp";
-            this.Timp.Width = 125;
-            // 
             // timpTxt
             // 
             this.timpTxt.Location = new System.Drawing.Point(1481, 806);
@@ -497,6 +499,25 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // searchtxt
+            // 
+            this.searchtxt.Location = new System.Drawing.Point(460, 807);
+            this.searchtxt.Name = "searchtxt";
+            this.searchtxt.Size = new System.Drawing.Size(472, 22);
+            this.searchtxt.TabIndex = 56;
+            // 
+            // searchbtn
+            // 
+            this.searchbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.searchbtn.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchbtn.Location = new System.Drawing.Point(544, 854);
+            this.searchbtn.Name = "searchbtn";
+            this.searchbtn.Size = new System.Drawing.Size(325, 67);
+            this.searchbtn.TabIndex = 57;
+            this.searchbtn.Text = "Cauta dupa tip sau denumire";
+            this.searchbtn.UseVisualStyleBackColor = false;
+            this.searchbtn.Click += new System.EventHandler(this.searchbtn_Click);
+            // 
             // Offer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -504,6 +525,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.searchbtn);
+            this.Controls.Add(this.searchtxt);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label7);
@@ -578,5 +601,7 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox searchtxt;
+        private System.Windows.Forms.Button searchbtn;
     }
 }

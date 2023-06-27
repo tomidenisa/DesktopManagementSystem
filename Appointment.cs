@@ -1,9 +1,11 @@
 ﻿using CRUDOP2.Models;
+using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,17 +34,25 @@ namespace CRUDOP2
         Color greenColor = ColorTranslator.FromHtml("#00FF00");
         Color redColor = ColorTranslator.FromHtml("#ff033d");
         Color blueColor = ColorTranslator.FromHtml("#4f03ff");
+        string connectionString = DataBaseConnection.ConnectionString;
 
         private void Appointment_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Punct_Lucru_Service' table. You can move, or remove it, as needed.
-            this.punct_Lucru_ServiceTableAdapter.Fill(this.serviceAutoDBDataSet.Punct_Lucru_Service);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.pozitie_angajat' table. You can move, or remove it, as needed.
-            this.pozitie_angajatTableAdapter.Fill(this.serviceAutoDBDataSet.pozitie_angajat);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Angajat' table. You can move, or remove it, as needed.
-            this.angajatTableAdapter.Fill(this.serviceAutoDBDataSet.Angajat);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.programare' table. You can move, or remove it, as needed.
-            //this.programareTableAdapter.Fill(this.serviceAutoDBDataSet.programare);
+            BindEmployeeComboBox();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Load data into the Punct_Lucru_Service table
+                this.punct_Lucru_ServiceTableAdapter.Connection = connection;
+                this.punct_Lucru_ServiceTableAdapter.Fill(this.serviceAutoDBDataSet.Punct_Lucru_Service);
+
+                // Load data into the pozitie_angajat table
+                this.pozitie_angajatTableAdapter.Connection = connection;
+                this.pozitie_angajatTableAdapter.Fill(this.serviceAutoDBDataSet.pozitie_angajat);
+
+                // Load data into the Angajat table
+                this.angajatTableAdapter.Connection = connection;
+                this.angajatTableAdapter.Fill(this.serviceAutoDBDataSet.Angajat);
+            }
             ClearData();
             SetDataInGridView();
             SetAppointmentColors();
@@ -52,7 +62,36 @@ namespace CRUDOP2
             {
                 Delete.Visible = false; 
                 AdminButton.Visible = false;
+                Search.Visible = false;
+                SearchBtn.Visible = false;
+                Add.Visible = false;
+
             }
+           
+            
+        }
+        private void BindEmployeeComboBox()
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string query = "SELECT Id, Nume + ' ' + Prenume AS NumeComplet FROM Angajat";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    DataTable dataTable = new DataTable();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(dataTable);
+                    }
+
+                    EmployeeCombo.DataSource = dataTable;
+                    EmployeeCombo.DisplayMember = "NumeComplet";
+                    EmployeeCombo.ValueMember = "Id";
+                }
+                connection.Close();
+            }
+            
         }
         private void SetAppointmentColors()
         {
@@ -82,8 +121,18 @@ namespace CRUDOP2
         public void SetDataInGridView()
         {
             dataGridView.AutoGenerateColumns = false;
-            dataGridView.DataSource = db.programares.ToList<programare>();
-           SetAppointmentColors();
+
+            if (UserManager.CurrentUserRole == UserRole.User)
+            {
+                int currentUserId = UserManager.CurrentUserID;
+                dataGridView.DataSource = db.programares.Where(p => p.angajat_id == currentUserId).ToList<programare>();
+            }
+            else if (UserManager.CurrentUserRole == UserRole.Admin)
+            {
+                dataGridView.DataSource = db.programares.ToList<programare>();
+            }
+
+            SetAppointmentColors();
 
         }
 
@@ -202,6 +251,11 @@ namespace CRUDOP2
 
         private void AcceptButton_Click(object sender, EventArgs e)
         {
+            if (dataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Selecteaza o programare pentru a fi acceptata.");
+                return; 
+            }
             if (dataGridView.SelectedRows.Count > 0)
             {
                 int selectedRowIndex = dataGridView.SelectedRows[0].Index;
@@ -212,21 +266,25 @@ namespace CRUDOP2
                 {
                     int employeeId = appointment.angajat_id;
                     var employee = db.Angajats.FirstOrDefault(f => f.Id == employeeId);
+
                     if (employee != null)
                     {
                         string employeeName = employee.Nume;
                         int positionId = employee.Id_Pozitie_Angajat;
                         var position = db.pozitie_angajat.FirstOrDefault(p => p.pozitie_angajat_id == positionId);
+
                         if (position != null)
                         {
                             string positionName = position.pozitie;
                             int branchId = employee.IdPunctDeLucru;
                             var branch = db.Punct_Lucru_Service.FirstOrDefault(b => b.Punct_Lucru_Id == branchId);
+
                             if (branch != null)
                             {
                                 string branchName = branch.Denumire;
                                 string message = $"Esti sigur ca vrei sa accepti programarea pentru angajatul {employeeName} cu pozitia {positionName} la punctul de lucru {branchName}?";
                                 DialogResult result = MessageBox.Show(message, "Confirmare acceptare programare", MessageBoxButtons.YesNo);
+
                                 if (result == DialogResult.Yes)
                                 {
                                     if (appointment.status == "In Asteptare")
@@ -234,7 +292,7 @@ namespace CRUDOP2
                                         appointment.status = "In Progres";
                                         dataGridView.Rows[selectedRowIndex].DefaultCellStyle.BackColor = blueColor;
                                         db.SaveChanges();
-                                        MessageBox.Show("Statusul programarii schimbat in  'In Progress'.");
+                                        MessageBox.Show("Statusul programarii schimbat in 'In Progress'.");
                                     }
                                     else if (appointment.status == "Finalizat")
                                     {
@@ -244,23 +302,34 @@ namespace CRUDOP2
                                     {
                                         MessageBox.Show("Statusul programarii nu poate fi schimbat.");
                                     }
+
+                                   
+                                    //SendMessageToRabbitMQ(employeeName, appointmentId);
                                 }
                             }
                         }
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Nu se poate gasi programarea.");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Selecteaza o programare pentru a fi acceptata.");
             }
         }
+        /*private void SendMessageToRabbitMQ(string angajatName, int programareId)
+        {
+            try
+            {
+                var sender = new RabbitMQSender("localhost", "guest", "guest");
+
+                string message = $"Angajatul {angajatName} a actualizat programarea {programareId}";
+
+                sender.SendMessage("administrator_queue", message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("RabbitMQ error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }*/
 
 
+       
         private void EmployeeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (EmployeeCombo.SelectedValue == null)

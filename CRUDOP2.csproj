@@ -136,19 +136,27 @@
     <Compile Include="CatalogServRep.Designer.cs">
       <DependentUpon>CatalogServRep.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangePass.Designer.cs">
+      <DependentUpon>ChangePass.cs</DependentUpon>
+    </Compile>
     <Compile Include="ClientContact.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ClientContact.Designer.cs">
       <DependentUpon>ClientContact.cs</DependentUpon>
     </Compile>
+    <Compile Include="Consumer.cs" />
+    <Compile Include="DataBaseConnection.cs" />
     <Compile Include="Deviz.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Deviz.Designer.cs">
       <DependentUpon>Deviz.cs</DependentUpon>
     </Compile>
-    <Compile Include="GmailAuth.cs" />
+    <Compile Include="EmailSender.cs" />
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -247,6 +255,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RabbitMQSender.cs" />
     <Compile Include="Registration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -296,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CatalogServRep.resx">
       <DependentUpon>CatalogServRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChangePass.resx">
+      <DependentUpon>ChangePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ClientContact.resx">
       <DependentUpon>ClientContact.cs</DependentUpon>
