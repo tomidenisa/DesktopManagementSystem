@@ -47,9 +47,32 @@
             this.vehiculComboBox = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.defecttxt = new System.Windows.Forms.TextBox();
+            this.AddCantitate = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cantitateTxt = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dataGridViewMateriale = new System.Windows.Forms.DataGridView();
+            this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
+            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantitate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Denumire = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pret = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.searchbtn = new System.Windows.Forms.Button();
+            this.searchtxt = new System.Windows.Forms.TextBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.timpTxt = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.totalTxt = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -68,7 +91,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1081);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // Logo
@@ -296,21 +319,229 @@
             this.label4.TabIndex = 51;
             this.label4.Text = "Descrierea defectelor constatate";
             // 
-            // textBox1
+            // defecttxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(432, 248);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(321, 88);
-            this.textBox1.TabIndex = 52;
+            this.defecttxt.Location = new System.Drawing.Point(432, 248);
+            this.defecttxt.Multiline = true;
+            this.defecttxt.Name = "defecttxt";
+            this.defecttxt.Size = new System.Drawing.Size(522, 101);
+            this.defecttxt.TabIndex = 52;
+            // 
+            // AddCantitate
+            // 
+            this.AddCantitate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.AddCantitate.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddCantitate.Location = new System.Drawing.Point(927, 539);
+            this.AddCantitate.Name = "AddCantitate";
+            this.AddCantitate.Size = new System.Drawing.Size(271, 56);
+            this.AddCantitate.TabIndex = 58;
+            this.AddCantitate.Text = "Adaugă";
+            this.AddCantitate.UseVisualStyleBackColor = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(995, 446);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(106, 25);
+            this.label5.TabIndex = 57;
+            this.label5.Text = "Cantitate";
+            // 
+            // cantitateTxt
+            // 
+            this.cantitateTxt.Location = new System.Drawing.Point(968, 492);
+            this.cantitateTxt.Name = "cantitateTxt";
+            this.cantitateTxt.Size = new System.Drawing.Size(161, 22);
+            this.cantitateTxt.TabIndex = 56;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(504, 378);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(323, 35);
+            this.label6.TabIndex = 55;
+            this.label6.Text = "Catalog Servicii și Piese ";
+            // 
+            // dataGridViewMateriale
+            // 
+            this.dataGridViewMateriale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewMateriale.Location = new System.Drawing.Point(418, 432);
+            this.dataGridViewMateriale.Name = "dataGridViewMateriale";
+            this.dataGridViewMateriale.RowHeadersWidth = 51;
+            this.dataGridViewMateriale.RowTemplate.Height = 24;
+            this.dataGridViewMateriale.Size = new System.Drawing.Size(472, 517);
+            this.dataGridViewMateriale.TabIndex = 54;
+            // 
+            // dataGridViewOferta
+            // 
+            this.dataGridViewOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nr,
+            this.Tip,
+            this.Cantitate,
+            this.Denumire,
+            this.Pret,
+            this.Timp});
+            this.dataGridViewOferta.Location = new System.Drawing.Point(1204, 446);
+            this.dataGridViewOferta.Name = "dataGridViewOferta";
+            this.dataGridViewOferta.RowHeadersWidth = 51;
+            this.dataGridViewOferta.RowTemplate.Height = 24;
+            this.dataGridViewOferta.Size = new System.Drawing.Size(675, 517);
+            this.dataGridViewOferta.TabIndex = 53;
+            // 
+            // Nr
+            // 
+            this.Nr.HeaderText = "Nr";
+            this.Nr.MinimumWidth = 6;
+            this.Nr.Name = "Nr";
+            this.Nr.Width = 125;
+            // 
+            // Tip
+            // 
+            this.Tip.HeaderText = "Tip";
+            this.Tip.MinimumWidth = 6;
+            this.Tip.Name = "Tip";
+            this.Tip.Width = 125;
+            // 
+            // Cantitate
+            // 
+            this.Cantitate.HeaderText = "Cantitate";
+            this.Cantitate.MinimumWidth = 6;
+            this.Cantitate.Name = "Cantitate";
+            this.Cantitate.Width = 125;
+            // 
+            // Denumire
+            // 
+            this.Denumire.HeaderText = "Denumire";
+            this.Denumire.MinimumWidth = 6;
+            this.Denumire.Name = "Denumire";
+            this.Denumire.Width = 125;
+            // 
+            // Pret
+            // 
+            this.Pret.HeaderText = "Pret";
+            this.Pret.MinimumWidth = 6;
+            this.Pret.Name = "Pret";
+            this.Pret.Width = 125;
+            // 
+            // Timp
+            // 
+            this.Timp.HeaderText = "Timp";
+            this.Timp.MinimumWidth = 6;
+            this.Timp.Name = "Timp";
+            this.Timp.Width = 125;
+            // 
+            // searchbtn
+            // 
+            this.searchbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.searchbtn.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchbtn.Location = new System.Drawing.Point(510, 1004);
+            this.searchbtn.Name = "searchbtn";
+            this.searchbtn.Size = new System.Drawing.Size(325, 67);
+            this.searchbtn.TabIndex = 60;
+            this.searchbtn.Text = "Cauta dupa tip sau denumire";
+            this.searchbtn.UseVisualStyleBackColor = false;
+            // 
+            // searchtxt
+            // 
+            this.searchtxt.Location = new System.Drawing.Point(426, 957);
+            this.searchtxt.Name = "searchtxt";
+            this.searchtxt.Size = new System.Drawing.Size(472, 22);
+            this.searchtxt.TabIndex = 59;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button4.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(1273, 1025);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(271, 56);
+            this.button4.TabIndex = 66;
+            this.button4.Text = "Anuleaza";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(1197, 974);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(214, 25);
+            this.label7.TabIndex = 65;
+            this.label7.Text = "Timp Necesar in ore";
+            // 
+            // timpTxt
+            // 
+            this.timpTxt.Location = new System.Drawing.Point(1437, 977);
+            this.timpTxt.Name = "timpTxt";
+            this.timpTxt.Size = new System.Drawing.Size(65, 22);
+            this.timpTxt.TabIndex = 64;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(1570, 1025);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(271, 56);
+            this.button2.TabIndex = 63;
+            this.button2.Text = "Finalizeaza";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // totalTxt
+            // 
+            this.totalTxt.Location = new System.Drawing.Point(1691, 977);
+            this.totalTxt.Name = "totalTxt";
+            this.totalTxt.Size = new System.Drawing.Size(100, 22);
+            this.totalTxt.TabIndex = 62;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(1554, 974);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 25);
+            this.label8.TabIndex = 61;
+            this.label8.Text = "Total Pret";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1628, 107);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(185, 71);
+            this.button3.TabIndex = 67;
+            this.button3.Text = "Navighează la programări";
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // Deviz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.timpTxt);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.totalTxt);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.searchbtn);
+            this.Controls.Add(this.searchtxt);
+            this.Controls.Add(this.AddCantitate);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cantitateTxt);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dataGridViewMateriale);
+            this.Controls.Add(this.dataGridViewOferta);
+            this.Controls.Add(this.defecttxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.programareComboBox);
             this.Controls.Add(this.label3);
@@ -327,6 +558,8 @@
             this.Load += new System.EventHandler(this.Deviz_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -352,6 +585,27 @@
         private System.Windows.Forms.ComboBox vehiculComboBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox defecttxt;
+        private System.Windows.Forms.Button AddCantitate;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox cantitateTxt;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridViewMateriale;
+        private System.Windows.Forms.DataGridView dataGridViewOferta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantitate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Denumire;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pret;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Timp;
+        private System.Windows.Forms.Button searchbtn;
+        private System.Windows.Forms.TextBox searchtxt;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox timpTxt;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox totalTxt;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button3;
     }
 }
