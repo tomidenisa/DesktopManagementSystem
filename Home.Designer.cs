@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
             this.punctLucruServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.punct_Lucru_ServiceTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.Punct_Lucru_ServiceTableAdapter();
@@ -43,10 +46,25 @@
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
             this.AddCantitate = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.pozitie_angajatTableAdapter1 = new CRUDOP2.ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.serviceAutoDBDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.punctLucruServiceBindingSource)).BeginInit();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // serviceAutoDBDataSet
@@ -224,13 +242,179 @@
             // 
             this.AddCantitate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.AddCantitate.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCantitate.Location = new System.Drawing.Point(772, 73);
+            this.AddCantitate.Location = new System.Drawing.Point(410, 115);
             this.AddCantitate.Name = "AddCantitate";
-            this.AddCantitate.Size = new System.Drawing.Size(583, 93);
+            this.AddCantitate.Size = new System.Drawing.Size(305, 65);
             this.AddCantitate.TabIndex = 49;
             this.AddCantitate.Text = "Navigheaza la notificari";
             this.AddCantitate.UseVisualStyleBackColor = false;
             this.AddCantitate.Click += new System.EventHandler(this.AddCantitate_Click);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::CRUDOP2.Properties.Resources.cr1;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(394, 3);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 70, 3, 3);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(824, 89);
+            this.button1.TabIndex = 50;
+            this.button1.Text = "        Acasa";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(1345, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(97, 16);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "labelDateTime";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(595, 409);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.TabIndex = 52;
+            this.label2.Text = "label2";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(738, 562);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(44, 16);
+            this.label3.TabIndex = 53;
+            this.label3.Text = "label3";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(738, 663);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 16);
+            this.label4.TabIndex = 54;
+            this.label4.Text = "label4";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(738, 754);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 16);
+            this.label5.TabIndex = 55;
+            this.label5.Text = "label5";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(3)))), ((int)(((byte)(61)))));
+            this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(452, 555);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(167, 37);
+            this.label8.TabIndex = 56;
+            this.label8.Text = "În așteptare";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(3)))), ((int)(((byte)(255)))));
+            this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(452, 642);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(147, 37);
+            this.label7.TabIndex = 57;
+            this.label7.Text = "În progres";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Lime;
+            this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(452, 739);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(140, 37);
+            this.label9.TabIndex = 58;
+            this.label9.Text = "Finalizată";
+            // 
+            // button2
+            // 
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Image = global::CRUDOP2.Properties.Resources.programari_removebg_preview;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(435, 303);
+            this.button2.Name = "button2";
+            this.button2.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button2.Size = new System.Drawing.Size(392, 57);
+            this.button2.TabIndex = 59;
+            this.button2.Text = "        Programare";
+            this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1398, 397);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(44, 16);
+            this.label6.TabIndex = 60;
+            this.label6.Text = "label6";
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Image = global::CRUDOP2.Properties.Resources.administrare_removebg_preview;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(1238, 299);
+            this.button3.Name = "button3";
+            this.button3.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
+            this.button3.Size = new System.Drawing.Size(734, 61);
+            this.button3.TabIndex = 61;
+            this.button3.Text = "       Angajati";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // chart1
+            // 
+            this.chart1.BackColor = System.Drawing.Color.LightBlue;
+            this.chart1.BorderlineColor = System.Drawing.Color.LightBlue;
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(1191, 534);
+            this.chart1.Name = "chart1";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "Series1";
+            this.chart1.Series.Add(series3);
+            this.chart1.Size = new System.Drawing.Size(540, 358);
+            this.chart1.TabIndex = 62;
+            this.chart1.Text = "chart1";
+            // 
+            // pozitie_angajatTableAdapter1
+            // 
+            this.pozitie_angajatTableAdapter1.ClearBeforeFill = true;
             // 
             // Home
             // 
@@ -238,7 +422,20 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightBlue;
-            this.ClientSize = new System.Drawing.Size(1599, 1055);
+            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.chart1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.AddCantitate);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Home";
@@ -248,7 +445,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.punctLucruServiceBindingSource)).EndInit();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -266,6 +465,20 @@
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
         private System.Windows.Forms.Button AddCantitate;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private ServiceAutoDBDataSet1TableAdapters.pozitie_angajatTableAdapter pozitie_angajatTableAdapter1;
     }
 }
 

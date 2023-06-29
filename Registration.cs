@@ -32,9 +32,42 @@ namespace CRUDOP2
         private void Registration_Load(object sender, System.EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+            passwordtxt.UseSystemPasswordChar = true;
           
         }
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ServiceAutoDB;Integrated Security=True";
+        int userId = UserManager.CurrentUserID;
+        private RabbitMQSender _client;
+        private RabbitMQSender _clientWrite;
+        private void CreateWriteClient()
+        {
+            if (_clientWrite == null)
+                _clientWrite = CreateClient();
+        }
+        private RabbitMQSender CreateClient()
+        {
+            return new RabbitMQSender();
+        }
+        public string GetAngajatNameFromDatabase(int userId)
+        {
+            // Assuming you are using a database connection named "connection"
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
+                // Create a SQL command to fetch the angajat name based on the user ID
+                string query = "SELECT CONCAT(Nume, ' ', Prenume) AS NumeComplet FROM Angajat WHERE Id = @UserId";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserId", userId);
+
+                    // Execute the query and retrieve the angajat name
+                    string angajatName = command.ExecuteScalar()?.ToString();
+
+                    return angajatName;
+                }
+            }
+        }
         private void LOGIN_Click(object sender, EventArgs e)
         {
             string connectionString = DataBaseConnection.ConnectionString;
@@ -93,6 +126,18 @@ namespace CRUDOP2
                     connection.Close();
                 }
             }
+            try
+            {
+                DateTime currentDateTime = DateTime.Now;
+                string angajatName = GetAngajatNameFromDatabase(userId);
+                CreateWriteClient();
+                var message = $"Angajatul {angajatName} s-a autentificat in program la {currentDateTime} ";
+                _clientWrite.Write("administrator", message, "admin1");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private bool IsPasswordHashed(string password)
@@ -140,6 +185,11 @@ namespace CRUDOP2
             ChangePass pass = new ChangePass();
             pass.Show();
             this.Hide();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            passwordtxt.UseSystemPasswordChar = !passwordtxt.UseSystemPasswordChar;
         }
     }
 }

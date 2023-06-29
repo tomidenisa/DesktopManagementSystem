@@ -255,6 +255,7 @@
             this.programareComboBox.Name = "programareComboBox";
             this.programareComboBox.Size = new System.Drawing.Size(167, 24);
             this.programareComboBox.TabIndex = 46;
+            this.programareComboBox.SelectedIndexChanged += new System.EventHandler(this.programareComboBox_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -292,6 +293,7 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
             this.dateTimePicker1.TabIndex = 45;
+            this.dateTimePicker1.Validating += new System.ComponentModel.CancelEventHandler(this.dateTimePicker1_Validating);
             // 
             // vehiculComboBox
             // 
@@ -337,6 +339,7 @@
             this.AddCantitate.TabIndex = 58;
             this.AddCantitate.Text = "Adaugă";
             this.AddCantitate.UseVisualStyleBackColor = false;
+            this.AddCantitate.Click += new System.EventHandler(this.AddCantitate_Click);
             // 
             // label5
             // 
@@ -444,6 +447,7 @@
             this.searchbtn.TabIndex = 60;
             this.searchbtn.Text = "Cauta dupa tip sau denumire";
             this.searchbtn.UseVisualStyleBackColor = false;
+            this.searchbtn.Click += new System.EventHandler(this.searchbtn_Click);
             // 
             // searchtxt
             // 
@@ -462,6 +466,7 @@
             this.button4.TabIndex = 66;
             this.button4.Text = "Anuleaza";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label7
             // 
@@ -490,6 +495,7 @@
             this.button2.TabIndex = 63;
             this.button2.Text = "Finalizeaza";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // totalTxt
             // 
@@ -518,6 +524,7 @@
             this.button3.TabIndex = 67;
             this.button3.Text = "Navighează la programări";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Deviz
             // 

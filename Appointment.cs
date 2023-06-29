@@ -120,6 +120,18 @@ namespace CRUDOP2
             Add.Text = "Salveaza";
             id_programare = 0;
         }
+        int userId = UserManager.CurrentUserID;
+        private RabbitMQSender _client;
+        private RabbitMQSender _clientWrite;
+        private void CreateWriteClient()
+        {
+            if (_clientWrite == null)
+                _clientWrite = CreateClient();
+        }
+        private RabbitMQSender CreateClient()
+        {
+            return new RabbitMQSender();
+        }
         public void SetDataInGridView()
         {
             dataGridView.AutoGenerateColumns = false;
@@ -330,8 +342,20 @@ namespace CRUDOP2
                                         MessageBox.Show("Statusul programarii nu poate fi schimbat.");
                                     }
 
-                                   
-                                    //SendMessageToRabbitMQ(employeeName, appointmentId);
+
+                                    try
+                                    {
+                                        
+                                        DateTime selectedDate = System.DateTime.Now;
+                                        
+                                        CreateWriteClient();
+                                        var messages = $"Angajatul {employeeName} a acceptat programarea {appointmentId} la {selectedDate}";
+                                        _clientWrite.Write("administrator", messages, "admin1");
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                             }
                         }
@@ -416,9 +440,23 @@ namespace CRUDOP2
                                 {
                                     MessageBox.Show("Statusul programarii nu poate fi schimbat.");
                                 }
+                                try
+                                {
+
+                                    DateTime selectedDate = System.DateTime.Now;
+
+                                    CreateWriteClient();
+                                    var messages = $"Angajatul {employeeName} a finalizat programarea {appointmentId} la {selectedDate}";
+                                    _clientWrite.Write("administrator", messages, "admin1");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                         }
                     }
+                    
                 }
                 else
                 {

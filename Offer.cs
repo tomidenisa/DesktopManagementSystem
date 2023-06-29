@@ -259,26 +259,28 @@ namespace CRUDOP2
                             string tip = selectedRow.Cells["Tip"].Value.ToString();
                             string denumire = selectedRow.Cells["Denumire"].Value.ToString();
                             decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
-                            int cantitate = int.Parse(cantitateTxt.Text);
+                            //int cantitate = int.Parse(cantitateTxt.Text);
                             int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
 
 
-                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
+                            //dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
-                            if (tip.ToLower() == "Serviciu")
+                            int cantitate;
+                            if (tip.ToLower() == "serviciu")
                             {
                                 if (quantity > 1)
                                 {
                                     MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     return; // Exit the method without adding the row
                                 }
-                                cantitate = 1; // If tip is "serviciu", set quantity to 1
-                                cantitateTxt.Enabled = false; // Disable the cantitateTxt TextBox
+                                cantitate = 1; // Set the cantitate variable to 1 for "Serviciu"
+                                cantitateTxt.Text = "1"; // Update the cantitateTxt TextBox to 1
                             }
                             else
                             {
                                 cantitate = quantity;
                             }
+                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
                             currentNr++;
 
@@ -311,19 +313,8 @@ namespace CRUDOP2
             {
                 MessageBox.Show("Please select a programare.", "No Programare Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            string angajatName = GetAngajatNameFromDatabase(userId);
-            DateTime selectedDate = dateTimePicker1.Value;
-            int programareID = (int)programareComboBox.SelectedItem;
-            try
-            {
-                CreateWriteClient();
-                var message = $"Angajatul {angajatName} a actualizat programarea {programareID} la {selectedDate}";
-                _clientWrite.Write("administrator", message, "admin1");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
+            
         }
         private DataTable GetAngajatDataFromDatabase(int userId)
         {
@@ -674,20 +665,19 @@ namespace CRUDOP2
                 bool valueResult = true;
                 foreach (DataGridViewRow row in dataGridViewMateriale.Rows)
                 {
-                    string cell1Value = row.Cells["Tip"].Value.ToString();
-                    string cell2Value = row.Cells["Denumire"].Value.ToString();
+                    DataGridViewCell cell1 = row.Cells["Tip"];
+                    DataGridViewCell cell2 = row.Cells["Denumire"];
 
-                    if (cell1Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        cell2Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (cell1.Value != null && cell1.Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        cell2.Value != null && cell2.Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         row.Selected = true;
                         valueResult = false;
                     }
                 }
-                if (valueResult != false)
+                if (valueResult)
                 {
                     MessageBox.Show("Produs sau serviciu inexistent pentru cautarea " + searchtxt.Text, "Nu exista");
-                    return;
                 }
             }
             catch (Exception exc)

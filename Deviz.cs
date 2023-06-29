@@ -89,6 +89,8 @@ namespace CRUDOP2
             vehiculComboBox.Enabled = false;
             totalTxt.ReadOnly = true;
             timpTxt.ReadOnly = true;
+            dataGridViewMateriale.ReadOnly= true;
+            dataGridViewOferta.ReadOnly= true;
         }
         private void SetDataInProgramariCombo()
         {
@@ -209,90 +211,7 @@ namespace CRUDOP2
             }
         }
 
-        private void AddCantitate_Click(object sender, EventArgs e)
-        {
-            if (programareComboBox.SelectedIndex != -1)
-            {
-                if (dataGridViewMateriale.SelectedRows.Count > 0)
-                {
-                    if (!string.IsNullOrEmpty(cantitateTxt.Text))
-                    {
-                        // Check if cantitateTxt contains a valid integer value
-                        if (int.TryParse(cantitateTxt.Text, out int quantity))
-                        {
-                            // Get the selected row
-                            DataGridViewRow selectedRow = dataGridViewMateriale.SelectedRows[0];
-
-                            // Extract the necessary values from the selected row
-                            string tip = selectedRow.Cells["Tip"].Value.ToString();
-                            string denumire = selectedRow.Cells["Denumire"].Value.ToString();
-                            decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
-                            int cantitate = int.Parse(cantitateTxt.Text);
-                            int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
-
-
-                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
-
-                            if (tip.ToLower() == "Serviciu")
-                            {
-                                if (quantity > 1)
-                                {
-                                    MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    return; // Exit the method without adding the row
-                                }
-                                cantitate = 1; // If tip is "serviciu", set quantity to 1
-                                cantitateTxt.Enabled = false; // Disable the cantitateTxt TextBox
-                            }
-                            else
-                            {
-                                cantitate = quantity;
-                            }
-
-                            currentNr++;
-
-                            int timptot = cantitate * Timpcol;
-                            Timp1 += timptot;
-
-                            decimal lineTotal = pret * cantitate;
-                            totalValue += lineTotal;
-
-
-                            totalTxt.Text = totalValue.ToString();
-                            timpTxt.Text = Timp1.ToString();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Cantitate must be a valid integer.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please enter a value for Cantitate.", "Empty Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Please select a line from the dataGridViewMateriale.", "No Line Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Please select a programare.", "No Programare Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            string angajatName = GetAngajatNameFromDatabase(userId);
-            DateTime selectedDate = dateTimePicker1.Value;
-            int programareID = (int)programareComboBox.SelectedItem;
-            try
-            {
-                CreateWriteClient();
-                var message = $"Angajatul {angajatName} a actualizat programarea {programareID} la {selectedDate}";
-                _clientWrite.Write("administrator", message, "admin1");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
         public class ClientDetails
         {
             public string Nume { get; set; }
@@ -320,9 +239,9 @@ namespace CRUDOP2
                 connection.Open();
 
                 string query = "SELECT c.nume, c.prenume, c.denumire_companie, c.adresa, c.cont_bancar, c.nr_reg_com " +
-                               "FROM contact AS c " +
-                               "JOIN programare AS p ON c.Programare_id = p.id " +
-                               "WHERE p.id = @ProgramareID";
+                               "FROM Client AS c " +
+                               "JOIN Contact AS con ON c.id = con.Client_Id " +
+                               "WHERE con.Programare_Id = @ProgramareID;";
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
@@ -406,6 +325,136 @@ namespace CRUDOP2
         {
             return new RabbitMQSender();
         }
+        
+       
+        private void AddCantitate_Click(object sender, EventArgs e)
+        {
+                if (programareComboBox.SelectedIndex != -1)
+                {
+                    if (dataGridViewMateriale.SelectedRows.Count > 0)
+                    {
+                        if (!string.IsNullOrEmpty(cantitateTxt.Text))
+                        {
+                            // Check if cantitateTxt contains a valid integer value
+                            if (int.TryParse(cantitateTxt.Text, out int quantity))
+                            {
+                                // Get the selected row
+                                DataGridViewRow selectedRow = dataGridViewMateriale.SelectedRows[0];
+
+                                // Extract the necessary values from the selected row
+                                string tip = selectedRow.Cells["Tip"].Value.ToString();
+                                string denumire = selectedRow.Cells["Denumire"].Value.ToString();
+                                decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
+                                //int cantitate = int.Parse(cantitateTxt.Text);
+                                int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
+
+
+                                //dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
+
+
+
+                            int cantitate;
+                            if (tip.ToLower() == "serviciu")
+                            {
+                                if (quantity > 1)
+                                {
+                                    MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return; // Exit the method without adding the row
+                                }
+                                cantitate = 1; // Set the cantitate variable to 1 for "Serviciu"
+                                cantitateTxt.Text = "1"; // Update the cantitateTxt TextBox to 1
+                            }
+                            else
+                            {
+                                cantitate = quantity;
+                            }
+                            dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
+
+                            currentNr++;
+
+                                int timptot = cantitate * Timpcol;
+                                Timp1 += timptot;
+
+                                decimal lineTotal = pret * cantitate;
+                                totalValue += lineTotal;
+
+
+                                totalTxt.Text = totalValue.ToString();
+                                timpTxt.Text = Timp1.ToString();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cantitate must be a valid integer.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Please enter a value for Cantitate.", "Empty Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a line from the dataGridViewMateriale.", "No Line Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please select a programare.", "No Programare Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+            }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            programareComboBox.SelectedIndex = -1;
+            vehiculComboBox.SelectedIndex = -1;
+            dateTimePicker1.Value = DateTime.Now;
+            dataGridViewOferta.Rows.Clear();
+            cantitateTxt.Text = string.Empty;
+            totalTxt.Text = string.Empty;
+            timpTxt.Text = string.Empty;
+        }
+
+        private void searchbtn_Click(object sender, EventArgs e)
+        {
+            string searchValue = searchtxt.Text;
+            dataGridViewMateriale.ClearSelection();
+            dataGridViewMateriale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            try
+            {
+                bool valueResult = true;
+                foreach (DataGridViewRow row in dataGridViewMateriale.Rows)
+                {
+                    DataGridViewCell cell1 = row.Cells["Tip"];
+                    DataGridViewCell cell2 = row.Cells["Denumire"];
+
+                    if (cell1.Value != null && cell1.Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        cell2.Value != null && cell2.Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        row.Selected = true;
+                        valueResult = false;
+                    }
+                }
+                if (valueResult)
+                {
+                    MessageBox.Show("Produs sau serviciu inexistent pentru cautarea " + searchtxt.Text, "Nu exista");
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+                Appointment appoin = new Appointment();
+                appoin.Show();
+                this.Hide();
+            
+        }
+
         private async void button2_Click(object sender, EventArgs e)
         {
             string angajatName = GetAngajatNameFromDatabase(userId);
@@ -539,28 +588,74 @@ namespace CRUDOP2
                 y += 30;
             }
             int programareID = (int)programareComboBox.SelectedItem;
-            ClientDetails clientDetails = GetClientDetails(programareID);
+            float maxTextWidth = 200; // Maximum width for each line of text
+            float lineHeight = 20; // Height between each line of text
+            PdfLayoutFormat layoutFormat = new PdfLayoutFormat();
+            layoutFormat.Layout = PdfLayoutType.Paginate;
 
+            PdfStringLayouter layouter = new PdfStringLayouter();
+            PdfStringLayoutResult layoutResult;
+            ClientDetails clientDetails = GetClientDetails(programareID);
+            PdfStringFormat format = new PdfStringFormat();
             if (clientDetails != null)
             {
-                graphics.DrawString("Nume: " + clientDetails.Nume, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 50));
-                y += 20;
+                float x = page.GetClientSize().Width - 200; // Starting x-coordinate
 
-                graphics.DrawString("Prenume: " + clientDetails.Prenume, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 70));
-                y += 20;
+                string text = "Nume: " + clientDetails.Nume;
+                //PdfStringFormat format = new PdfStringFormat();
+                format.LineSpacing = lineHeight;
+                format.WordWrap = PdfWordWrapType.Word;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
 
-                graphics.DrawString("Denumire Companie: " + clientDetails.DenumireCompanie, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 90));
-                y += 20;
+                text = "Prenume: " + clientDetails.Prenume;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
 
-                graphics.DrawString("Adresa: " + clientDetails.Adresa, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 110));
-                y += 20;
+                text = "Denumire Companie: " + clientDetails.DenumireCompanie;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
 
-                graphics.DrawString("Cont Bancar: " + clientDetails.ContBancar, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 130));
-                y += 20;
+                text = "Adresa: " + clientDetails.Adresa;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
 
-                graphics.DrawString("Nr. Reg. Com. : " + clientDetails.NrRegCom, font, PdfBrushes.Black, new PointF(page.GetClientSize().Width - 200, 150));
-                y += 30;
+                text = "Cont Bancar: " + clientDetails.ContBancar;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
+
+                text = "Nr. Reg. Com.: " + clientDetails.NrRegCom;
+                layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
+                foreach (LineInfo line in layoutResult.Lines)
+                {
+                    graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(x, y));
+                    y += lineHeight;
+                }
+
+                // Adjust the y-coordinate for spacing between blocks
+                y += lineHeight * 2; // Increased spacing between the blocks
             }
+
 
             float pageWidth = page.GetClientSize().Width;
 
@@ -580,7 +675,7 @@ namespace CRUDOP2
             y += 30;
 
 
-            
+
             graphics.DrawString("Cod Document: " + programareID.ToString(), font, PdfBrushes.Black, new PointF(50, y));
             y += 40;
 
@@ -591,8 +686,18 @@ namespace CRUDOP2
             y += 40;
 
             string defectecost = defecttxt.Text;
-            graphics.DrawString("Descrierea defectelor constatate: " + serieSasiu, font, PdfBrushes.Black, new PointF(50, y));
-            y += 30;
+            string defectText = "Descrierea defectelor constatate: " + defectecost;
+
+            // Reuse the existing 'format' variable from the previous code snippets
+            format.LineSpacing = lineHeight;
+            format.WordWrap = PdfWordWrapType.Word;
+
+            PdfStringLayoutResult defectLayoutResult = layouter.Layout(defectText, font, format, new SizeF(page.GetClientSize().Width - 50, page.GetClientSize().Height - y));
+            foreach (LineInfo line in defectLayoutResult.Lines)
+            {
+                graphics.DrawString(line.Text, font, PdfBrushes.Black, new PointF(50, y));
+                y += lineHeight;
+            }
 
             graphics.DrawString("Produse si Servicii", font, PdfBrushes.Black, new PointF(50, y));
             y += 20;
@@ -639,43 +744,102 @@ namespace CRUDOP2
                     pdfGridRow.Cells[4].Value = dataGridViewRow.Cells[4].Value?.ToString();
                 }
             }
-
-
-            table.Draw(page, new PointF(50, y));
-
-
             float tableHeight = table.Rows.Sum(row => row.Height) + table.Headers[0].Height;
-
+            float pageHeight = page.GetClientSize().Height;
+            float remainingSpace = pageHeight - (y + tableHeight);
 
             float tableBottomY = y + tableHeight;
-
-
             float totalTextY = tableBottomY + 20;
+            // Calculate the remaining space on the current page after drawing the table
+            float remainingSpaceAfterTable = pageHeight - (y + tableHeight);
 
+            if (remainingSpaceAfterTable < 0)
+            {
+                // Start a new page
+                page = document.Pages.Add();
+                y = 0; // Reset the y-coordinate for the new page
+            }
 
+            // Draw the table on the current page
+            table.Draw(page.Graphics, new PointF(50, y));
+            // Update the y-coordinate for the remaining elements
+            y += tableHeight;
+
+            // Calculate the remaining space on the current page after drawing the table
+            float remainingSpaceAfterTableDrawn = pageHeight - y;
+
+            if (remainingSpaceAfterTableDrawn < lineHeight * 4)
+            {
+                // Start a new page
+                page = document.Pages.Add();
+                y = 0; // Reset the y-coordinate for the new page
+            }
+
+            // Draw the remaining elements below the table
+            float totalTimpY = y + lineHeight;
             string totalText = "Total General Pret: " + totalTxt.Text;
             float totalTextWidth = font.MeasureString(totalText).Width;
             float totalTextX = page.GetClientSize().Width - totalTextWidth - 50;
-            PointF totalTextPosition = new PointF(totalTextX, totalTextY);
+            PointF totalTextPosition = new PointF(totalTextX, totalTimpY);
+
+            // Check if the remaining space is not enough for the remaining elements
+            float remainingSpaceAfterTotalText = pageHeight - (totalTimpY + lineHeight * 3);
+            if (remainingSpaceAfterTotalText < 0)
+            {
+                // Start a new page
+                page = document.Pages.Add();
+                y = 0; // Reset the y-coordinate for the new page
+                totalTextPosition = new PointF(totalTextX, y);
+            }
+
             graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
 
+            // Update the y-coordinate for the next element
+            float responsabilY = totalTimpY + lineHeight;
 
             string totalTimpText = "Total Timp Necesar in ore: " + timpTxt.Text;
-            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, totalTextY));
 
+            // Check if the remaining space is not enough for the remaining elements
+            float remainingSpaceAfterTotalTimpText = pageHeight - (responsabilY + lineHeight * 2);
+            if (remainingSpaceAfterTotalTimpText < 0)
+            {
+                // Start a new page
+                page = document.Pages.Add();
+                y = 0; // Reset the y-coordinate for the new page
+                totalTextPosition = new PointF(totalTextX, y);
+                graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
+                responsabilY = y + lineHeight;
+            }
+
+            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, responsabilY));
+
+            // Update the y-coordinate for the next element
+            float semnaturaY = responsabilY + lineHeight;
 
             string angajatName = GetAngajatNameFromDatabase(userId);
 
             string responsabilText = "Responsabil: " + angajatName;
             float responsabilX = 50;
-            float responsabilY = totalTextY + 40;
-            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(responsabilX, responsabilY));
 
+            // Check if the remaining space is not enough for the remaining elements
+            float remainingSpaceAfterResponsabilText = pageHeight - (semnaturaY + lineHeight * 2);
+            if (remainingSpaceAfterResponsabilText < 0)
+            {
+                // Start a new page
+                page = document.Pages.Add();
+                y = 0; // Reset the y-coordinate for the new page
+                totalTextPosition = new PointF(totalTextX, y);
+                graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
+                graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, y + lineHeight));
+                responsabilY = y + lineHeight * 2;
+            }
+
+            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(responsabilX, semnaturaY));
 
             string semnaturaText = "Semnatura:";
             float semnaturaTextWidth = font.MeasureString(semnaturaText).Width;
             float semnaturaX = page.GetClientSize().Width - semnaturaTextWidth - 50;
-            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, responsabilY));
+            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, semnaturaY));
 
             string filePath = GetUniqueFilePath();
             try
@@ -694,58 +858,5 @@ namespace CRUDOP2
             // Close the document
             document.Close();
         }
-
-
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            Appointment appoin = new Appointment();
-            appoin.Show();
-            this.Hide();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            programareComboBox.SelectedIndex = -1;
-            vehiculComboBox.SelectedIndex = -1;
-            dateTimePicker1.Value = DateTime.Now;
-            dataGridViewOferta.Rows.Clear();
-            cantitateTxt.Text = string.Empty;
-            totalTxt.Text = string.Empty;
-            timpTxt.Text = string.Empty;
-        }
-
-        private void searchbtn_Click(object sender, EventArgs e)
-        {
-            string searchValue = searchtxt.Text;
-            dataGridViewMateriale.ClearSelection();
-            dataGridViewMateriale.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            try
-            {
-                bool valueResult = true;
-                foreach (DataGridViewRow row in dataGridViewMateriale.Rows)
-                {
-                    string cell1Value = row.Cells["Tip"].Value.ToString();
-                    string cell2Value = row.Cells["Denumire"].Value.ToString();
-
-                    if (cell1Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        cell2Value.IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
-                    {
-                        row.Selected = true;
-                        valueResult = false;
-                    }
-                }
-                if (valueResult != false)
-                {
-                    MessageBox.Show("Produs sau serviciu inexistent pentru cautarea " + searchtxt.Text, "Nu exista");
-                    return;
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message);
-            }
-        }
-
     }
-}
+    }

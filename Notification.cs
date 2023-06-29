@@ -34,6 +34,7 @@ namespace CRUDOP2
         }
         private async void Notification_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             Console.WriteLine("Notification form loaded.");
             //consumer = new Consumer(rtbMessages);
            // await consumer.StartConsuming();
