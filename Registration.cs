@@ -50,18 +50,15 @@ namespace CRUDOP2
         }
         public string GetAngajatNameFromDatabase(int userId)
         {
-            // Assuming you are using a database connection named "connection"
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Create a SQL command to fetch the angajat name based on the user ID
                 string query = "SELECT CONCAT(Nume, ' ', Prenume) AS NumeComplet FROM Angajat WHERE Id = @UserId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
 
-                    // Execute the query and retrieve the angajat name
                     string angajatName = command.ExecuteScalar()?.ToString();
 
                     return angajatName;
@@ -75,7 +72,7 @@ namespace CRUDOP2
             string password = passwordtxt.Text;
 
             using (SqlConnection connection = DataBaseConnection.GetConnection())
-            {
+            { 
                 string query = "SELECT Id_Pozitie_Angajat, Id, Parola FROM Angajat WHERE CNP = @CNP";
                 using (SqlCommand command = DataBaseConnection.CreateCommand(query, connection))
                 {
@@ -106,11 +103,13 @@ namespace CRUDOP2
                             UserManager.CurrentUserID = userID;
                             UserManager.CurrentUserRole = (idPozitie == 8 || idPozitie == 10) ? UserRole.Admin : UserRole.User;
 
+                            
                             Home homeForm = new Home();
                             homeForm.SetUserRole(UserManager.CurrentUserRole);
                             homeForm.Show();
 
-                            this.Hide();
+                            this.Close();
+
                         }
                         else
                         {

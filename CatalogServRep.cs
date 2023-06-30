@@ -77,9 +77,7 @@ namespace CRUDOP2
 
         private void CatalogServRep_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_tip_reparatie' table. You can move, or remove it, as needed.
             this.catalog_tip_reparatieTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_tip_reparatie);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_servicii' table. You can move, or remove it, as needed.
             this.catalog_serviciiTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_servicii);
             this.WindowState = FormWindowState.Maximized;
             SetDataInGridViewCatalogServ();
@@ -152,7 +150,6 @@ namespace CRUDOP2
             {
                 string fieldValue = field.TextBox.Text.Trim();
 
-                // Check if the field value exceeds the maximum length for relevant fields
                 if (field.MaxLength > 0 && fieldValue.Length > field.MaxLength)
                 {
                     MessageBox.Show(field.TextBox, $"{field.FieldName} depășește lungimea maximă permisă de {field.MaxLength} caractere", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -161,7 +158,6 @@ namespace CRUDOP2
                     return;
                 }
 
-                // Check if the field value is not a valid decimal number or is less than or equal to zero for discount field
                 if (field.FieldName == "Discount" && (!decimal.TryParse(fieldValue, out decimal price) || price <= 0))
                 {
                     MessageBox.Show(field.TextBox, $"{field.FieldName} invalid, trebuie introdus un număr valid pentru discount", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -229,7 +225,6 @@ namespace CRUDOP2
             {
                 string fieldValue = field.TextBox.Text.Trim();
 
-                // Check if the field value exceeds the maximum length for relevant fields
                 if (field.MaxLength > 0 && fieldValue.Length > field.MaxLength)
                 {
                     MessageBox.Show(field.TextBox, $"{field.FieldName} depășește lungimea maximă permisă de {field.MaxLength} caractere", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -238,7 +233,6 @@ namespace CRUDOP2
                     return;
                 }
 
-                // Check if the field value is not a valid decimal number or is less than or equal to zero for discount field
                 if (field.FieldName == "Pret" && (!decimal.TryParse(fieldValue, out decimal price) || price <= 0))
                 {
                     MessageBox.Show(field.TextBox, $"{field.FieldName} invalid, trebuie introdus un număr valid pentru discount", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);

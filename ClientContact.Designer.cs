@@ -153,7 +153,7 @@
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1055);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(388, 1050);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // Logo

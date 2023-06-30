@@ -32,12 +32,12 @@ namespace CRUDOP2
                 byte[] bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 StringBuilder builder = new StringBuilder();
 
-                for (int i = 0; i < bytes.Length && i < 32; i++) // Truncate to 32 bytes (64 hexadecimal characters)
+                for (int i = 0; i < bytes.Length && i < 32; i++) 
                 {
                     builder.Append(bytes[i].ToString("x2"));
                 }
 
-                return builder.ToString().Substring(0, Math.Min(builder.Length, 50)); // Take the first 50 characters
+                return builder.ToString().Substring(0, Math.Min(builder.Length, 50)); 
             }
         }
 
@@ -46,7 +46,6 @@ namespace CRUDOP2
             string cnp = cnpTxt.Text.Trim();
             string newHashedPassword = HashPassword(parolaNouaTxt.Text.Trim());
 
-            // Update the database with the new hashed password
             string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ServiceAutoDB;Integrated Security=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -75,6 +74,11 @@ namespace CRUDOP2
             Registration form= new Registration();
             form.Show();
             this.Hide();
+        }
+
+        private void ChangePass_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

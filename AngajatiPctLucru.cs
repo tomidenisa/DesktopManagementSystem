@@ -28,9 +28,8 @@ namespace CRUDOP2
         int id_pctlucru = 0;
         private void AngajatiPctLucru_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet4.Punct_Lucru_Service' table. You can move, or remove it, as needed.
+            
             this.punct_Lucru_ServiceTableAdapter.Fill(this.serviceAutoDBDataSet.Punct_Lucru_Service);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet3.pozitie_angajat' table. You can move, or remove it, as needed.
             this.pozitie_angajatTableAdapter.Fill(this.serviceAutoDBDataSet.pozitie_angajat);
 
             this.WindowState = FormWindowState.Maximized;
@@ -83,12 +82,8 @@ namespace CRUDOP2
                 PNameEmplTxt.Text = employee.Prenume;
                 CnpEmplTxt.Text = employee.CNP;
                 PosCombo.SelectedValue = employee.pozitie_angajat;
-                //PctLucruCombo.SelectedValue = employee.Punct_Lucru_Service;
-                //StatusCombo.SelectedValue = employee.Status;
-                //BirthDatePicker.Value = employee.DataNasterii;
                 AdressEmplTxt.Text = employee.Adresa;
                 HireDateTimePicker.Value = employee.DataAngajarii;
-                //EndContractPicker.Value = (DateTime)employee.DataIncheiereContract;
                 PasswordTxt.Text = employee.Parola;
                 StatusCombo.Text = employee.Status.ToString();
 
@@ -335,7 +330,6 @@ namespace CRUDOP2
             employee.DataAngajarii = DateTime.Parse(HireDateTimePicker.Text.Trim());
             employee.Id_Pozitie_Angajat = Convert.ToInt32(PosCombo.SelectedValue);
             employee.IdPunctDeLucru = Convert.ToInt32(PctLucruCombo.SelectedValue);
-            //employee.DataIncheiereContract = DateTime.Parse(EndContractPicker.Text.Trim());
             employee.Parola = PasswordTxt.Text.Trim();
             employee.Status = (StatusCombo.SelectedItem.ToString() == "Activ") ? true : false;
             if (id_angajat > 0)
@@ -403,7 +397,6 @@ namespace CRUDOP2
                     bool valueResult = true;
                     foreach (DataGridViewRow row in AngajatdataGridView.Rows)
                     {
-                        //if (row.Cells[1].Value.ToString().Contains(searchValue))
                         if (row.Cells[1].Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             row.Selected = true;

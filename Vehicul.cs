@@ -78,9 +78,7 @@ namespace CRUDOP2
 
         private void Vehicul_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Client' table. You can move, or remove it, as needed.
             this.clientTableAdapter.Fill(this.serviceAutoDBDataSet.Client);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.vehicul' table. You can move, or remove it, as needed.
             this.vehiculTableAdapter.Fill(this.serviceAutoDBDataSet.vehicul);
             this.WindowState = FormWindowState.Maximized;
             SetDataInGridViewVehicul();

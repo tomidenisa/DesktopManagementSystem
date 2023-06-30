@@ -51,11 +51,6 @@ namespace CRUDOP2
                 {
                     
                     timer1.Stop();
-
-                    
-                    Registration reg = new Registration();
-                    reg.Show();
-                    this.Hide();
             }
             carXPosition += 3; 
             carPictureBox.Location = new Point(carXPosition, carPictureBox.Location.Y);

@@ -448,6 +448,7 @@
       <DependentUpon>DbModels.edmx</DependentUpon>
       <LastGenOutput>DbModels.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\download1.png" />
     <None Include="Resources\download.png" />
     <None Include="Resources\car-removebg-preview.png" />
     <None Include="Resources\exit.png" />

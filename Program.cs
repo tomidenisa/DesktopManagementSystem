@@ -25,7 +25,7 @@ namespace CRUDOP2
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjQ0MzEyMEAzMjMxMmUzMDJlMzBQVmIzQWtRUXJWR25kaWRFSU9lREtOdnR6YnVaQk0vbnF1Y2ptS3hJbGJNPQ==");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Registration());
+            Application.Run(new LoadingScreen());
         }
     }
 }

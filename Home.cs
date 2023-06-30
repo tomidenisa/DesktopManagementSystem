@@ -24,7 +24,6 @@ namespace CRUDOP2
         public void SetUserRole(UserRole role)
         {
             userRole = role;
-            // Customize the behavior of the form based on the user role
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -40,21 +39,18 @@ namespace CRUDOP2
             label4.BorderStyle = BorderStyle.Fixed3D;
             label5.BorderStyle = BorderStyle.Fixed3D;
             label6.BorderStyle = BorderStyle.Fixed3D;
-            // Start a timer to update the date and time every second
             Timer timer = new Timer();
-            timer.Interval = 1000; // Update every 1 second (1000 milliseconds)
+            timer.Interval = 1000;
             timer.Tick += Timer_Tick;
             timer.Start();
 
 
-            // Set the font to be big and bold
             label1.Font = new Font(label1.Font.FontFamily, 20, FontStyle.Bold);
             DisplayProgramariStatus();
             DisplayProgramariDistributionChart();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            // Update the label text with the current date and time
             label1.Text = DateTime.Now.ToString();
         }
         public void DisplayProgramariStatus()
@@ -97,13 +93,11 @@ namespace CRUDOP2
 
         private void DisplayProgramariDistributionChart()
         {
-            // Retrieve the counts of programari for each status category from the database
             int totalCount = GetTotalProgramari();
             int inAsteptareCount = GetProgramariStatus("In Asteptare");
             int inProgresCount = GetProgramariStatus("In Progres");
             int finalizatCount = GetProgramariStatus("Finalizat");
 
-            // Configure the chart control
             chart1.Series.Clear();
             chart1.ChartAreas.Clear();
             chart1.ChartAreas.Add("ChartArea");
@@ -111,7 +105,6 @@ namespace CRUDOP2
             chart1.Series["Programari"].ChartType = SeriesChartType.Pie;
             chart1.Legends.Clear();
 
-            // Add data points to the chart
             chart1.Series["Programari"].Points.AddXY("In Asteptare", inAsteptareCount);
             chart1.Series["Programari"].Points.AddXY("In Progres", inProgresCount);
             chart1.Series["Programari"].Points.AddXY("Finalizat", finalizatCount);
@@ -120,28 +113,23 @@ namespace CRUDOP2
             Color redColor = ColorTranslator.FromHtml("#ff033d");
             Color blueColor = ColorTranslator.FromHtml("#4f03ff");
 
-            // Assign colors to each data point
             chart1.Series["Programari"].Points[0].Color = redColor;    // In Asteptare
             chart1.Series["Programari"].Points[1].Color = blueColor;   // In Progres
             chart1.Series["Programari"].Points[2].Color = greenColor;  // Finalizat
 
-            // Add a legend control to the chart
             Legend legend = new Legend();
             chart1.Legends.Add(legend);
 
-            // Set the legend text
             chart1.Series["Programari"].IsVisibleInLegend = true;
             chart1.Series["Programari"].LegendText = "#LABEL";
 
-            // Set the data point labels as percentages
             foreach (DataPoint dataPoint in chart1.Series["Programari"].Points)
             {
                 double percentage = (dataPoint.YValues[0] / totalCount) * 100;
                 dataPoint.Label = $"{percentage:F1}%";
-                dataPoint.LegendText = "";  // Remove legend text for data points
+                dataPoint.LegendText = "";  
             }
 
-            // Refresh the chart display
             chart1.Invalidate();
         }
 

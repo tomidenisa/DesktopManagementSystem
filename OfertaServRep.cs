@@ -79,17 +79,11 @@ namespace CRUDOP2
 
         private void OfertaServRep_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_tip_reparatie' table. You can move, or remove it, as needed.
             this.catalog_tip_reparatieTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_tip_reparatie);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Client' table. You can move, or remove it, as needed.
             this.clientTableAdapter.Fill(this.serviceAutoDBDataSet.Client);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Contact' table. You can move, or remove it, as needed.
             this.contactTableAdapter.Fill(this.serviceAutoDBDataSet.Contact);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.catalog_servicii' table. You can move, or remove it, as needed.
             this.catalog_serviciiTableAdapter.Fill(this.serviceAutoDBDataSet.catalog_servicii);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.oferta_tip_reparatie' table. You can move, or remove it, as needed.
             this.oferta_tip_reparatieTableAdapter.Fill(this.serviceAutoDBDataSet.oferta_tip_reparatie);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.oferte_servicii' table. You can move, or remove it, as needed.
             this.oferte_serviciiTableAdapter.Fill(this.serviceAutoDBDataSet.oferte_servicii);
             this.WindowState = FormWindowState.Maximized;
             SetDataInGridViewServicii();
@@ -325,7 +319,6 @@ namespace CRUDOP2
                     bool valueResult = true;
                     foreach (DataGridViewRow row in datagridofertaserviciu.Rows)
                     {
-                        //if (row.Cells[1].Value.ToString().Contains(searchValue))
                         if (row.Cells[1].Value.ToString().IndexOf(searchValue, StringComparison.OrdinalIgnoreCase) >= 0)
                         {
                             row.Selected = true;

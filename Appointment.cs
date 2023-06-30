@@ -43,15 +43,15 @@ namespace CRUDOP2
             BindEmployeeComboBox();
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Load data into the Punct_Lucru_Service table
+                
                 this.punct_Lucru_ServiceTableAdapter.Connection = connection;
                 this.punct_Lucru_ServiceTableAdapter.Fill(this.serviceAutoDBDataSet.Punct_Lucru_Service);
 
-                // Load data into the pozitie_angajat table
+                
                 this.pozitie_angajatTableAdapter.Connection = connection;
                 this.pozitie_angajatTableAdapter.Fill(this.serviceAutoDBDataSet.pozitie_angajat);
 
-                // Load data into the Angajat table
+                
                 this.angajatTableAdapter.Connection = connection;
                 this.angajatTableAdapter.Fill(this.serviceAutoDBDataSet.Angajat);
             }
@@ -218,7 +218,6 @@ namespace CRUDOP2
             appointment.pozitie_angajat_id = pozitieId;
             appointment.data_inregistrare = DateTime.Now;
             appointment.id_pct_lucru_service = punctLucruId;
-            //appointment.status = "In Asteptare";
             DateTime dataProgramare = DateTime.Parse(AppointmentDate.Text.Trim());
             int selectedEmployeeId = Convert.ToInt32(EmployeeCombo.SelectedValue);
             bool hasConflictingAppointment = db.programares.Any(p =>
@@ -363,7 +362,7 @@ namespace CRUDOP2
                 }
             }
         }
-        /*private void SendMessageToRabbitMQ(string angajatName, int programareId)
+        private void SendMessageToRabbitMQ(string angajatName, int programareId)
         {
             try
             {
@@ -371,15 +370,13 @@ namespace CRUDOP2
 
                 string message = $"Angajatul {angajatName} a actualizat programarea {programareId}";
 
-                sender.SendMessage("administrator_queue", message);
+                sender.Write("administrator_queue", message,"admin1");
             }
             catch (Exception ex)
             {
                 MessageBox.Show("RabbitMQ error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }*/
-
-
+        }
        
         private void EmployeeCombo_SelectedIndexChanged(object sender, EventArgs e)
         {

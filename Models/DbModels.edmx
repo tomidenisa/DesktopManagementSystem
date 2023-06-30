@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ServiceAutoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ServiceAutoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Angajat">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,7 +59,7 @@
           <Property Name="CIF" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nr_reg_com" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="detalii" Type="nvarchar" MaxLength="200" />
-          <Property Name="data_inregistrare" Type="datetime" Nullable="false" />
+          <Property Name="data_inregistrare" Type="datetime2" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="Contact">
           <Key>
@@ -72,13 +72,9 @@
           <Property Name="Client_Id" Type="int" />
           <Property Name="Programare_Id" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'ServiceAutoDB.dbo.oferta_tip_reparatie' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="oferta_tip_reparatie">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_oferte_servicii" />
-            <PropertyRef Name="id_catalog_tip_reparatie" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="pret_tip_reparatie" Type="decimal" Precision="18" Scale="2" />
@@ -166,7 +162,7 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="serie_sasiu" Type="nvarchar" MaxLength="50" />
+          <Property Name="serie_sasiu" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="nr_inmatriculare" Type="nvarchar" MaxLength="50" />
           <Property Name="an_fabricatie" Type="int" />
           <Property Name="detalii" Type="nvarchar" MaxLength="200" />
@@ -176,30 +172,6 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
           <Property Name="producator" Type="nvarchar" MaxLength="50" />
           <Property Name="model" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK__oferta_ti__id_ca__05D8E0BE">
-          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="1" />
-          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="catalog_tip_reparatie">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="oferta_tip_reparatie">
-              <PropertyRef Name="id_catalog_tip_reparatie" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__oferta_ti__id_of__04E4BC85">
-          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="1" />
-          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="oferte_servicii">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="oferta_tip_reparatie">
-              <PropertyRef Name="id_oferte_servicii" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Angajat_Pozitie_Angajat">
           <End Role="pozitie_angajat" Type="Self.pozitie_angajat" Multiplicity="1" />
           <End Role="Angajat" Type="Self.Angajat" Multiplicity="*" />
@@ -368,6 +340,30 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_servicii">
+          <End Role="oferte_servicii" Type="Self.oferte_servicii" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="oferte_servicii">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_oferte_servicii" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SERVICII2">
+          <End Role="catalog_tip_reparatie" Type="Self.catalog_tip_reparatie" Multiplicity="1" />
+          <End Role="oferta_tip_reparatie" Type="Self.oferta_tip_reparatie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="catalog_tip_reparatie">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="oferta_tip_reparatie">
+              <PropertyRef Name="id_catalog_tip_reparatie" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_vehicul_client">
           <End Role="Client" Type="Self.Client" Multiplicity="0..1" />
           <End Role="vehicul" Type="Self.vehicul" Multiplicity="*" />
@@ -386,6 +382,7 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
           <EntitySet Name="catalog_tip_reparatie" EntityType="Self.catalog_tip_reparatie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="oferta_tip_reparatie" EntityType="Self.oferta_tip_reparatie" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="oferte_servicii" EntityType="Self.oferte_servicii" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="pozitie_angajat" EntityType="Self.pozitie_angajat" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="produs" EntityType="Self.produs" Schema="dbo" store:Type="Tables" />
@@ -393,28 +390,12 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
           <EntitySet Name="Punct_Lucru_Service" EntityType="Self.Punct_Lucru_Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tip_Contact" EntityType="Self.Tip_Contact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vehicul" EntityType="Self.vehicul" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="oferta_tip_reparatie" EntityType="Self.oferta_tip_reparatie" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [oferta_tip_reparatie].[id] AS [id], 
-    [oferta_tip_reparatie].[pret_tip_reparatie] AS [pret_tip_reparatie], 
-    [oferta_tip_reparatie].[id_oferte_servicii] AS [id_oferte_servicii], 
-    [oferta_tip_reparatie].[id_catalog_tip_reparatie] AS [id_catalog_tip_reparatie]
-    FROM [dbo].[oferta_tip_reparatie] AS [oferta_tip_reparatie]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="produs_tip_reparatie" EntityType="Self.produs_tip_reparatie" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [produs_tip_reparatie].[id_produs] AS [id_produs], 
     [produs_tip_reparatie].[id_catalog_tip_reparatie] AS [id_catalog_tip_reparatie]
     FROM [dbo].[produs_tip_reparatie] AS [produs_tip_reparatie]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__oferta_ti__id_ca__05D8E0BE" Association="Self.FK__oferta_ti__id_ca__05D8E0BE">
-            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
-            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
-          </AssociationSet>
-          <AssociationSet Name="FK__oferta_ti__id_of__04E4BC85" Association="Self.FK__oferta_ti__id_of__04E4BC85">
-            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
-            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
-          </AssociationSet>
           <AssociationSet Name="FK_Angajat_Pozitie_Angajat" Association="Self.FK_Angajat_Pozitie_Angajat">
             <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
             <End Role="Angajat" EntitySet="Angajat" />
@@ -471,13 +452,20 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
             <End Role="pozitie_angajat" EntitySet="pozitie_angajat" />
             <End Role="programare" EntitySet="programare" />
           </AssociationSet>
+          <AssociationSet Name="FK_servicii" Association="Self.FK_servicii">
+            <End Role="oferte_servicii" EntitySet="oferte_servicii" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SERVICII2" Association="Self.FK_SERVICII2">
+            <End Role="catalog_tip_reparatie" EntitySet="catalog_tip_reparatie" />
+            <End Role="oferta_tip_reparatie" EntitySet="oferta_tip_reparatie" />
+          </AssociationSet>
           <AssociationSet Name="FK_vehicul_client" Association="Self.FK_vehicul_client">
             <End Role="Client" EntitySet="Client" />
             <End Role="vehicul" EntitySet="vehicul" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ServiceAutoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -543,7 +531,7 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
           <Property Name="CIF" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nr_reg_com" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="detalii" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="data_inregistrare" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="data_inregistrare" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="Contacts" Relationship="Self.FK_Contact_Client" FromRole="Client" ToRole="Contact" />
           <NavigationProperty Name="oferte_servicii" Relationship="Self.FK_oferte_servicii_client" FromRole="Client" ToRole="oferte_servicii" />
           <NavigationProperty Name="vehiculs" Relationship="Self.FK_vehicul_client" FromRole="Client" ToRole="vehicul" />
@@ -648,7 +636,7 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="serie_sasiu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="serie_sasiu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="nr_inmatriculare" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="an_fabricatie" Type="Int32" />
           <Property Name="detalii" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -662,8 +650,6 @@ warning 6002: The table/view 'ServiceAutoDB.dbo.produs_tip_reparatie' does not h
         <EntityType Name="oferta_tip_reparatie">
           <Key>
             <PropertyRef Name="id" />
-            <PropertyRef Name="id_oferte_servicii" />
-            <PropertyRef Name="id_catalog_tip_reparatie" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="pret_tip_reparatie" Type="Decimal" Precision="18" Scale="2" />

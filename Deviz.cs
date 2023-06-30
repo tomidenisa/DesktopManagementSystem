@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static CRUDOP2.Registration;
+using System.Xml.Linq;
 
 namespace CRUDOP2
 {
@@ -84,7 +85,9 @@ namespace CRUDOP2
         {
             this.WindowState = FormWindowState.Maximized;
             UserRole currentUserRole = UserManager.CurrentUserRole;
-            SetDataInMateriale();
+            if (currentUserRole == UserRole.User)
+            { AdminButton.Enabled = false; }
+                SetDataInMateriale();
             SetDataInProgramariCombo();
             vehiculComboBox.Enabled = false;
             totalTxt.ReadOnly = true;
@@ -171,7 +174,6 @@ namespace CRUDOP2
                 }
             }
 
-            // Enable the vehiculComboBox
             vehiculComboBox.Enabled = true;
         }
 
@@ -251,23 +253,75 @@ namespace CRUDOP2
                     {
                         if (reader.Read())
                         {
-                            // Retrieve the client details from the reader
                             string nume = reader.GetString(reader.GetOrdinal("nume"));
                             string prenume = reader.GetString(reader.GetOrdinal("prenume"));
                             string denumireCompanie = reader.GetString(reader.GetOrdinal("denumire_companie"));
                             string adresa = reader.GetString(reader.GetOrdinal("adresa"));
                             string contBancar = reader.GetString(reader.GetOrdinal("cont_bancar"));
                             string nrRegCom = reader.GetString(reader.GetOrdinal("nr_reg_com"));
-                            // Retrieve other client details as needed
 
-                            // Create and return a ClientDetails object
                             return new ClientDetails(nume, prenume, denumireCompanie, adresa, contBancar, nrRegCom);
                         }
                     }
                 }
             }
 
-            return null; // Return null if no client details found
+            return null; 
+        }
+        private void DrawRemainingElements(PdfDocument document, PdfPage page, PdfGraphics graphics, PdfFont font, ref float y)
+        {
+            string totalText = "Total General Pret: " + totalTxt.Text;
+            float totalTextWidth = font.MeasureString(totalText).Width;
+            float totalTextX = page.GetClientSize().Width - totalTextWidth - 50;
+            PointF totalTextPosition = new PointF(totalTextX, y);
+
+            float remainingSpace = page.GetClientSize().Height - y;
+            if (remainingSpace < 100) 
+            {
+                
+                page = document.Pages.Add();
+                y = 50; 
+                totalTextPosition = new PointF(totalTextX, y);
+            }
+
+            graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
+
+            y += 20;
+
+            string totalTimpText = "Total Timp Necesar in ore: " + timpTxt.Text;
+
+          remainingSpace = page.GetClientSize().Height - y;
+            if (remainingSpace < 100) 
+            {
+                page = document.Pages.Add();
+                y = 50; 
+
+            }
+
+            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, y));
+
+            y += 20; 
+
+            string angajatName = GetAngajatNameFromDatabase(userId);
+            string responsabilText = "Responsabil: " + angajatName;
+            string semnaturaText = "Semnatura:";
+
+            remainingSpace = page.GetClientSize().Height - y;
+            if (remainingSpace < 100) 
+            {
+                page = document.Pages.Add();
+                y = 50; 
+            }
+
+            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(50, y));
+
+            float semnaturaTextWidth = font.MeasureString(semnaturaText).Width;
+            float semnaturaTextX = page.GetClientSize().Width - semnaturaTextWidth - 50;
+
+            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaTextX, y));
+
+            y += 20; 
+
         }
         private DataTable GetAngajatDataFromDatabase(int userId)
         {
@@ -294,18 +348,15 @@ namespace CRUDOP2
         }
         public string GetAngajatNameFromDatabase(int userId)
         {
-            // Assuming you are using a database connection named "connection"
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Create a SQL command to fetch the angajat name based on the user ID
                 string query = "SELECT CONCAT(Nume, ' ', Prenume) AS NumeComplet FROM Angajat WHERE Id = @UserId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
 
-                    // Execute the query and retrieve the angajat name
                     string angajatName = command.ExecuteScalar()?.ToString();
 
                     return angajatName;
@@ -335,21 +386,16 @@ namespace CRUDOP2
                     {
                         if (!string.IsNullOrEmpty(cantitateTxt.Text))
                         {
-                            // Check if cantitateTxt contains a valid integer value
                             if (int.TryParse(cantitateTxt.Text, out int quantity))
                             {
-                                // Get the selected row
                                 DataGridViewRow selectedRow = dataGridViewMateriale.SelectedRows[0];
 
-                                // Extract the necessary values from the selected row
                                 string tip = selectedRow.Cells["Tip"].Value.ToString();
                                 string denumire = selectedRow.Cells["Denumire"].Value.ToString();
                                 decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
-                                //int cantitate = int.Parse(cantitateTxt.Text);
                                 int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
 
 
-                                //dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
 
 
@@ -359,10 +405,10 @@ namespace CRUDOP2
                                 if (quantity > 1)
                                 {
                                     MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    return; // Exit the method without adding the row
+                                    return; 
                                 }
-                                cantitate = 1; // Set the cantitate variable to 1 for "Serviciu"
-                                cantitateTxt.Text = "1"; // Update the cantitateTxt TextBox to 1
+                                cantitate = 1; 
+                                cantitateTxt.Text = "1"; 
                             }
                             else
                             {
@@ -514,7 +560,6 @@ namespace CRUDOP2
                 MessageBox.Show("Trimitere esuata a notificarii email: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Reset the form fields
             programareComboBox.SelectedIndex = -1;
             vehiculComboBox.SelectedIndex = -1;
             dateTimePicker1.Value = DateTime.Now;
@@ -534,16 +579,14 @@ namespace CRUDOP2
             string filePath = Path.Combine(folderPath, fileName);
             return filePath;
         }
+
         private void GeneratePDF()
         {
 
-            // Create a new PDF document
             PdfDocument document = new PdfDocument();
 
-            // Add a page to the document
             PdfPage page = document.Pages.Add();
 
-            // Create PDF graphics
             PdfGraphics graphics = page.Graphics;
 
 
@@ -588,8 +631,8 @@ namespace CRUDOP2
                 y += 30;
             }
             int programareID = (int)programareComboBox.SelectedItem;
-            float maxTextWidth = 200; // Maximum width for each line of text
-            float lineHeight = 20; // Height between each line of text
+            float maxTextWidth = 200; 
+            float lineHeight = 20; 
             PdfLayoutFormat layoutFormat = new PdfLayoutFormat();
             layoutFormat.Layout = PdfLayoutType.Paginate;
 
@@ -599,10 +642,9 @@ namespace CRUDOP2
             PdfStringFormat format = new PdfStringFormat();
             if (clientDetails != null)
             {
-                float x = page.GetClientSize().Width - 200; // Starting x-coordinate
+                float x = page.GetClientSize().Width - 200; 
 
                 string text = "Nume: " + clientDetails.Nume;
-                //PdfStringFormat format = new PdfStringFormat();
                 format.LineSpacing = lineHeight;
                 format.WordWrap = PdfWordWrapType.Word;
                 layoutResult = layouter.Layout(text, font, format, new SizeF(maxTextWidth, page.GetClientSize().Height - y));
@@ -652,8 +694,7 @@ namespace CRUDOP2
                     y += lineHeight;
                 }
 
-                // Adjust the y-coordinate for spacing between blocks
-                y += lineHeight * 2; // Increased spacing between the blocks
+                y += lineHeight * 2;
             }
 
 
@@ -688,7 +729,6 @@ namespace CRUDOP2
             string defectecost = defecttxt.Text;
             string defectText = "Descrierea defectelor constatate: " + defectecost;
 
-            // Reuse the existing 'format' variable from the previous code snippets
             format.LineSpacing = lineHeight;
             format.WordWrap = PdfWordWrapType.Word;
 
@@ -702,14 +742,12 @@ namespace CRUDOP2
             graphics.DrawString("Produse si Servicii", font, PdfBrushes.Black, new PointF(50, y));
             y += 20;
 
-
+            float tableY = y + 20;
             PdfGrid table = new PdfGrid();
             table.Style.Font = font;
             table.Style.CellPadding.All = 5;
 
-
             table.Columns.Add(5);
-
 
             PdfGridRow headerRow = table.Headers.Add(1)[0];
             headerRow.Cells[0].Value = "Nr";
@@ -717,7 +755,6 @@ namespace CRUDOP2
             headerRow.Cells[2].Value = "Cantitate";
             headerRow.Cells[3].Value = "Denumire";
             headerRow.Cells[4].Value = "Pret";
-
 
             PdfGridCellStyle headerStyle = new PdfGridCellStyle();
             headerStyle.Borders.All = new PdfPen(PdfBrushes.Black, 0.5f);
@@ -727,16 +764,11 @@ namespace CRUDOP2
             headerRow.Cells[3].Style = headerStyle;
             headerRow.Cells[4].Style = headerStyle;
 
-
             foreach (DataGridViewRow dataGridViewRow in dataGridViewOferta.Rows)
             {
-
                 if (!dataGridViewRow.IsNewRow)
                 {
-
                     PdfGridRow pdfGridRow = table.Rows.Add();
-
-
                     pdfGridRow.Cells[0].Value = dataGridViewRow.Cells[0].Value?.ToString();
                     pdfGridRow.Cells[1].Value = dataGridViewRow.Cells[1].Value?.ToString();
                     pdfGridRow.Cells[2].Value = dataGridViewRow.Cells[2].Value?.ToString();
@@ -744,103 +776,28 @@ namespace CRUDOP2
                     pdfGridRow.Cells[4].Value = dataGridViewRow.Cells[4].Value?.ToString();
                 }
             }
-            float tableHeight = table.Rows.Sum(row => row.Height) + table.Headers[0].Height;
-            float pageHeight = page.GetClientSize().Height;
-            float remainingSpace = pageHeight - (y + tableHeight);
 
-            float tableBottomY = y + tableHeight;
-            float totalTextY = tableBottomY + 20;
-            // Calculate the remaining space on the current page after drawing the table
-            float remainingSpaceAfterTable = pageHeight - (y + tableHeight);
+            
+            float pageHeight = page.GetClientSize().Height;
+
+            float remainingSpaceAfterTable = pageHeight - tableY - table.Rows.Sum(row => row.Height) - table.Headers[0].Height;
 
             if (remainingSpaceAfterTable < 0)
             {
-                // Start a new page
                 page = document.Pages.Add();
-                y = 0; // Reset the y-coordinate for the new page
+                y = 50; 
+                tableY = y + 20; 
+
+                table.Draw(page.Graphics, new PointF(50, tableY));
             }
-
-            // Draw the table on the current page
-            table.Draw(page.Graphics, new PointF(50, y));
-            // Update the y-coordinate for the remaining elements
-            y += tableHeight;
-
-            // Calculate the remaining space on the current page after drawing the table
-            float remainingSpaceAfterTableDrawn = pageHeight - y;
-
-            if (remainingSpaceAfterTableDrawn < lineHeight * 4)
+            else
             {
-                // Start a new page
-                page = document.Pages.Add();
-                y = 0; // Reset the y-coordinate for the new page
+                table.Draw(page.Graphics, new PointF(50, tableY));
             }
 
-            // Draw the remaining elements below the table
-            float totalTimpY = y + lineHeight;
-            string totalText = "Total General Pret: " + totalTxt.Text;
-            float totalTextWidth = font.MeasureString(totalText).Width;
-            float totalTextX = page.GetClientSize().Width - totalTextWidth - 50;
-            PointF totalTextPosition = new PointF(totalTextX, totalTimpY);
+            float remainingElementsY = tableY + table.Rows.Sum(row => row.Height) + table.Headers[0].Height + 20;
 
-            // Check if the remaining space is not enough for the remaining elements
-            float remainingSpaceAfterTotalText = pageHeight - (totalTimpY + lineHeight * 3);
-            if (remainingSpaceAfterTotalText < 0)
-            {
-                // Start a new page
-                page = document.Pages.Add();
-                y = 0; // Reset the y-coordinate for the new page
-                totalTextPosition = new PointF(totalTextX, y);
-            }
-
-            graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
-
-            // Update the y-coordinate for the next element
-            float responsabilY = totalTimpY + lineHeight;
-
-            string totalTimpText = "Total Timp Necesar in ore: " + timpTxt.Text;
-
-            // Check if the remaining space is not enough for the remaining elements
-            float remainingSpaceAfterTotalTimpText = pageHeight - (responsabilY + lineHeight * 2);
-            if (remainingSpaceAfterTotalTimpText < 0)
-            {
-                // Start a new page
-                page = document.Pages.Add();
-                y = 0; // Reset the y-coordinate for the new page
-                totalTextPosition = new PointF(totalTextX, y);
-                graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
-                responsabilY = y + lineHeight;
-            }
-
-            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, responsabilY));
-
-            // Update the y-coordinate for the next element
-            float semnaturaY = responsabilY + lineHeight;
-
-            string angajatName = GetAngajatNameFromDatabase(userId);
-
-            string responsabilText = "Responsabil: " + angajatName;
-            float responsabilX = 50;
-
-            // Check if the remaining space is not enough for the remaining elements
-            float remainingSpaceAfterResponsabilText = pageHeight - (semnaturaY + lineHeight * 2);
-            if (remainingSpaceAfterResponsabilText < 0)
-            {
-                // Start a new page
-                page = document.Pages.Add();
-                y = 0; // Reset the y-coordinate for the new page
-                totalTextPosition = new PointF(totalTextX, y);
-                graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
-                graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, y + lineHeight));
-                responsabilY = y + lineHeight * 2;
-            }
-
-            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(responsabilX, semnaturaY));
-
-            string semnaturaText = "Semnatura:";
-            float semnaturaTextWidth = font.MeasureString(semnaturaText).Width;
-            float semnaturaX = page.GetClientSize().Width - semnaturaTextWidth - 50;
-            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, semnaturaY));
-
+            DrawRemainingElements(document, page, graphics, font, ref remainingElementsY);
             string filePath = GetUniqueFilePath();
             try
             {
@@ -855,8 +812,9 @@ namespace CRUDOP2
                 MessageBox.Show("Eroare in generare deviz: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Close the document
+
             document.Close();
         }
     }
+
     }

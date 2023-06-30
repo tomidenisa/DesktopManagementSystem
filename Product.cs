@@ -25,12 +25,18 @@ namespace CRUDOP2
         int Prod_id = 0;
         private void Product_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.produs' table. You can move, or remove it, as needed.
-            //this.produsTableAdapter.Fill(this.serviceAutoDBDataSet.produs);
+            
             ClearData();
             SetDataInGridView();
             this.WindowState = FormWindowState.Maximized;
             Delete.Enabled = false;
+            UserRole currentUserRole = UserManager.CurrentUserRole;
+            if (currentUserRole == UserRole.User)
+            {
+                AdminButton.Visible = false;
+                Add.Visible = false;
+                Delete.Visible = false;
+            }
 
         }
         public void ClearData()
@@ -110,7 +116,7 @@ namespace CRUDOP2
             }
             else
             {
-                // Handle invalid input
+
                 MessageBox.Show("Introdu o valoare numerica in campul Cost Achizitie");
                 return;
             }
@@ -121,7 +127,7 @@ namespace CRUDOP2
             }
             else
             {
-                // Handle invalid input
+
                 MessageBox.Show("Introdu o valoare numerica in campul Cost Vanzare");
                 return;
             }
@@ -131,7 +137,7 @@ namespace CRUDOP2
             }
             else
             {
-                // Handle invalid input
+
                 MessageBox.Show("Introdu o valoare numerica in campul Discount");
                 return;
             }

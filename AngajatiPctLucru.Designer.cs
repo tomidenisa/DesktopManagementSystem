@@ -1204,6 +1204,7 @@
             this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AngajatiPctLucru";
             this.Text = "AngajatiPctLucru";
             this.Load += new System.EventHandler(this.AngajatiPctLucru_Load);

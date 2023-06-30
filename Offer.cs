@@ -55,6 +55,10 @@ namespace CRUDOP2
         {
             this.WindowState = FormWindowState.Maximized;
             UserRole currentUserRole = UserManager.CurrentUserRole;
+            if (currentUserRole == UserRole.User)
+            {
+                AdminButton.Visible=false;
+            }
             SetDataInMateriale();
             SetDataInProgramariCombo();
             vehiculComboBox.Enabled = false;
@@ -82,7 +86,7 @@ namespace CRUDOP2
                     {
                         int appointmentID = reader.GetInt32(0);
                         programareComboBox.Items.Add(appointmentID);
-                        hasProgramare = true; // Set the flag to true if at least one programare entry is found
+                        hasProgramare = true; 
                     }
 
                     connection.Close();
@@ -144,7 +148,6 @@ namespace CRUDOP2
                 }
             }
 
-            // Enable the vehiculComboBox
             vehiculComboBox.Enabled = true;
         }
 
@@ -249,21 +252,16 @@ namespace CRUDOP2
                 {
                     if (!string.IsNullOrEmpty(cantitateTxt.Text))
                     {
-                        // Check if cantitateTxt contains a valid integer value
                         if (int.TryParse(cantitateTxt.Text, out int quantity))
                         {
-                            // Get the selected row
                             DataGridViewRow selectedRow = dataGridViewMateriale.SelectedRows[0];
 
-                            // Extract the necessary values from the selected row
                             string tip = selectedRow.Cells["Tip"].Value.ToString();
                             string denumire = selectedRow.Cells["Denumire"].Value.ToString();
                             decimal pret = decimal.Parse(selectedRow.Cells["Pret"].Value.ToString());
-                            //int cantitate = int.Parse(cantitateTxt.Text);
                             int Timpcol = int.Parse(selectedRow.Cells["Timp"].Value.ToString());
 
 
-                            //dataGridViewOferta.Rows.Add(currentNr, tip, cantitate, denumire, pret, Timpcol);
 
                             int cantitate;
                             if (tip.ToLower() == "serviciu")
@@ -271,10 +269,11 @@ namespace CRUDOP2
                                 if (quantity > 1)
                                 {
                                     MessageBox.Show("Pentru 'serviciu', cantitatea nu poate fi mai mult de 1.", "Invalid Cantitate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    return; // Exit the method without adding the row
+                                    return; 
                                 }
-                                cantitate = 1; // Set the cantitate variable to 1 for "Serviciu"
-                                cantitateTxt.Text = "1"; // Update the cantitateTxt TextBox to 1
+                                cantitate = 1;
+                                cantitateTxt.Text = "1";
+
                             }
                             else
                             {
@@ -341,18 +340,15 @@ namespace CRUDOP2
         }
         public string GetAngajatNameFromDatabase(int userId)
         {
-            // Assuming you are using a database connection named "connection"
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
 
-                // Create a SQL command to fetch the angajat name based on the user ID
                 string query = "SELECT CONCAT(Nume, ' ', Prenume) AS NumeComplet FROM Angajat WHERE Id = @UserId";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@UserId", userId);
 
-                    // Execute the query and retrieve the angajat name
                     string angajatName = command.ExecuteScalar()?.ToString();
 
                     return angajatName;
@@ -431,7 +427,6 @@ namespace CRUDOP2
                 MessageBox.Show("Trimitere esuata a notificarii email: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Reset the form fields
             programareComboBox.SelectedIndex = -1;
             vehiculComboBox.SelectedIndex = -1;
             dateTimePicker1.Value = DateTime.Now;
@@ -454,13 +449,10 @@ namespace CRUDOP2
         private void  GeneratePDF()
         {
            
-            // Create a new PDF document
             PdfDocument document = new PdfDocument();
 
-            // Add a page to the document
             PdfPage page = document.Pages.Add();
 
-            // Create PDF graphics
             PdfGraphics graphics = page.Graphics;
 
             
@@ -631,7 +623,6 @@ namespace CRUDOP2
                 MessageBox.Show("Failed to generate the offer PDF: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            // Close the document
             document.Close();
         }
 

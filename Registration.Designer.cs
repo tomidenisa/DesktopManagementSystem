@@ -101,10 +101,10 @@
             // 
             // button2
             // 
-            this.button2.Image = global::CRUDOP2.Properties.Resources.download;
-            this.button2.Location = new System.Drawing.Point(467, 443);
+            this.button2.Image = global::CRUDOP2.Properties.Resources.download1;
+            this.button2.Location = new System.Drawing.Point(472, 449);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 22);
+            this.button2.Size = new System.Drawing.Size(35, 22);
             this.button2.TabIndex = 35;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);

@@ -110,6 +110,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ChangePass";
             this.Text = "ChangePass";
+            this.Load += new System.EventHandler(this.ChangePass_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

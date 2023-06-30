@@ -84,7 +84,7 @@
             this.homebutton.FlatAppearance.BorderSize = 0;
             this.homebutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.homebutton.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homebutton.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.homebutton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.homebutton.Image = global::CRUDOP2.Properties.Resources.cr1;
             this.homebutton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.homebutton.Location = new System.Drawing.Point(3, 409);
@@ -234,7 +234,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(149)))), ((int)(((byte)(183)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(786, 171);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(560, 134);

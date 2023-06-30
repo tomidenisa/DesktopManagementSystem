@@ -29,13 +29,9 @@ namespace CRUDOP2
 
         private void ClientContact_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.programare' table. You can move, or remove it, as needed.
             this.programareTableAdapter.Fill(this.serviceAutoDBDataSet.programare);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Client' table. You can move, or remove it, as needed.
             this.clientTableAdapter.Fill(this.serviceAutoDBDataSet.Client);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Tip_Contact' table. You can move, or remove it, as needed.
             this.tip_ContactTableAdapter.Fill(this.serviceAutoDBDataSet.Tip_Contact);
-            // TODO: This line of code loads data into the 'serviceAutoDBDataSet.Contact' table. You can move, or remove it, as needed.
             this.contactTableAdapter.Fill(this.serviceAutoDBDataSet.Contact);
             this.WindowState = FormWindowState.Maximized;
 
