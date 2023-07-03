@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Deviz));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Logo = new System.Windows.Forms.PictureBox();
             this.homebutton = new System.Windows.Forms.Button();
@@ -52,14 +59,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.cantitateTxt = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridViewMateriale = new System.Windows.Forms.DataGridView();
-            this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
-            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cantitate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Denumire = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Pret = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.searchbtn = new System.Windows.Forms.Button();
             this.searchtxt = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
@@ -69,10 +68,19 @@
             this.totalTxt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.dataGridViewOferta = new System.Windows.Forms.DataGridView();
+            this.Nr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cantitate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Denumire = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pret = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Timp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PrdctName = new System.Windows.Forms.Label();
+            this.dataGridViewMateriale = new System.Windows.Forms.DataGridView();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel1
@@ -368,75 +376,6 @@
             this.label6.TabIndex = 55;
             this.label6.Text = "Catalog Servicii și Piese ";
             // 
-            // dataGridViewMateriale
-            // 
-            this.dataGridViewMateriale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewMateriale.Location = new System.Drawing.Point(418, 432);
-            this.dataGridViewMateriale.Name = "dataGridViewMateriale";
-            this.dataGridViewMateriale.RowHeadersWidth = 51;
-            this.dataGridViewMateriale.RowTemplate.Height = 24;
-            this.dataGridViewMateriale.Size = new System.Drawing.Size(472, 517);
-            this.dataGridViewMateriale.TabIndex = 54;
-            // 
-            // dataGridViewOferta
-            // 
-            this.dataGridViewOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Nr,
-            this.Tip,
-            this.Cantitate,
-            this.Denumire,
-            this.Pret,
-            this.Timp});
-            this.dataGridViewOferta.Location = new System.Drawing.Point(1204, 446);
-            this.dataGridViewOferta.Name = "dataGridViewOferta";
-            this.dataGridViewOferta.RowHeadersWidth = 51;
-            this.dataGridViewOferta.RowTemplate.Height = 24;
-            this.dataGridViewOferta.Size = new System.Drawing.Size(675, 517);
-            this.dataGridViewOferta.TabIndex = 53;
-            // 
-            // Nr
-            // 
-            this.Nr.HeaderText = "Nr";
-            this.Nr.MinimumWidth = 6;
-            this.Nr.Name = "Nr";
-            this.Nr.Width = 125;
-            // 
-            // Tip
-            // 
-            this.Tip.HeaderText = "Tip";
-            this.Tip.MinimumWidth = 6;
-            this.Tip.Name = "Tip";
-            this.Tip.Width = 125;
-            // 
-            // Cantitate
-            // 
-            this.Cantitate.HeaderText = "Cantitate";
-            this.Cantitate.MinimumWidth = 6;
-            this.Cantitate.Name = "Cantitate";
-            this.Cantitate.Width = 125;
-            // 
-            // Denumire
-            // 
-            this.Denumire.HeaderText = "Denumire";
-            this.Denumire.MinimumWidth = 6;
-            this.Denumire.Name = "Denumire";
-            this.Denumire.Width = 125;
-            // 
-            // Pret
-            // 
-            this.Pret.HeaderText = "Pret";
-            this.Pret.MinimumWidth = 6;
-            this.Pret.Name = "Pret";
-            this.Pret.Width = 125;
-            // 
-            // Timp
-            // 
-            this.Timp.HeaderText = "Timp";
-            this.Timp.MinimumWidth = 6;
-            this.Timp.Name = "Timp";
-            this.Timp.Width = 125;
-            // 
             // searchbtn
             // 
             this.searchbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
@@ -526,6 +465,139 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // dataGridViewOferta
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOferta.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewOferta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewOferta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Nr,
+            this.Tip,
+            this.Cantitate,
+            this.Denumire,
+            this.Pret,
+            this.Timp});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOferta.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewOferta.Location = new System.Drawing.Point(1229, 432);
+            this.dataGridViewOferta.Name = "dataGridViewOferta";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOferta.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewOferta.RowHeadersWidth = 51;
+            this.dataGridViewOferta.RowTemplate.Height = 24;
+            this.dataGridViewOferta.Size = new System.Drawing.Size(675, 517);
+            this.dataGridViewOferta.TabIndex = 68;
+            // 
+            // Nr
+            // 
+            this.Nr.HeaderText = "Nr";
+            this.Nr.MinimumWidth = 6;
+            this.Nr.Name = "Nr";
+            this.Nr.Width = 125;
+            // 
+            // Tip
+            // 
+            this.Tip.HeaderText = "Tip";
+            this.Tip.MinimumWidth = 6;
+            this.Tip.Name = "Tip";
+            this.Tip.Width = 125;
+            // 
+            // Cantitate
+            // 
+            this.Cantitate.HeaderText = "Cantitate";
+            this.Cantitate.MinimumWidth = 6;
+            this.Cantitate.Name = "Cantitate";
+            this.Cantitate.Width = 125;
+            // 
+            // Denumire
+            // 
+            this.Denumire.HeaderText = "Denumire";
+            this.Denumire.MinimumWidth = 6;
+            this.Denumire.Name = "Denumire";
+            this.Denumire.Width = 125;
+            // 
+            // Pret
+            // 
+            this.Pret.HeaderText = "Pret";
+            this.Pret.MinimumWidth = 6;
+            this.Pret.Name = "Pret";
+            this.Pret.Width = 125;
+            // 
+            // Timp
+            // 
+            this.Timp.HeaderText = "Timp";
+            this.Timp.MinimumWidth = 6;
+            this.Timp.Name = "Timp";
+            this.Timp.Width = 125;
+            // 
+            // PrdctName
+            // 
+            this.PrdctName.AutoSize = true;
+            this.PrdctName.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrdctName.Location = new System.Drawing.Point(1496, 366);
+            this.PrdctName.Name = "PrdctName";
+            this.PrdctName.Size = new System.Drawing.Size(217, 35);
+            this.PrdctName.TabIndex = 69;
+            this.PrdctName.Text = "Servicii și Piese ";
+            // 
+            // dataGridViewMateriale
+            // 
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dataGridViewMateriale.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewMateriale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewMateriale.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.Desktop;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewMateriale.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewMateriale.Location = new System.Drawing.Point(424, 432);
+            this.dataGridViewMateriale.Name = "dataGridViewMateriale";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.LightBlue;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewMateriale.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridViewMateriale.RowHeadersWidth = 51;
+            this.dataGridViewMateriale.RowTemplate.Height = 24;
+            this.dataGridViewMateriale.Size = new System.Drawing.Size(472, 517);
+            this.dataGridViewMateriale.TabIndex = 70;
+            // 
             // Deviz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -533,6 +605,9 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.dataGridViewMateriale);
+            this.Controls.Add(this.PrdctName);
+            this.Controls.Add(this.dataGridViewOferta);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label7);
@@ -546,8 +621,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cantitateTxt);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.dataGridViewMateriale);
-            this.Controls.Add(this.dataGridViewOferta);
             this.Controls.Add(this.defecttxt);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.programareComboBox);
@@ -565,8 +638,8 @@
             this.Load += new System.EventHandler(this.Deviz_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOferta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMateriale)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -597,14 +670,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox cantitateTxt;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridViewMateriale;
-        private System.Windows.Forms.DataGridView dataGridViewOferta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tip;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cantitate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Denumire;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Pret;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Timp;
         private System.Windows.Forms.Button searchbtn;
         private System.Windows.Forms.TextBox searchtxt;
         private System.Windows.Forms.Button button4;
@@ -614,5 +679,14 @@
         private System.Windows.Forms.TextBox totalTxt;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.DataGridView dataGridViewOferta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Nr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cantitate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Denumire;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pret;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Timp;
+        private System.Windows.Forms.Label PrdctName;
+        private System.Windows.Forms.DataGridView dataGridViewMateriale;
     }
 }

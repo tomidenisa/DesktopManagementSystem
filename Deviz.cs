@@ -592,7 +592,7 @@ namespace CRUDOP2
 
 
 
-            PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
+            PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
 
 
             float y = 50;
@@ -627,8 +627,6 @@ namespace CRUDOP2
 
                 graphics.DrawString("Nr. Reg. Com. : " + regcom, font, PdfBrushes.Black, new PointF(50, y));
                 y += 20;
-
-                y += 30;
             }
             int programareID = (int)programareComboBox.SelectedItem;
             float maxTextWidth = 200; 
@@ -703,7 +701,7 @@ namespace CRUDOP2
 
             string title = "Deviz final";
             float titleFontSize = 18;
-            PdfFont titleFont = new PdfStandardFont(PdfFontFamily.Helvetica, titleFontSize, PdfFontStyle.Bold);
+            PdfFont titleFont = new PdfStandardFont(PdfFontFamily.TimesRoman, titleFontSize, PdfFontStyle.Bold);
             float titleWidth = titleFont.MeasureString(title).Width;
             float titleX = (pageWidth - titleWidth) / 2;
             graphics.DrawString(title, titleFont, PdfBrushes.Black, new PointF(titleX, y));
@@ -718,13 +716,13 @@ namespace CRUDOP2
 
 
             graphics.DrawString("Cod Document: " + programareID.ToString(), font, PdfBrushes.Black, new PointF(50, y));
-            y += 40;
+            y += 20;
 
 
             string serieSasiu = vehiculComboBox.SelectedItem?.ToString();
             float vehiculX = page.GetClientSize().Width - font.MeasureString("Vehicul Serie Sasiu: " + serieSasiu).Width - 50;
             graphics.DrawString("Vehicul Serie Sasiu: " + serieSasiu, font, PdfBrushes.Black, new PointF(vehiculX, y));
-            y += 40;
+            y += 20;
 
             string defectecost = defecttxt.Text;
             string defectText = "Descrierea defectelor constatate: " + defectecost;
@@ -742,12 +740,13 @@ namespace CRUDOP2
             graphics.DrawString("Produse si Servicii", font, PdfBrushes.Black, new PointF(50, y));
             y += 20;
 
-            float tableY = y + 20;
             PdfGrid table = new PdfGrid();
             table.Style.Font = font;
             table.Style.CellPadding.All = 5;
 
+
             table.Columns.Add(5);
+
 
             PdfGridRow headerRow = table.Headers.Add(1)[0];
             headerRow.Cells[0].Value = "Nr";
@@ -755,6 +754,7 @@ namespace CRUDOP2
             headerRow.Cells[2].Value = "Cantitate";
             headerRow.Cells[3].Value = "Denumire";
             headerRow.Cells[4].Value = "Pret";
+
 
             PdfGridCellStyle headerStyle = new PdfGridCellStyle();
             headerStyle.Borders.All = new PdfPen(PdfBrushes.Black, 0.5f);
@@ -764,11 +764,16 @@ namespace CRUDOP2
             headerRow.Cells[3].Style = headerStyle;
             headerRow.Cells[4].Style = headerStyle;
 
+
             foreach (DataGridViewRow dataGridViewRow in dataGridViewOferta.Rows)
             {
+
                 if (!dataGridViewRow.IsNewRow)
                 {
+
                     PdfGridRow pdfGridRow = table.Rows.Add();
+
+
                     pdfGridRow.Cells[0].Value = dataGridViewRow.Cells[0].Value?.ToString();
                     pdfGridRow.Cells[1].Value = dataGridViewRow.Cells[1].Value?.ToString();
                     pdfGridRow.Cells[2].Value = dataGridViewRow.Cells[2].Value?.ToString();
@@ -777,27 +782,43 @@ namespace CRUDOP2
                 }
             }
 
+
+            table.Draw(page, new PointF(50, y));
+
+
+            float tableHeight = table.Rows.Sum(row => row.Height) + table.Headers[0].Height;
+
+
+            float tableBottomY = y + tableHeight;
+
+
+            float totalTextY = tableBottomY + 20;
+
+
+            string totalText = "Total General Pret: " + totalTxt.Text;
+            float totalTextWidth = font.MeasureString(totalText).Width;
+            float totalTextX = page.GetClientSize().Width - totalTextWidth - 50;
+            PointF totalTextPosition = new PointF(totalTextX, totalTextY);
+            graphics.DrawString(totalText, font, PdfBrushes.Black, totalTextPosition);
+
+
+            string totalTimpText = "Total Timp Necesar in ore: " + timpTxt.Text;
+            graphics.DrawString(totalTimpText, font, PdfBrushes.Black, new PointF(50, totalTextY));
+
+
+            string angajatName = GetAngajatNameFromDatabase(userId);
+
+            string responsabilText = "Responsabil: " + angajatName;
+            float responsabilX = 50;
+            float responsabilY = totalTextY + 40;
+            graphics.DrawString(responsabilText, font, PdfBrushes.Black, new PointF(responsabilX, responsabilY));
+
+
+            string semnaturaText = "Semnatura:";
+            float semnaturaTextWidth = font.MeasureString(semnaturaText).Width;
+            float semnaturaX = page.GetClientSize().Width - semnaturaTextWidth - 50;
+            graphics.DrawString(semnaturaText, font, PdfBrushes.Black, new PointF(semnaturaX, responsabilY));
             
-            float pageHeight = page.GetClientSize().Height;
-
-            float remainingSpaceAfterTable = pageHeight - tableY - table.Rows.Sum(row => row.Height) - table.Headers[0].Height;
-
-            if (remainingSpaceAfterTable < 0)
-            {
-                page = document.Pages.Add();
-                y = 50; 
-                tableY = y + 20; 
-
-                table.Draw(page.Graphics, new PointF(50, tableY));
-            }
-            else
-            {
-                table.Draw(page.Graphics, new PointF(50, tableY));
-            }
-
-            float remainingElementsY = tableY + table.Rows.Sum(row => row.Height) + table.Headers[0].Height + 20;
-
-            DrawRemainingElements(document, page, graphics, font, ref remainingElementsY);
             string filePath = GetUniqueFilePath();
             try
             {

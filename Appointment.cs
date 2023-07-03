@@ -256,10 +256,24 @@ namespace CRUDOP2
                 MessageBox.Show("Selecteaza o valoare pentru angajat, pozitie si punct de lucru.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            try
+            {
+
+                DateTime selectedDate = DateTime.Now;
+                string employeeName = EmployeeCombo.Text.Trim();
+                CreateWriteClient();
+                string messages = $"A fost adaugata o programare pentru {employeeName} la {selectedDate}";
+                _clientWrite.Write("administrator_queue", messages, "admin2");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             db.SaveChanges();
             ClearData();
             SetDataInGridView();
             MessageBox.Show("Inregistrare salvata cu succes");
+           
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 if (row.Cells["Status"].Value != null && row.Cells["Status"].Value.ToString() == "In Asteptare")

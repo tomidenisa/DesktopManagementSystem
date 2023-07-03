@@ -102,5 +102,10 @@ namespace CRUDOP2
             this.Hide();
             formh.Show();
         }
+
+        private void rtbMessages_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

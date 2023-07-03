@@ -31,7 +31,12 @@ namespace CRUDOP2
             UserRole currentUserRole = UserManager.CurrentUserRole;
             if (currentUserRole == UserRole.User)
             {
-                AddCantitate.Enabled = false;
+                navnotif.Visible = false;
+                AdminButton.Visible= false;
+            }
+            if (currentUserRole == UserRole.Admin)
+            {
+                button4.Visible = false;
             }
             label1.BorderStyle = BorderStyle.Fixed3D;
             label2.BorderStyle = BorderStyle.Fixed3D;
@@ -299,6 +304,13 @@ namespace CRUDOP2
             Notification notif = new Notification();
             notif.Show();
             this.Hide();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            NotificationEmpl ntf = new NotificationEmpl();
+            this.Hide();
+            ntf.Show();
         }
     }
 }

@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.serviceAutoDBDataSet = new CRUDOP2.ServiceAutoDBDataSet();
             this.punctLucruServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.punct_Lucru_ServiceTableAdapter = new CRUDOP2.ServiceAutoDBDataSetTableAdapters.Punct_Lucru_ServiceTableAdapter();
@@ -48,7 +48,7 @@
             this.DevizButton = new System.Windows.Forms.Button();
             this.AdminButton = new System.Windows.Forms.Button();
             this.LogoutButton = new System.Windows.Forms.Button();
-            this.AddCantitate = new System.Windows.Forms.Button();
+            this.navnotif = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -246,17 +246,17 @@
             this.LogoutButton.UseVisualStyleBackColor = true;
             this.LogoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
-            // AddCantitate
+            // navnotif
             // 
-            this.AddCantitate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
-            this.AddCantitate.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AddCantitate.Location = new System.Drawing.Point(410, 115);
-            this.AddCantitate.Name = "AddCantitate";
-            this.AddCantitate.Size = new System.Drawing.Size(305, 65);
-            this.AddCantitate.TabIndex = 49;
-            this.AddCantitate.Text = "Navigheaza la notificari";
-            this.AddCantitate.UseVisualStyleBackColor = false;
-            this.AddCantitate.Click += new System.EventHandler(this.AddCantitate_Click);
+            this.navnotif.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.navnotif.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.navnotif.Location = new System.Drawing.Point(410, 115);
+            this.navnotif.Name = "navnotif";
+            this.navnotif.Size = new System.Drawing.Size(305, 65);
+            this.navnotif.TabIndex = 49;
+            this.navnotif.Text = "Navigheaza la notificari";
+            this.navnotif.UseVisualStyleBackColor = false;
+            this.navnotif.Click += new System.EventHandler(this.AddCantitate_Click);
             // 
             // button1
             // 
@@ -406,16 +406,16 @@
             // 
             this.chart1.BackColor = System.Drawing.Color.LightBlue;
             this.chart1.BorderlineColor = System.Drawing.Color.LightBlue;
-            chartArea9.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart1.Legends.Add(legend9);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(541, 638);
             this.chart1.Name = "chart1";
-            series9.ChartArea = "ChartArea1";
-            series9.Legend = "Legend1";
-            series9.Name = "Series1";
-            this.chart1.Series.Add(series9);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
             this.chart1.Size = new System.Drawing.Size(447, 300);
             this.chart1.TabIndex = 62;
             this.chart1.Text = "chart1";
@@ -428,16 +428,16 @@
             // 
             this.chart2.BackColor = System.Drawing.Color.LightBlue;
             this.chart2.BorderlineColor = System.Drawing.Color.LightBlue;
-            chartArea10.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chart2.Legends.Add(legend10);
+            chartArea2.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart2.Legends.Add(legend2);
             this.chart2.Location = new System.Drawing.Point(1348, 638);
             this.chart2.Name = "chart2";
-            series10.ChartArea = "ChartArea1";
-            series10.Legend = "Legend1";
-            series10.Name = "Series1";
-            this.chart2.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(549, 320);
             this.chart2.TabIndex = 63;
             this.chart2.Text = "chart2";
@@ -463,6 +463,7 @@
             this.button4.TabIndex = 129;
             this.button4.Text = "Navigheaza la notificari";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Home
             // 
@@ -484,7 +485,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.AddCantitate);
+            this.Controls.Add(this.navnotif);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
             this.Name = "Home";
@@ -516,7 +517,7 @@
         private System.Windows.Forms.Button DevizButton;
         private System.Windows.Forms.Button AdminButton;
         private System.Windows.Forms.Button LogoutButton;
-        private System.Windows.Forms.Button AddCantitate;
+        private System.Windows.Forms.Button navnotif;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

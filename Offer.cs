@@ -455,12 +455,12 @@ namespace CRUDOP2
 
             PdfGraphics graphics = page.Graphics;
 
-            
 
 
-            PdfFont font = new PdfStandardFont(PdfFontFamily.Helvetica, 12);
 
-            
+            PdfFont font = new PdfStandardFont(PdfFontFamily.TimesRoman, 10);
+
+
             float y = 50;
 
             
@@ -502,7 +502,7 @@ namespace CRUDOP2
             
             string title = "Deviz Ofertare";
             float titleFontSize = 18;
-            PdfFont titleFont = new PdfStandardFont(PdfFontFamily.Helvetica, titleFontSize, PdfFontStyle.Bold);
+            PdfFont titleFont = new PdfStandardFont(PdfFontFamily.TimesRoman, titleFontSize, PdfFontStyle.Bold);
             float titleWidth = titleFont.MeasureString(title).Width;
             float titleX = (pageWidth - titleWidth) / 2; 
             graphics.DrawString(title, titleFont, PdfBrushes.Black, new PointF(titleX, y));
@@ -517,13 +517,13 @@ namespace CRUDOP2
            
             int programareID = (int)programareComboBox.SelectedItem;
             graphics.DrawString("Cod Document: " + programareID.ToString(), font, PdfBrushes.Black, new PointF(50, y));
-            y += 40;
+            y += 20;
 
             
             string serieSasiu = vehiculComboBox.SelectedItem?.ToString();
             float vehiculX = page.GetClientSize().Width - font.MeasureString("Vehicul Serie Sasiu: " + serieSasiu).Width - 50;
             graphics.DrawString("Vehicul Serie Sasiu: " + serieSasiu, font, PdfBrushes.Black, new PointF(vehiculX, y));
-            y += 40;
+            y += 20;
 
            
             graphics.DrawString("Produse si Servicii", font, PdfBrushes.Black, new PointF(50, y));
