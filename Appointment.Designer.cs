@@ -92,6 +92,7 @@
             this.PozitieTextBox = new System.Windows.Forms.TextBox();
             this.PctLucruTextBox = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.refusebtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Logo)).BeginInit();
             this.flowLayoutPanel2.SuspendLayout();
@@ -272,7 +273,7 @@
             this.flowLayoutPanel2.Controls.Add(this.label9);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(385, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1780, 133);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1782, 133);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // button1
@@ -531,9 +532,9 @@
             // 
             this.SearchBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
             this.SearchBtn.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchBtn.Location = new System.Drawing.Point(1228, 788);
+            this.SearchBtn.Location = new System.Drawing.Point(1172, 788);
             this.SearchBtn.Name = "SearchBtn";
-            this.SearchBtn.Size = new System.Drawing.Size(383, 53);
+            this.SearchBtn.Size = new System.Drawing.Size(258, 53);
             this.SearchBtn.TabIndex = 16;
             this.SearchBtn.Text = "Cauta dupa angajat";
             this.SearchBtn.UseVisualStyleBackColor = false;
@@ -739,6 +740,18 @@
             this.flowLayoutPanel3.Size = new System.Drawing.Size(396, 429);
             this.flowLayoutPanel3.TabIndex = 41;
             // 
+            // refusebtn
+            // 
+            this.refusebtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(87)))), ((int)(((byte)(101)))));
+            this.refusebtn.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.refusebtn.Location = new System.Drawing.Point(1587, 774);
+            this.refusebtn.Name = "refusebtn";
+            this.refusebtn.Size = new System.Drawing.Size(308, 67);
+            this.refusebtn.TabIndex = 42;
+            this.refusebtn.Text = "Refuza";
+            this.refusebtn.UseVisualStyleBackColor = false;
+            this.refusebtn.Click += new System.EventHandler(this.refusebtn_Click);
+            // 
             // Appointment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -746,6 +759,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.LightBlue;
             this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.Controls.Add(this.refusebtn);
             this.Controls.Add(this.PctLucruTextBox);
             this.Controls.Add(this.PozitieTextBox);
             this.Controls.Add(this.INTimePicker);
@@ -849,5 +863,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.BindingSource angajatBindingSource1;
+        private System.Windows.Forms.Button refusebtn;
     }
 }

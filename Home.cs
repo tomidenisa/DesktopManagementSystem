@@ -48,6 +48,7 @@ namespace CRUDOP2
             label1.Font = new Font(label1.Font.FontFamily, 20, FontStyle.Bold);
             DisplayProgramariStatus();
             DisplayProgramariDistributionChart();
+            PopulateChart();
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
@@ -117,21 +118,97 @@ namespace CRUDOP2
             chart1.Series["Programari"].Points[1].Color = blueColor;   // In Progres
             chart1.Series["Programari"].Points[2].Color = greenColor;  // Finalizat
 
-            Legend legend = new Legend();
-            chart1.Legends.Add(legend);
+            //Legend legend = new Legend();
+            //chart1.Legends.Add(legend);
 
-            chart1.Series["Programari"].IsVisibleInLegend = true;
-            chart1.Series["Programari"].LegendText = "#LABEL";
+            //chart1.Series["Programari"].IsVisibleInLegend = true;
+            //chart1.Series["Programari"].LegendText = "#LABEL";
 
             foreach (DataPoint dataPoint in chart1.Series["Programari"].Points)
             {
                 double percentage = (dataPoint.YValues[0] / totalCount) * 100;
                 dataPoint.Label = $"{percentage:F1}%";
-                dataPoint.LegendText = "";  
+               // dataPoint.LegendText = "";  
             }
 
             chart1.Invalidate();
         }
+        private void PopulateChart()
+        {
+            // Clear any existing data in the chart
+            chart2.Series.Clear();
+
+            // Create a dictionary to store the department counters
+            Dictionary<string, int> departmentCounters = new Dictionary<string, int>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Open the connection
+                connection.Open();
+
+                // Query to retrieve the number of employees and position IDs
+                string query = "SELECT Id_Pozitie_Angajat " +
+                               "FROM Angajat " +
+                               "WHERE Id_Pozitie_Angajat IN (2, 3, 4, 5, 7, 8, 10)";
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        // Iterate over the retrieved data
+                        while (reader.Read())
+                        {
+                            int positionId = reader.GetInt32(0);
+
+                            // Get the department name based on the position ID
+                            string department = GetDepartmentName(positionId);
+
+                            // Check if the department already exists in the dictionary
+                            if (departmentCounters.ContainsKey(department))
+                            {
+                                // Increment the counter for the department
+                                departmentCounters[department]++;
+                            }
+                            else
+                            {
+                                // Add the department to the dictionary with an initial count of 1
+                                departmentCounters.Add(department, 1);
+                            }
+                        }
+                    }
+                }
+
+                // Create a single series for the bar chart
+                Series series = chart2.Series.Add("Angajati");
+                series.ChartType = SeriesChartType.Bar;
+
+                // Set the color for each department
+                series.Palette = ChartColorPalette.BrightPastel;
+
+                // Add data points to the bar chart for each department
+                foreach (var departmentCounter in departmentCounters)
+                {
+                    series.Points.AddXY(departmentCounter.Key, departmentCounter.Value);
+                }
+            }
+        }
+
+        private string GetDepartmentName(int positionId)
+        {
+            if (positionId >= 2 && positionId <= 7)
+                return "Atelier";
+            else if (positionId == 8)
+                return "Financiar-Contabil";
+            else if (positionId == 10)
+                return "Administratie";
+            else
+                return "Unknown";
+        }
+
+
+
+
+
 
 
 

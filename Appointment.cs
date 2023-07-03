@@ -522,5 +522,77 @@ namespace CRUDOP2
             }
 
         }
+
+        private void refusebtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count > 0)
+            {
+                int selectedRowIndex = dataGridView.SelectedRows[0].Index;
+                int appointmentId = Convert.ToInt32(dataGridView[0, selectedRowIndex].Value);
+                var appointment = db.programares.FirstOrDefault(a => a.id == appointmentId);
+
+                if (appointment != null)
+                {
+                    int employeeId = appointment.angajat_id;
+                    var employee = db.Angajats.FirstOrDefault(f => f.Id == employeeId);
+                    if (employee != null)
+                    {
+                        string employeeName = employee.Nume;
+                        int positionId = employee.Id_Pozitie_Angajat;
+                        var position = db.pozitie_angajat.FirstOrDefault(p => p.pozitie_angajat_id == positionId);
+                        if (position != null)
+                        {
+                            string positionName = position.pozitie;
+                            int branchId = employee.IdPunctDeLucru;
+                            var branch = db.Punct_Lucru_Service.FirstOrDefault(b => b.Punct_Lucru_Id == branchId);
+                            if (branch != null)
+                            {
+                                string branchName = branch.Denumire;
+                                string message = $"Esti sigur ca vrei sa refuzi programarea pentru angajatul {employeeName} cu pozitia {positionName} la punctul de lucru {branchName}?";
+                                DialogResult result = MessageBox.Show(message, "Confirmare refuzare programare", MessageBoxButtons.YesNo);
+                                if (result == DialogResult.Yes)
+                                {
+                                    if (appointment.status == "In Asteptare")
+                                    {
+                                        MessageBox.Show("Programare refuzata");
+                                    }
+                                }
+                                else if (appointment.status == "Finalizat")
+                                {
+                                    MessageBox.Show("Programarea a fost deja finalizata.");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Statusul programarii nu poate fi schimbat.");
+                                }
+                                try
+                                {
+
+                                    DateTime selectedDate = System.DateTime.Now;
+
+                                    CreateWriteClient();
+                                    var messages = $"Angajatul {employeeName} a refuzat programarea {appointmentId} la {selectedDate}";
+                                    _clientWrite.Write("administrator", messages, "admin1");
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Nu se poate gasi programarea.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecteaza o programare pentru a fi finalizata.");
+            }
+
+        }
     }
 }

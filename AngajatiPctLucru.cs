@@ -81,7 +81,7 @@ namespace CRUDOP2
                 NameEmplTxt.Text = employee.Nume;
                 PNameEmplTxt.Text = employee.Prenume;
                 CnpEmplTxt.Text = employee.CNP;
-                PosCombo.SelectedValue = employee.pozitie_angajat;
+                PosCombo.SelectedValue = employee.Id_Pozitie_Angajat;
                 AdressEmplTxt.Text = employee.Adresa;
                 HireDateTimePicker.Value = employee.DataAngajarii;
                 PasswordTxt.Text = employee.Parola;
