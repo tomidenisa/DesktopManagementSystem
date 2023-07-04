@@ -902,6 +902,7 @@
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.flowLayoutPanel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CatalogServRep";
             this.Text = "CatalogServRep";
             this.Load += new System.EventHandler(this.CatalogServRep_Load);

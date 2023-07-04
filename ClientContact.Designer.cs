@@ -1062,6 +1062,7 @@
             this.Controls.Add(this.flowLayoutPanel3);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ClientContact";
             this.Text = "ClientContact";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

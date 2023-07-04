@@ -664,6 +664,7 @@
             this.Controls.Add(this.Search);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Product";
             this.Text = "Product";
             this.Load += new System.EventHandler(this.Product_Load);

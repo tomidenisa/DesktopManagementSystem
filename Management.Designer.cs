@@ -329,6 +329,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.flowLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Management";
             this.Text = "Management";
             this.Load += new System.EventHandler(this.Management_Load);

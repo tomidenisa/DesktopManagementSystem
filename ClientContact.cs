@@ -318,6 +318,10 @@ namespace CRUDOP2
             ClearDataContact();
             SetDataInGridViewContact();
             MessageBox.Show("Inregistrare salvata cu succes");
+            MessageBox.Show("Este necesara inregistrarii autovehicului aferent clientului");
+            Vehicul vehic = new Vehicul();
+            this.Hide();
+            vehic.Show();
 
         }
 
@@ -369,7 +373,11 @@ namespace CRUDOP2
             db.SaveChanges();
             ClearDataClient();
             SetDataInGridViewClient();
+            int clientId = client.id;
             MessageBox.Show("Inregistrare salvata cu succes");
+            MessageBox.Show($"Inrergistreaza tipul de contact aferent programarii pentru clientul: {clientId} ");
+            ClientCombo.SelectedValue = clientId;
+            ClientCombo.Focus();
             ClientCombo.DataSource = db.Clients.ToList();
             ClientCombo.DisplayMember = "id";
             ClientCombo.ValueMember = "id";

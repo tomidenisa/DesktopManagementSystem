@@ -273,7 +273,7 @@
             this.flowLayoutPanel2.Controls.Add(this.label9);
             this.flowLayoutPanel2.Location = new System.Drawing.Point(385, 0);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(1786, 133);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(1790, 133);
             this.flowLayoutPanel2.TabIndex = 2;
             // 
             // button1
@@ -785,6 +785,7 @@
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Appointment";
             this.Text = "Appointment";
             this.Load += new System.EventHandler(this.Appointment_Load);

@@ -724,6 +724,10 @@ namespace CRUDOP2
             graphics.DrawString("Vehicul Serie Sasiu: " + serieSasiu, font, PdfBrushes.Black, new PointF(vehiculX, y));
             y += 20;
 
+            string pieseAduse = checkBoxPiese.Checked ? "da" : "nu";
+            graphics.DrawString("Piese aduse de client: " + pieseAduse, font, PdfBrushes.Black, new PointF(50, y));
+            y += 20;
+
             string defectecost = defecttxt.Text;
             string defectText = "Descrierea defectelor constatate: " + defectecost;
 

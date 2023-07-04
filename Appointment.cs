@@ -270,10 +270,15 @@ namespace CRUDOP2
                 MessageBox.Show("rabbit fail " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             db.SaveChanges();
+            int appointmentId = appointment.id;
             ClearData();
             SetDataInGridView();
             MessageBox.Show("Inregistrare salvata cu succes");
-           
+            MessageBox.Show($"Este necesara inregistrarea clientului pentru programarea efectuata și a tipului de contact.\nID programare: {appointmentId}");
+            ClientContact clnt = new ClientContact();
+            //this.Hide();
+            clnt.Show();
+
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 if (row.Cells["Status"].Value != null && row.Cells["Status"].Value.ToString() == "In Asteptare")
@@ -281,6 +286,8 @@ namespace CRUDOP2
                     row.DefaultCellStyle.BackColor = redColor;
                 }
             }
+
+ 
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -362,7 +369,7 @@ namespace CRUDOP2
                                         DateTime selectedDate = System.DateTime.Now;
                                         
                                         CreateWriteClient();
-                                        var messages = $"Angajatul {employeeName} a acceptat programarea {appointmentId} la {selectedDate}";
+                                        var messages = $"Angajatul {employeeName} a acceptat programarea {appointmentId} la {selectedDate}. Inregistrati clientul pentru programarea {appointmentId}";
                                         _clientWrite.Write("administrator", messages, "admin1");
                                     }
                                     catch (Exception ex)

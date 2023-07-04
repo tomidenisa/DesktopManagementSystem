@@ -635,6 +635,7 @@
             this.Controls.Add(this.VehiculdataGridView);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.flowLayoutPanel3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Vehicul";
             this.Text = "Vehicul";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -255,6 +255,11 @@ namespace CRUDOP2
             ClearDataVehicul();
             SetDataInGridViewVehicul();
             MessageBox.Show("Inregistrare salvata cu succes");
+            MessageBox.Show("Programare completata cu succes");
+            Appointment app = new Appointment();
+            this.Hide();
+            app.Show();
+
         }
     }
     
